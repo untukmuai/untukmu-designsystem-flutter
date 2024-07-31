@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 
 class DLSColors {
   // Core Colors
-  static const Color orchidPurpleDarker = Color(0xFF2B1664);
-  static const Color orchidPurpleDark = Color(0xFF5A36BF);
-  static const Color orchidPurpleBase = Color(0xFF6E3FF3);
-  static const Color orchidPurpleLight = Color(0xFFCAC2FF);
-  static const Color orchidPurpleLighter = Color(0xFFEEEBFF);
+  static const Color orchidPurpleDarker = Color(0xFF25124D);
+  static const Color orchidPurpleDark = Color(0xFF542AAD);
+  static const Color orchidPurpleBase = Color(0xFF7246CE);
+  static const Color orchidPurpleLight = Color(0xFFD0C2ED);
+  static const Color orchidPurpleLighter = Color(0xFFEFEAFA);
 
   // Secondary Colors
-  static const Color sunsetYellowDarker = Color(0xFF6E330C);
-  static const Color sunsetYellowDark = Color(0xFFC2540A);
-  static const Color sunsetYellowBase = Color(0xFFF17B2C);
-  static const Color sunsetYellowLight = Color(0xFFFFDAC2);
-  static const Color sunsetYellowLighter = Color(0xFFFEF3EB);
+  static const Color sunsetYellowDarker = Color(0xFF6A3C07);
+  static const Color sunsetYellowDark = Color(0xFFDC7D0F);
+  static const Color sunsetYellowBase = Color(0xFFF19B38);
+  static const Color sunsetYellowLight = Color(0xFFFBE3C7);
+  static const Color sunsetYellowLighter = Color(0xFFFEF7EC);
 
-  static const Color flamingoPinkDarker = Color(0xFF620F6C);
-  static const Color flamingoPinkDark = Color(0xFF9C23A9);
-  static const Color flamingoPinkBase = Color(0xFFE255F2);
-  static const Color flamingoPinkLight = Color(0xFFF9C2FF);
-  static const Color flamingoPinkLighter = Color(0xFFFDEBFF);
+  static const Color flamingoPinkDarker = Color(0xFF4E1745);
+  static const Color flamingoPinkDark = Color(0xFF8D2A7C);
+  static const Color flamingoPinkBase = Color(0xFFCB52B6);
+  static const Color flamingoPinkLight = Color(0xFFEEC8E8);
+  static const Color flamingoPinkLighter = Color(0xFFFAEFF8);
 
   static const Color pacificBlueDarker = Color(0xFF162664);
   static const Color pacificBlueDark = Color(0xFF253EA7);
@@ -27,10 +27,10 @@ class DLSColors {
   static const Color pacificBlueLight = Color(0xFFC2D6FF);
   static const Color pacificBlueLighter = Color(0xFFEBF1FF);
 
-  static const Color basilGreenDarker = Color(0xFF176448);
-  static const Color basilGreenDark = Color(0xFF2D9F75);
-  static const Color basilGreenBase = Color(0xFF38C793);
-  static const Color basilGreenLight = Color(0xFFCBF5E5);
+  static const Color basilGreenDarker = Color(0xFF104B38);
+  static const Color basilGreenDark = Color(0xFF16694E);
+  static const Color basilGreenBase = Color(0xFF21A077);
+  static const Color basilGreenLight = Color(0xFF9DEBD2);
   static const Color basilGreenLighter = Color(0xFFEFFAF6);
 
   // Neutral Colors
@@ -46,17 +46,23 @@ class DLSColors {
   static const Color neutral0 = Color(0xFFFFFFFF);
 
   // Semantic Colors
-  static const Color redDarker = Color(0xFF710E21);
-  static const Color redDark = Color(0xFFAF1D38);
-  static const Color redBase = Color(0xFFDFFC41);
-  static const Color redLight = Color(0xFFF8C9D2);
+  static const Color redDarker = Color(0xFF51120E);
+  static const Color redDark = Color(0xFF7D1B15);
+  static const Color redBase = Color(0xFFA9251C);
+  static const Color redLight = Color(0xFFF0A6A1);
   static const Color redLighter = Color(0xFFFDEDF0);
 
-  static const Color yellowDarker = Color(0xFF693D11);
-  static const Color yellowDark = Color(0xFFB47818);
-  static const Color yellowBase = Color(0xFFF2AE40);
-  static const Color yellowLight = Color(0xFFFBDFB1);
-  static const Color yellowLighter = Color(0xFFFEF7EC);
+  static const Color yellowDarker = Color(0xFF954214);
+  static const Color yellowDark = Color(0xFFC2561A);
+  static const Color yellowBase = Color(0xFFE36D2C);
+  static const Color yellowLight = Color(0xFFF5CAB3);
+  static const Color yellowLighter = Color(0xFFFBEAE0);
+
+  static const Color greenDarker = Color(0xFF505F2F);
+  static const Color greenDark = Color(0xFF6C8140);
+  static const Color greenBase = Color(0xFF89A351);
+  static const Color greenLight = Color(0xFFCDD9B4);
+  static const Color greenLighter = Color(0xFFE4EAD6);
 
   static const Color tealDarker = Color(0xFF164564);
   static const Color tealDark = Color(0xFF1F87AD);
@@ -100,6 +106,7 @@ class DLSColors {
   static const Color bgSurface700 = neutral700;
   static const Color bgSoft200 = neutral200;
   static const Color bgWeak100 = neutral100;
+  static const Color bgWhite0 = neutral0;
 
   // Text Color Tokens
   static const Color textMain900 = neutral900;
@@ -143,10 +150,10 @@ class DLSColors {
   static const Color errorLight = redLight;
   static const Color errorLighter = redLighter;
 
-  static const Color successDark = basilGreenDarker;
-  static const Color successBase = basilGreenBase;
-  static const Color successLight = basilGreenLight;
-  static const Color successLighter = basilGreenLighter;
+  static const Color successDark = greenDarker;
+  static const Color successBase = greenBase;
+  static const Color successLight = greenLight;
+  static const Color successLighter = greenLighter;
 
   static const Color verifiedDark = tealDarker;
   static const Color verifiedBase = tealBase;
