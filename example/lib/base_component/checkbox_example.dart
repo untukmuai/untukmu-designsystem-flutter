@@ -23,6 +23,30 @@ class CheckboxExamplePageState extends State<CheckboxExamplePage> {
     });
   }
 
+  Widget badge() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: DLSColors.pacificBlueLight,
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'new',
+            textAlign: TextAlign.center,
+            style: DLSTextStyle.paragraphSmall
+                .copyWith(height: 0.14, color: DLSColors.textSub500),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,21 +61,22 @@ class CheckboxExamplePageState extends State<CheckboxExamplePage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            CustomSelection(
+            ContentCard(
               label: 'Checkbox 1',
               subLabel: 'Sub 1',
               description: 'Description for checkbox 1',
               isActive: selectedValues.contains('Checkbox 1'),
               isHovered: false,
               isDisabled: false,
+              badge: badge(),
               leadingIcon: SvgPicture.asset('assets/svg/ic_mastercard.svg'),
               onTap: () {
                 onCheckboxTap('Checkbox 1');
               },
-              controlType: CustomSelectionType.checkbox,
+              controlType: ContentCardType.checkbox,
             ),
             const SizedBox(height: 16),
-            CustomSelection(
+            ContentCard(
               label: 'Checkbox 2',
               subLabel: 'Sub 2',
               description: 'Description for checkbox 2',
@@ -62,10 +87,10 @@ class CheckboxExamplePageState extends State<CheckboxExamplePage> {
               onTap: () {
                 onCheckboxTap('Checkbox 2');
               },
-              controlType: CustomSelectionType.checkbox,
+              controlType: ContentCardType.checkbox,
             ),
             const SizedBox(height: 16),
-            CustomSelection(
+            ContentCard(
               label: 'Checkbox 3',
               subLabel: 'Sub 3',
               description: 'Description for checkbox 3',
@@ -75,17 +100,17 @@ class CheckboxExamplePageState extends State<CheckboxExamplePage> {
               onTap: () {
                 onCheckboxTap('Checkbox 3');
               },
-              controlType: CustomSelectionType.checkbox,
+              controlType: ContentCardType.checkbox,
             ),
             const SizedBox(height: 16),
-            const CustomSelection(
+            const ContentCard(
               label: 'Checkbox 4',
               subLabel: 'Sub 4',
               description: 'Description for checkbox 4',
               isActive: true,
               isHovered: false,
               isDisabled: true,
-              controlType: CustomSelectionType.checkbox,
+              controlType: ContentCardType.checkbox,
             ),
           ],
         ),

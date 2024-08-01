@@ -1,6 +1,6 @@
-import 'package:example/checkbox_example.dart';
-import 'package:example/radio_example.dart';
-import 'package:example/toggle_example.dart';
+import 'package:example/base_component/checkbox_example.dart';
+import 'package:example/base_component/radio_example.dart';
+import 'package:example/base_component/toggle_example.dart';
 import 'package:flutter/material.dart';
 
 void main() {
