@@ -72,13 +72,13 @@ class ToggleExamplePageState extends State<ToggleExamplePage> {
           children: [
             ContentCard(
               label: 'Toggle 1',
-              subLabel: 'Sub 1',
+              subLabel: '(Sub 1)',
               description: 'Description for toggle 1',
               isActive: isToggle1Active,
               isHovered: false,
               isDisabled: false,
               badge: badge(),
-              leadingIcon: SvgPicture.asset('assets/svg/ic_mastercard.svg'),
+              leadingWidget: SvgPicture.asset('assets/svg/ic_mastercard.svg'),
               onTap: () {
                 _handleToggleChange(1);
               },
@@ -87,12 +87,12 @@ class ToggleExamplePageState extends State<ToggleExamplePage> {
             const SizedBox(height: 16),
             ContentCard(
               label: 'Toggle 2',
-              subLabel: 'Sub 2',
+              subLabel: '(Sub 2)',
               description: 'Description for toggle 2',
               isActive: isToggle2Active,
               isHovered: true,
               isDisabled: false,
-              leadingIcon: SvgPicture.asset('assets/svg/ic_spotify.svg'),
+              leadingWidget: SvgPicture.asset('assets/svg/ic_spotify.svg'),
               onTap: () {
                 _handleToggleChange(2);
               },
@@ -101,7 +101,7 @@ class ToggleExamplePageState extends State<ToggleExamplePage> {
             const SizedBox(height: 16),
             ContentCard(
               label: 'Toggle 3',
-              subLabel: 'Sub 3',
+              subLabel: '(Sub 3)',
               description: 'Description for toggle 3',
               isActive: isToggle3Active,
               isHovered: false,

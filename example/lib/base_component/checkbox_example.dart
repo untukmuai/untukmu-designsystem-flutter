@@ -69,7 +69,7 @@ class CheckboxExamplePageState extends State<CheckboxExamplePage> {
               isHovered: false,
               isDisabled: false,
               badge: badge(),
-              leadingIcon: SvgPicture.asset('assets/svg/ic_mastercard.svg'),
+              leadingWidget: SvgPicture.asset('assets/svg/ic_mastercard.svg'),
               onTap: () {
                 onCheckboxTap('Checkbox 1');
               },
@@ -83,7 +83,7 @@ class CheckboxExamplePageState extends State<CheckboxExamplePage> {
               isActive: selectedValues.contains('Checkbox 2'),
               isHovered: true,
               isDisabled: false,
-              leadingIcon: SvgPicture.asset('assets/svg/ic_spotify.svg'),
+              leadingWidget: SvgPicture.asset('assets/svg/ic_spotify.svg'),
               onTap: () {
                 onCheckboxTap('Checkbox 2');
               },
