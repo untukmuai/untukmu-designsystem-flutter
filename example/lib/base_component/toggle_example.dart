@@ -32,6 +32,30 @@ class ToggleExamplePageState extends State<ToggleExamplePage> {
     });
   }
 
+  Widget badge() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: DLSColors.pacificBlueLight,
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'new',
+            textAlign: TextAlign.center,
+            style: DLSTextStyle.paragraphSmall
+                .copyWith(height: 0.14, color: DLSColors.textSub500),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,21 +70,22 @@ class ToggleExamplePageState extends State<ToggleExamplePage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            CustomSelection(
+            ContentCard(
               label: 'Toggle 1',
               subLabel: 'Sub 1',
               description: 'Description for toggle 1',
               isActive: isToggle1Active,
               isHovered: false,
               isDisabled: false,
+              badge: badge(),
               leadingIcon: SvgPicture.asset('assets/svg/ic_mastercard.svg'),
               onTap: () {
                 _handleToggleChange(1);
               },
-              controlType: CustomSelectionType.toggle,
+              controlType: ContentCardType.toggle,
             ),
             const SizedBox(height: 16),
-            CustomSelection(
+            ContentCard(
               label: 'Toggle 2',
               subLabel: 'Sub 2',
               description: 'Description for toggle 2',
@@ -71,17 +96,17 @@ class ToggleExamplePageState extends State<ToggleExamplePage> {
               onTap: () {
                 _handleToggleChange(2);
               },
-              controlType: CustomSelectionType.toggle,
+              controlType: ContentCardType.toggle,
             ),
             const SizedBox(height: 16),
-            CustomSelection(
+            ContentCard(
               label: 'Toggle 3',
               subLabel: 'Sub 3',
               description: 'Description for toggle 3',
               isActive: isToggle3Active,
               isHovered: false,
               isDisabled: true,
-              controlType: CustomSelectionType.toggle,
+              controlType: ContentCardType.toggle,
             ),
           ],
         ),

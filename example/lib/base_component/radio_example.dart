@@ -12,6 +12,37 @@ class RadioExamplePage extends StatefulWidget {
 class RadioExamplePageState extends State<RadioExamplePage> {
   String selectedValue = 'Option 1';
 
+  void _handleRadioChange(String value) {
+    setState(() {
+      selectedValue = value;
+      debugPrint('Selected value is now: $selectedValue');
+    });
+  }
+
+  Widget badge() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: DLSColors.pacificBlueLight,
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'new',
+            textAlign: TextAlign.center,
+            style: DLSTextStyle.paragraphSmall
+                .copyWith(height: 0.14, color: DLSColors.textSub500),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,23 +57,22 @@ class RadioExamplePageState extends State<RadioExamplePage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            CustomSelection(
+            ContentCard(
               label: 'Option 1',
               subLabel: 'Sub 1',
               description: 'Description for option 1',
               isActive: selectedValue == 'Option 1',
               isHovered: false,
               isDisabled: false,
+              badge: badge(),
               leadingIcon: SvgPicture.asset('assets/svg/ic_mastercard.svg'),
               onTap: () {
-                setState(() {
-                  selectedValue = 'Option 1';
-                });
+                _handleRadioChange('Option 1');
               },
-              controlType: CustomSelectionType.radio,
+              controlType: ContentCardType.radio,
             ),
             const SizedBox(height: 16),
-            CustomSelection(
+            ContentCard(
               label: 'Option 2',
               subLabel: 'Sub 2',
               description: 'Description for option 2',
@@ -51,14 +81,12 @@ class RadioExamplePageState extends State<RadioExamplePage> {
               isDisabled: false,
               leadingIcon: SvgPicture.asset('assets/svg/ic_spotify.svg'),
               onTap: () {
-                setState(() {
-                  selectedValue = 'Option 2';
-                });
+                _handleRadioChange('Option 2');
               },
-              controlType: CustomSelectionType.radio,
+              controlType: ContentCardType.radio,
             ),
             const SizedBox(height: 16),
-            CustomSelection(
+            ContentCard(
               label: 'Option 3',
               subLabel: 'Sub 3',
               description: 'Description for option 3',
@@ -66,14 +94,12 @@ class RadioExamplePageState extends State<RadioExamplePage> {
               isHovered: false,
               isDisabled: false,
               onTap: () {
-                setState(() {
-                  selectedValue = 'Option 3';
-                });
+                _handleRadioChange('Option 3');
               },
-              controlType: CustomSelectionType.radio,
+              controlType: ContentCardType.radio,
             ),
             const SizedBox(height: 16),
-            CustomSelection(
+            ContentCard(
               label: 'Option 4',
               subLabel: 'Sub 4',
               description: 'Description for option 4',
@@ -81,11 +107,9 @@ class RadioExamplePageState extends State<RadioExamplePage> {
               isHovered: false,
               isDisabled: true,
               onTap: () {
-                setState(() {
-                  selectedValue = 'Option 4';
-                });
+                _handleRadioChange('Option 4');
               },
-              controlType: CustomSelectionType.radio,
+              controlType: ContentCardType.radio,
             ),
           ],
         ),
