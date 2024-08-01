@@ -1,5 +1,6 @@
 import 'package:example/avatar_example_page.dart';
 import 'package:example/badge_example_page.dart';
+import 'package:example/breadcrumb_page.dart';
 import 'package:example/checkbox_example.dart';
 import 'package:example/radio_example.dart';
 import 'package:example/toggle_example.dart';
@@ -55,6 +56,17 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: const Text('Badge Example'),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const BreadcrumbExamplePage()),
+                );
+              },
+              child: const Text('Breadcrumb Example'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
