@@ -19,6 +19,7 @@ class CheckboxExamplePageState extends State<CheckboxExamplePage> {
       } else {
         selectedValues.add(value);
       }
+      debugPrint('Selected values: ${selectedValues.join(', ')}');
     });
   }
 
@@ -77,14 +78,13 @@ class CheckboxExamplePageState extends State<CheckboxExamplePage> {
               controlType: CustomSelectionType.checkbox,
             ),
             const SizedBox(height: 16),
-            CustomSelection(
+            const CustomSelection(
               label: 'Checkbox 4',
               subLabel: 'Sub 4',
               description: 'Description for checkbox 4',
-              isActive: selectedValues.contains('Checkbox 4'),
+              isActive: true,
               isHovered: false,
               isDisabled: true,
-              onTap: () {},
               controlType: CustomSelectionType.checkbox,
             ),
           ],

@@ -12,6 +12,13 @@ class RadioExamplePage extends StatefulWidget {
 class RadioExamplePageState extends State<RadioExamplePage> {
   String selectedValue = 'Option 1';
 
+  void _handleRadioChange(String value) {
+    setState(() {
+      selectedValue = value;
+      debugPrint('Selected value is now: $selectedValue');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,9 +42,7 @@ class RadioExamplePageState extends State<RadioExamplePage> {
               isDisabled: false,
               leadingIcon: SvgPicture.asset('assets/svg/ic_mastercard.svg'),
               onTap: () {
-                setState(() {
-                  selectedValue = 'Option 1';
-                });
+                _handleRadioChange('Option 1');
               },
               controlType: CustomSelectionType.radio,
             ),
@@ -51,9 +56,7 @@ class RadioExamplePageState extends State<RadioExamplePage> {
               isDisabled: false,
               leadingIcon: SvgPicture.asset('assets/svg/ic_spotify.svg'),
               onTap: () {
-                setState(() {
-                  selectedValue = 'Option 2';
-                });
+                _handleRadioChange('Option 2');
               },
               controlType: CustomSelectionType.radio,
             ),
@@ -66,9 +69,7 @@ class RadioExamplePageState extends State<RadioExamplePage> {
               isHovered: false,
               isDisabled: false,
               onTap: () {
-                setState(() {
-                  selectedValue = 'Option 3';
-                });
+                _handleRadioChange('Option 3');
               },
               controlType: CustomSelectionType.radio,
             ),
@@ -81,9 +82,7 @@ class RadioExamplePageState extends State<RadioExamplePage> {
               isHovered: false,
               isDisabled: true,
               onTap: () {
-                setState(() {
-                  selectedValue = 'Option 4';
-                });
+                _handleRadioChange('Option 4');
               },
               controlType: CustomSelectionType.radio,
             ),

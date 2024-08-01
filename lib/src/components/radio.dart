@@ -43,7 +43,11 @@ class CustomSelection extends StatelessWidget {
         isHovered ? DLSColors.neutral100 : DLSColors.neutral0;
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        if (!isDisabled && onTap != null) {
+          onTap!();
+        }
+      },
       child: Opacity(
         opacity: isDisabled ? 0.48 : 1,
         child: Container(
