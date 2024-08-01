@@ -1,3 +1,4 @@
+import 'package:example/accordion_example.dart';
 import 'package:example/avatar_example.dart';
 import 'package:example/badge_example.dart';
 import 'package:example/breadcrumb_example.dart';
@@ -38,6 +39,17 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const AccordionExamplePage()),
+                );
+              },
+              child: const Text('Accordion Example'),
+            ),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
