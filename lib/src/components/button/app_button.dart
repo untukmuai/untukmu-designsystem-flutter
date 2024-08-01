@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:untukmu_flutter_design_system/src/common/sizing.dart';
-import 'package:untukmu_flutter_design_system/src/components/button/constants/button_size.dart';
-import 'package:untukmu_flutter_design_system/src/components/button/constants/button_style.dart';
-import 'package:untukmu_flutter_design_system/src/components/button/constants/button_type.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 class CustomButton extends StatelessWidget {
@@ -158,7 +154,7 @@ class CustomButton extends StatelessWidget {
       return null;
     }
 
-    if (disabled) {
+    if (disabled || onPressed == null) {
       return DLSColors.bgWeak100;
     }
 
@@ -193,7 +189,7 @@ class CustomButton extends StatelessWidget {
   }
 
   Color get textColor {
-    if (disabled) {
+    if (disabled || onPressed == null) {
       return DLSColors.textDisabled300;
     }
 
@@ -219,7 +215,7 @@ class CustomButton extends StatelessWidget {
   }
 
   BorderSide? get border {
-    if (disabled) {
+    if (disabled || onPressed == null) {
       return null;
     }
 
