@@ -3,6 +3,7 @@ import 'package:example/badge_example.dart';
 import 'package:example/breadcrumb_example.dart';
 import 'package:example/button_example.dart';
 import 'package:example/checkbox_example.dart';
+import 'package:example/notification_example.dart';
 import 'package:example/radio_example.dart';
 import 'package:example/toggle_example.dart';
 import 'package:flutter/material.dart';
@@ -90,6 +91,17 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: const Text('Checkbox Example'),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const NotificationExamplePage()),
+                );
+              },
+              child: const Text('Notification Example'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
