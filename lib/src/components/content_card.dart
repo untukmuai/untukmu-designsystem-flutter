@@ -13,7 +13,7 @@ class ContentCard extends StatelessWidget {
   final bool isDisabled;
   final String? subLabel;
   final Widget? badge;
-  final Widget? leadingIcon;
+  final Widget? leadingWidget;
   final Widget? trailingWidget;
   final VoidCallback? onTap;
   final ContentCardType controlType;
@@ -26,7 +26,7 @@ class ContentCard extends StatelessWidget {
     this.isActive = false,
     this.isHovered = false,
     this.isDisabled = false,
-    this.leadingIcon,
+    this.leadingWidget,
     this.trailingWidget,
     this.badge,
     this.onTap,
@@ -52,7 +52,7 @@ class ContentCard extends StatelessWidget {
       child: Opacity(
         opacity: isDisabled ? 0.48 : 1,
         child: Container(
-          height: 72,
+          // height: 72,
           padding: const EdgeInsets.all(16),
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(
@@ -74,51 +74,47 @@ class ContentCard extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              if (leadingIcon != null) ...[
-                leadingIcon!,
-                const SizedBox(width: 8),
-              ],
+              if (leadingWidget != null)
+                Container(
+                  margin: const EdgeInsets.only(right: 16),
+                  child: leadingWidget,
+                ),
               Expanded(
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      width: double.infinity,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            label,
-                            style: DLSTextStyle.labelMedium,
-                          ),
-                          const SizedBox(width: 8),
-                          if (subLabel != null)
-                            Container(
-                              margin: const EdgeInsets.only(right: 8),
-                              child: Text(
-                                '($subLabel)',
-                                style: DLSTextStyle.paragraphSmall.copyWith(
-                                    height: 0.14, color: DLSColors.textSub500),
-                              ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          label,
+                          style: DLSTextStyle.labelMedium,
+                        ),
+                        const SizedBox(width: 8),
+                        if (subLabel != null)
+                          Container(
+                            margin: const EdgeInsets.only(right: 8),
+                            child: Text(
+                              '$subLabel',
+                              style: DLSTextStyle.paragraphSmall.copyWith(
+                                  height: 0.14, color: DLSColors.textSub500),
                             ),
-                          if (badge != null) badge!,
-                        ],
-                      ),
+                          ),
+                        if (badge != null) badge!,
+                      ],
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 4),
                     Text(
                       description,
                       style: GoogleFonts.plusJakartaSans(
                         color: DLSColors.neutral500,
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
-                        height: 0.11,
+                        // height: 0.11,
                       ),
                     ),
                   ],
@@ -137,7 +133,9 @@ class ContentCard extends StatelessWidget {
   }
 
   Widget actionWidget() {
-    if (controlType == ContentCardType.none) {
+    if (trailingWidget != null) {
+      return trailingWidget!;
+    } else if (controlType == ContentCardType.none) {
       return const SizedBox();
     } else if (controlType == ContentCardType.radio) {
       return isActive

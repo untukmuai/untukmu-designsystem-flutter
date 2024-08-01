@@ -59,13 +59,13 @@ class RadioExamplePageState extends State<RadioExamplePage> {
           children: [
             ContentCard(
               label: 'Option 1',
-              subLabel: 'Sub 1',
+              subLabel: '(Sub 1)',
               description: 'Description for option 1',
               isActive: selectedValue == 'Option 1',
               isHovered: false,
               isDisabled: false,
               badge: badge(),
-              leadingIcon: SvgPicture.asset('assets/svg/ic_mastercard.svg'),
+              leadingWidget: SvgPicture.asset('assets/svg/ic_mastercard.svg'),
               onTap: () {
                 _handleRadioChange('Option 1');
               },
@@ -74,12 +74,12 @@ class RadioExamplePageState extends State<RadioExamplePage> {
             const SizedBox(height: 16),
             ContentCard(
               label: 'Option 2',
-              subLabel: 'Sub 2',
+              subLabel: '(Sub 2)',
               description: 'Description for option 2',
               isActive: selectedValue == 'Option 2',
               isHovered: true,
               isDisabled: false,
-              leadingIcon: SvgPicture.asset('assets/svg/ic_spotify.svg'),
+              leadingWidget: SvgPicture.asset('assets/svg/ic_spotify.svg'),
               onTap: () {
                 _handleRadioChange('Option 2');
               },
@@ -88,7 +88,7 @@ class RadioExamplePageState extends State<RadioExamplePage> {
             const SizedBox(height: 16),
             ContentCard(
               label: 'Option 3',
-              subLabel: 'Sub 3',
+              subLabel: '(Sub 3)',
               description: 'Description for option 3',
               isActive: selectedValue == 'Option 3',
               isHovered: false,
@@ -101,7 +101,7 @@ class RadioExamplePageState extends State<RadioExamplePage> {
             const SizedBox(height: 16),
             ContentCard(
               label: 'Option 4',
-              subLabel: 'Sub 4',
+              subLabel: '(Sub 4)',
               description: 'Description for option 4',
               isActive: selectedValue == 'Option 4',
               isHovered: false,

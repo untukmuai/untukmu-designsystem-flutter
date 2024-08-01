@@ -1,13 +1,14 @@
-import 'package:example/accordion_example.dart';
-import 'package:example/avatar_example.dart';
-import 'package:example/badge_example.dart';
+import 'package:example/base_component/accordion_example.dart';
+import 'package:example/base_component/avatar_example.dart';
+import 'package:example/base_component/badge_example.dart';
 import 'package:example/base_component/checkbox_example.dart';
+import 'package:example/base_component/key_component_example.dart';
 import 'package:example/base_component/radio_example.dart';
 import 'package:example/base_component/toggle_example.dart';
-import 'package:example/breadcrumb_example.dart';
-import 'package:example/button_example.dart';
 import 'package:example/divider_example.dart';
-import 'package:example/notification_example.dart';
+import 'package:example/base_component/breadcrumb_example.dart';
+import 'package:example/base_component/button_example.dart';
+import 'package:example/base_component/notification_example.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -126,6 +127,17 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: const Text('Notification Example'),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const KeyComponentExample()),
+                );
+              },
+              child: const Text('Key Component Example'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
