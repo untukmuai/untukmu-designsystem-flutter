@@ -4,8 +4,9 @@ import 'package:example/base_component/badge_example.dart';
 import 'package:example/base_component/checkbox_example.dart';
 import 'package:example/base_component/key_component_example.dart';
 import 'package:example/base_component/radio_example.dart';
+import 'package:example/base_component/tag_example.dart';
 import 'package:example/base_component/toggle_example.dart';
-import 'package:example/divider_example.dart';
+import 'package:example/base_component/divider_example.dart';
 import 'package:example/base_component/breadcrumb_example.dart';
 import 'package:example/base_component/button_example.dart';
 import 'package:example/base_component/notification_example.dart';
@@ -36,7 +37,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Untukmu Design System Example'),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -160,6 +161,17 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: const Text('Toggle Example'),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const TagExamplePage()),
+                );
+              },
+              child: const Text('Tag Example'),
             ),
           ],
         ),
