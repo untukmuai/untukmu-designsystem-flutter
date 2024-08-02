@@ -154,7 +154,7 @@ class CustomButton extends StatelessWidget {
       return null;
     }
 
-    if (disabled) {
+    if (disabled || onPressed == null) {
       return DLSColors.bgWeak100;
     }
 
@@ -189,7 +189,7 @@ class CustomButton extends StatelessWidget {
   }
 
   Color get textColor {
-    if (disabled) {
+    if (disabled || onPressed == null) {
       return DLSColors.textDisabled300;
     }
 
@@ -215,7 +215,7 @@ class CustomButton extends StatelessWidget {
   }
 
   BorderSide? get border {
-    if (disabled) {
+    if (disabled || onPressed == null) {
       return null;
     }
 
