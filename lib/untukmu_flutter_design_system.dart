@@ -13,3 +13,4 @@ export 'src/components/button/button.dart';
 export 'src/components/notification.dart';
 export 'src/components/content_card.dart';
 export 'src/components/divider.dart';
+export 'src/components/tag.dart';
