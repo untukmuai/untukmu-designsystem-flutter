@@ -52,7 +52,6 @@ class ContentCard extends StatelessWidget {
       child: Opacity(
         opacity: isDisabled ? 0.48 : 1,
         child: Container(
-          // height: 72,
           padding: const EdgeInsets.all(16),
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(

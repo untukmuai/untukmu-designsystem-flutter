@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:untukmu_flutter_design_system/src/common/sizing.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 enum LinkButtonStyle { gray, black, primary, error }

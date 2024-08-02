@@ -52,11 +52,11 @@ class DLSColors {
   static const Color redLight = Color(0xFFF0A6A1);
   static const Color redLighter = Color(0xFFFDEDF0);
 
-  static const Color yellowDarker = Color(0xFF954214);
-  static const Color yellowDark = Color(0xFFC2561A);
-  static const Color yellowBase = Color(0xFFE36D2C);
-  static const Color yellowLight = Color(0xFFF5CAB3);
-  static const Color yellowLighter = Color(0xFFFBEAE0);
+  static const Color orangeDarker = Color(0xFF954214);
+  static const Color orangeDark = Color(0xFFC2561A);
+  static const Color orangeBase = Color(0xFFE36D2C);
+  static const Color orangeLight = Color(0xFFF5CAB3);
+  static const Color orangeLighter = Color(0xFFFBEAE0);
 
   static const Color greenDarker = Color(0xFF505F2F);
   static const Color greenDark = Color(0xFF6C8140);

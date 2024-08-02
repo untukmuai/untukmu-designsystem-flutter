@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:untukmu_flutter_design_system/src/common/radius.dart';
-import 'package:untukmu_flutter_design_system/src/common/sizing.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 enum NotificationSize { xsmall, small, large }
@@ -273,7 +271,7 @@ class CustomNotification extends StatelessWidget {
           case NotificationType.info:
             return DLSColors.pacificBlueDarker;
           case NotificationType.warning:
-            return DLSColors.yellowDarker;
+            return DLSColors.orangeDarker;
           case NotificationType.success:
             return DLSColors.greenDarker;
           default:
@@ -295,7 +293,7 @@ class CustomNotification extends StatelessWidget {
           case NotificationType.info:
             return DLSColors.pacificBlueDarker;
           case NotificationType.warning:
-            return DLSColors.yellowDarker;
+            return DLSColors.orangeDarker;
           case NotificationType.success:
             return DLSColors.greenDarker;
           default:
@@ -315,7 +313,7 @@ class CustomNotification extends StatelessWidget {
           case NotificationType.info:
             return DLSColors.pacificBlueDarker;
           case NotificationType.warning:
-            return DLSColors.yellowDarker;
+            return DLSColors.orangeDarker;
           case NotificationType.success:
             return DLSColors.greenDarker;
           default:
@@ -329,7 +327,7 @@ class CustomNotification extends StatelessWidget {
           case NotificationType.info:
             return DLSColors.pacificBlueBase;
           case NotificationType.warning:
-            return DLSColors.yellowBase;
+            return DLSColors.orangeBase;
           case NotificationType.success:
             return DLSColors.greenBase;
           default:
@@ -349,7 +347,7 @@ class CustomNotification extends StatelessWidget {
           case NotificationType.info:
             return DLSColors.pacificBlueDarker;
           case NotificationType.warning:
-            return DLSColors.yellowDarker;
+            return DLSColors.orangeDarker;
           case NotificationType.success:
             return DLSColors.greenDarker;
           default:
@@ -373,7 +371,7 @@ class CustomNotification extends StatelessWidget {
           case NotificationType.info:
             return DLSColors.pacificBlueDarker;
           case NotificationType.warning:
-            return DLSColors.yellowDarker;
+            return DLSColors.orangeDarker;
           case NotificationType.success:
             return DLSColors.greenDarker;
           default:
