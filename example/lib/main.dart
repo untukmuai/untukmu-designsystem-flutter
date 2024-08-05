@@ -10,6 +10,8 @@ import 'package:example/base_component/divider_example.dart';
 import 'package:example/base_component/breadcrumb_example.dart';
 import 'package:example/base_component/button_example.dart';
 import 'package:example/base_component/notification_example.dart';
+import 'package:example/style/shadow_corner_page.dart';
+import 'package:example/style/text_style_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -42,6 +44,30 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const TextStyleExamplePage()),
+                );
+              },
+              child: const Text('Text Style Example'),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ShadowCornerExamplePage()),
+                );
+              },
+              child: const Text('Corner & Shadow Example'),
+            ),
+            const SizedBox(height: 16),
+            const Divider(),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
