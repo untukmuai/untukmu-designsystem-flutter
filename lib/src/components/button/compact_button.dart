@@ -60,7 +60,7 @@ class CompactButton extends StatelessWidget {
               border: border,
             ),
             child: Center(
-              child: Icon(Icons.close, size: 15, color: icColor),
+              child: Icon(icon, size: 15, color: icColor),
             ),
           ),
         ),
@@ -70,6 +70,7 @@ class CompactButton extends StatelessWidget {
 
   Color? get backgroundColor {
     switch (type) {
+      case CompactButtonType.stroke:
       case CompactButtonType.ghost:
         return null;
       default:
@@ -90,7 +91,7 @@ class CompactButton extends StatelessWidget {
   Border? get border {
     switch (type) {
       case CompactButtonType.stroke:
-        return Border.all(width: 1, color: DLSColors.strokeSoft200);
+        return Border.all(width: 1, color: icColor ?? DLSColors.strokeSoft200);
       default:
         return null;
     }
