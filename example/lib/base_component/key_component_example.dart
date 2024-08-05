@@ -45,6 +45,8 @@ class KeyComponentExample extends StatelessWidget {
               const Divider(),
               contentCard(),
               const Divider(),
+              hintTest(),
+              const Divider(),
               keyIcons(),
               const Divider(),
               paymenIcons()
@@ -407,6 +409,65 @@ class KeyComponentExample extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget hintTest() {
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Hint Text",
+                style: DLSTextStyle.labelLarge,
+              ),
+              Text(
+                "The text that supports and is positioned below various components, such as text inputs and dropdowns.",
+                style: DLSTextStyle.labelMedium
+                    .copyWith(color: DLSColors.textSub500),
+              )
+            ],
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              HintText(hint: "This is a hint text to help user."),
+              const SizedBox(height: 8),
+              HintText(
+                  hint: "This is a hint text to help user.",
+                  hintState: HintState.error),
+              const SizedBox(height: 8),
+              HintText(
+                hint: "This is a hint text to help user.",
+                hintState: HintState.disabled,
+              ),
+              const SizedBox(height: 8),
+              HintText(
+                hint: "Suggested:",
+                suggestions: "london, berlin, tokyo, paris",
+              ),
+              const SizedBox(height: 8),
+              HintText(
+                hint: "Suggested:",
+                suggestions: "london, berlin, tokyo, paris",
+                hintState: HintState.error,
+              ),
+              const SizedBox(height: 8),
+              HintText(
+                hint: "Suggested:",
+                suggestions: "london, berlin, tokyo, paris",
+                hintState: HintState.disabled,
+              ),
+              const SizedBox(height: 8),
+            ],
           ),
         )
       ],

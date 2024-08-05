@@ -16,6 +16,7 @@ export 'src/components/keycomponent/content_label.dart';
 export 'src/components/keycomponent/key_icons.dart';
 export 'src/components/keycomponent/payment_icons.dart';
 export 'src/components/keycomponent/label.dart';
+export 'src/components/keycomponent/hint_text.dart';
 export 'src/components/divider.dart';
 export 'src/components/tag.dart';
 export 'src/components/banner.dart';
