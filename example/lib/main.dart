@@ -1,6 +1,7 @@
 import 'package:example/base_component/accordion_example.dart';
 import 'package:example/base_component/avatar_example.dart';
 import 'package:example/base_component/badge_example.dart';
+import 'package:example/base_component/banner_example.dart';
 import 'package:example/base_component/checkbox_example.dart';
 import 'package:example/base_component/key_component_example.dart';
 import 'package:example/base_component/radio_example.dart';
@@ -99,6 +100,17 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: const Text('Badge Example'),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const BannerExample()),
+                );
+              },
+              child: const Text('Banner Example'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
