@@ -23,3 +23,4 @@ export 'src/components/divider.dart';
 export 'src/components/tag.dart';
 export 'src/components/banner.dart';
 export 'src/components/fileupload/file_upload_area_widget.dart';
+export 'src/components/fileupload/image_upload_widget.dart';

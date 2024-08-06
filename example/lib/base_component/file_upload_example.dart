@@ -11,8 +11,17 @@ class FileUploadExample extends StatelessWidget {
       appBar: AppBar(
         title: const Text('File Upload Example'),
       ),
-      body: const Column(
-        children: [FileUploadAreaWidget()],
+      body: Container(
+        margin: EdgeInsets.all(16),
+        child: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 16),
+            FileUploadAreaWidget(),
+            SizedBox(height: 16),
+            ImageUploadWidget()
+          ],
+        ),
       ),
     );
   }
