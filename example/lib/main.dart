@@ -3,6 +3,7 @@ import 'package:example/base_component/avatar_example.dart';
 import 'package:example/base_component/badge_example.dart';
 import 'package:example/base_component/banner_example.dart';
 import 'package:example/base_component/checkbox_example.dart';
+import 'package:example/base_component/file_upload_example.dart';
 import 'package:example/base_component/key_component_example.dart';
 import 'package:example/base_component/radio_example.dart';
 import 'package:example/base_component/tag_example.dart';
@@ -210,6 +211,17 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: const Text('Tag Example'),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const FileUploadExample()),
+                );
+              },
+              child: const Text('File Upload Example'),
             ),
             const SizedBox(height: 16),
           ],
