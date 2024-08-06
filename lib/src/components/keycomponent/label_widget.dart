@@ -3,11 +3,11 @@ import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart
 
 enum LabelType { normal, mandatory, optional }
 
-class Label extends StatelessWidget {
+class LabelWidget extends StatelessWidget {
   final String label;
   final LabelType labelType;
   final bool isDisabled;
-  const Label(
+  const LabelWidget(
       {super.key,
       required this.label,
       this.labelType = LabelType.normal,

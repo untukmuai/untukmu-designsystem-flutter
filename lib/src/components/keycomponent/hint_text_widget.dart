@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
@@ -9,11 +8,11 @@ enum HintState {
   disabled,
 }
 
-class HintText extends StatelessWidget {
+class HintTextWidget extends StatelessWidget {
   final String hint;
   final String? suggestions;
   final HintState hintState;
-  HintText(
+  const HintTextWidget(
       {super.key,
       required this.hint,
       this.suggestions,

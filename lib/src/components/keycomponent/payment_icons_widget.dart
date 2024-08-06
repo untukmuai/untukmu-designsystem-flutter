@@ -13,15 +13,15 @@ enum PaymentIconsType {
   tax
 }
 
-class PaymentIcons extends StatefulWidget {
+class PaymentIconsWidget extends StatefulWidget {
   final PaymentIconsType paymentIconsType;
-  const PaymentIcons({super.key, required this.paymentIconsType});
+  const PaymentIconsWidget({super.key, required this.paymentIconsType});
 
   @override
-  State<PaymentIcons> createState() => _PaymentIconsState();
+  State<PaymentIconsWidget> createState() => _PaymentIconsWidgetState();
 }
 
-class _PaymentIconsState extends State<PaymentIcons> {
+class _PaymentIconsWidgetState extends State<PaymentIconsWidget> {
   late Color iconColor;
   late Color backgroundColor;
   late String icon;

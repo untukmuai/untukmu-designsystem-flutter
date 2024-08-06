@@ -1,3 +1,4 @@
+import 'package:example/base_component/password_example.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
@@ -49,7 +50,13 @@ class KeyComponentExample extends StatelessWidget {
               const Divider(),
               keyIcons(),
               const Divider(),
-              paymenIcons()
+              paymenIcons(),
+              const Divider(),
+              passwordCheck(),
+              const Divider(),
+              legends(),
+              const Divider(),
+              legendsDots(),
             ],
           ),
         ));
@@ -81,24 +88,25 @@ class KeyComponentExample extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Label(label: "Label"),
+                  LabelWidget(label: "Label"),
                   SizedBox(width: 8),
-                  Label(label: "Mandatory", labelType: LabelType.mandatory),
+                  LabelWidget(
+                      label: "Mandatory", labelType: LabelType.mandatory),
                   SizedBox(width: 8),
-                  Label(label: "Optional", labelType: LabelType.optional),
+                  LabelWidget(label: "Optional", labelType: LabelType.optional),
                 ],
               ),
               SizedBox(height: 8),
               Row(
                 children: [
-                  Label(label: "Label", isDisabled: true),
+                  LabelWidget(label: "Label", isDisabled: true),
                   SizedBox(width: 8),
-                  Label(
+                  LabelWidget(
                       label: "Mandatory",
                       labelType: LabelType.mandatory,
                       isDisabled: true),
                   SizedBox(width: 8),
-                  Label(
+                  LabelWidget(
                       label: "Optional",
                       labelType: LabelType.optional,
                       isDisabled: true),
@@ -135,21 +143,21 @@ class KeyComponentExample extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              const ContentLabel(
+              const ContentLabelWidget(
                 label: 'Label',
                 description: 'Insert description right here',
               ),
               const SizedBox(height: 16),
-              ContentLabel(
+              ContentLabelWidget(
                 label: 'Label',
                 description: 'Insert description right here',
                 leadingWidget: SvgPicture.asset('assets/svg/ic_spotify.svg'),
               ),
               const SizedBox(height: 16),
-              const ContentLabel(
+              const ContentLabelWidget(
                 label: 'Label',
                 description: 'Insert description right here',
-                leadingWidget: KeyIcons(icon: Icon((Iconsax.user))),
+                leadingWidget: KeyIconsWidget(icon: Icon((Iconsax.user))),
               ),
               const SizedBox(height: 16),
             ],
@@ -183,21 +191,21 @@ class KeyComponentExample extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              ContentCard(
+              ContentCardWidget(
                 label: 'Label',
                 subLabel: '@username',
                 description: 'Insert description right here',
                 isHovered: false,
                 isDisabled: false,
                 badge: badge(),
-                leadingWidget: const KeyIcons(icon: Icon((Iconsax.user))),
+                leadingWidget: const KeyIconsWidget(icon: Icon((Iconsax.user))),
                 trailingWidget: const Icon(
                   Iconsax.close_square,
                   size: 20,
                 ),
               ),
               const SizedBox(height: 8),
-              ContentCard(
+              ContentCardWidget(
                 label: 'Label',
                 subLabel: '@username',
                 description: 'Insert description right here',
@@ -210,7 +218,7 @@ class KeyComponentExample extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              ContentCard(
+              ContentCardWidget(
                 label: 'Label',
                 subLabel: '@username',
                 description: 'Insert description right here',
@@ -224,7 +232,7 @@ class KeyComponentExample extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              ContentCard(
+              ContentCardWidget(
                 label: 'Label',
                 subLabel: '@username',
                 description: 'Insert description right here',
@@ -272,73 +280,73 @@ class KeyComponentExample extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    KeyIcons(icon: Icon((Iconsax.user))),
+                    KeyIconsWidget(icon: Icon((Iconsax.user))),
                     SizedBox(width: 8),
-                    KeyIcons(
+                    KeyIconsWidget(
                         icon: Icon((Iconsax.user),
                             color: DLSColors.pacificBlueBase)),
                     SizedBox(width: 8),
-                    KeyIcons(
+                    KeyIconsWidget(
                         icon: Icon((Iconsax.user),
                             color: DLSColors.sunsetYellowBase)),
                     SizedBox(width: 8),
-                    KeyIcons(
+                    KeyIconsWidget(
                         icon: Icon((Iconsax.user), color: DLSColors.redBase)),
                     SizedBox(width: 8),
-                    KeyIcons(
+                    KeyIconsWidget(
                         icon: Icon((Iconsax.user), color: DLSColors.greenDark)),
                     SizedBox(width: 8),
-                    KeyIcons(
+                    KeyIconsWidget(
                         icon:
                             Icon((Iconsax.user), color: DLSColors.orangeBase)),
                     SizedBox(width: 8),
-                    KeyIcons(
+                    KeyIconsWidget(
                         icon: Icon((Iconsax.user),
                             color: DLSColors.flamingoPinkBase)),
                     SizedBox(width: 8),
-                    KeyIcons(
+                    KeyIconsWidget(
                         icon: Icon((Iconsax.user), color: DLSColors.tealBase))
                   ],
                 ),
                 SizedBox(height: 8),
                 Row(
                   children: [
-                    KeyIcons(icon: Icon((Iconsax.user))),
+                    KeyIconsWidget(icon: Icon((Iconsax.user))),
                     SizedBox(width: 8),
-                    KeyIcons(
+                    KeyIconsWidget(
                       icon: Icon((Iconsax.user),
                           color: DLSColors.pacificBlueDark),
                       backgroundColor: DLSColors.pacificBlueLighter,
                     ),
                     SizedBox(width: 8),
-                    KeyIcons(
+                    KeyIconsWidget(
                       icon: Icon((Iconsax.user),
                           color: DLSColors.sunsetYellowDark),
                       backgroundColor: DLSColors.sunsetYellowLighter,
                     ),
                     SizedBox(width: 8),
-                    KeyIcons(
+                    KeyIconsWidget(
                       icon: Icon((Iconsax.user), color: DLSColors.redDark),
                       backgroundColor: DLSColors.redLighter,
                     ),
                     SizedBox(width: 8),
-                    KeyIcons(
+                    KeyIconsWidget(
                       icon: Icon((Iconsax.user), color: DLSColors.greenDark),
                       backgroundColor: DLSColors.greenLighter,
                     ),
                     SizedBox(width: 8),
-                    KeyIcons(
+                    KeyIconsWidget(
                       icon: Icon((Iconsax.user), color: DLSColors.orangeDark),
                       backgroundColor: DLSColors.orangeLighter,
                     ),
                     SizedBox(width: 8),
-                    KeyIcons(
+                    KeyIconsWidget(
                       icon: Icon((Iconsax.user),
                           color: DLSColors.flamingoPinkDark),
                       backgroundColor: DLSColors.flamingoPinkLighter,
                     ),
                     SizedBox(width: 8),
-                    KeyIcons(
+                    KeyIconsWidget(
                         icon: Icon((Iconsax.user), color: DLSColors.tealBase))
                   ],
                 )
@@ -376,35 +384,35 @@ class KeyComponentExample extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                PaymentIcons(
+                PaymentIconsWidget(
                   paymentIconsType: PaymentIconsType.water,
                 ),
                 SizedBox(width: 8),
-                PaymentIcons(
+                PaymentIconsWidget(
                   paymentIconsType: PaymentIconsType.gas,
                 ),
                 SizedBox(width: 8),
-                PaymentIcons(
+                PaymentIconsWidget(
                   paymentIconsType: PaymentIconsType.electricity,
                 ),
                 SizedBox(width: 8),
-                PaymentIcons(
+                PaymentIconsWidget(
                   paymentIconsType: PaymentIconsType.donation,
                 ),
                 SizedBox(width: 8),
-                PaymentIcons(
+                PaymentIconsWidget(
                   paymentIconsType: PaymentIconsType.internet,
                 ),
                 SizedBox(width: 8),
-                PaymentIcons(
+                PaymentIconsWidget(
                   paymentIconsType: PaymentIconsType.phone,
                 ),
                 SizedBox(width: 8),
-                PaymentIcons(
+                PaymentIconsWidget(
                   paymentIconsType: PaymentIconsType.rent,
                 ),
                 SizedBox(width: 8),
-                PaymentIcons(
+                PaymentIconsWidget(
                   paymentIconsType: PaymentIconsType.tax,
                 ),
               ],
@@ -437,39 +445,171 @@ class KeyComponentExample extends StatelessWidget {
         ),
         Container(
           padding: const EdgeInsets.all(16),
-          child: Column(
+          child: const Column(
             children: [
-              HintText(hint: "This is a hint text to help user."),
-              const SizedBox(height: 8),
-              HintText(
+              HintTextWidget(hint: "This is a hint text to help user."),
+              SizedBox(height: 8),
+              HintTextWidget(
                   hint: "This is a hint text to help user.",
                   hintState: HintState.error),
-              const SizedBox(height: 8),
-              HintText(
+              SizedBox(height: 8),
+              HintTextWidget(
                 hint: "This is a hint text to help user.",
                 hintState: HintState.disabled,
               ),
-              const SizedBox(height: 8),
-              HintText(
+              SizedBox(height: 8),
+              HintTextWidget(
                 hint: "Suggested:",
                 suggestions: "london, berlin, tokyo, paris",
               ),
-              const SizedBox(height: 8),
-              HintText(
+              SizedBox(height: 8),
+              HintTextWidget(
                 hint: "Suggested:",
                 suggestions: "london, berlin, tokyo, paris",
                 hintState: HintState.error,
               ),
-              const SizedBox(height: 8),
-              HintText(
+              SizedBox(height: 8),
+              HintTextWidget(
                 hint: "Suggested:",
                 suggestions: "london, berlin, tokyo, paris",
                 hintState: HintState.disabled,
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: 8),
             ],
           ),
         )
+      ],
+    );
+  }
+
+  Widget passwordCheck() {
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Password Strength",
+                style: DLSTextStyle.labelLarge,
+              ),
+              Text(
+                "The component that displays the level of password security, positioned below the password input.",
+                style: DLSTextStyle.labelMedium
+                    .copyWith(color: DLSColors.textSub500),
+              )
+            ],
+          ),
+        ),
+        const PasswordCheckerExample(),
+      ],
+    );
+  }
+
+  Widget legends() {
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Chart Legends",
+                style: DLSTextStyle.labelLarge,
+              ),
+              Text(
+                "Designed to complement charts with distinct colors, providing a visual guide to interpreting data.",
+                style: DLSTextStyle.labelMedium
+                    .copyWith(color: DLSColors.textSub500),
+              )
+            ],
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: const SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                LegendWidget(color: DLSColors.pacificBlueBase, label: 'Legend'),
+                SizedBox(width: 16),
+                LegendWidget(
+                    color: DLSColors.sunsetYellowBase, label: 'Legend'),
+                SizedBox(width: 16),
+                LegendWidget(color: DLSColors.orangeBase, label: 'Legend'),
+                SizedBox(width: 16),
+                LegendWidget(color: DLSColors.redBase, label: 'Legend'),
+                SizedBox(width: 16),
+                LegendWidget(color: DLSColors.greenBase, label: 'Legend'),
+                SizedBox(width: 16),
+                LegendWidget(
+                    color: DLSColors.orchidPurpleBase, label: 'Legend'),
+                SizedBox(width: 16),
+                LegendWidget(
+                    color: DLSColors.flamingoPinkBase, label: 'Legend'),
+                SizedBox(width: 16),
+                LegendWidget(color: DLSColors.tealBase, label: 'Legend'),
+                SizedBox(width: 16),
+                LegendWidget(color: DLSColors.iconSub500, label: 'Legend'),
+                SizedBox(width: 16),
+                LegendWidget(color: DLSColors.iconDisabled300, label: 'Legend'),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget legendsDots() {
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Chart Legends Dots",
+                style: DLSTextStyle.labelLarge,
+              ),
+              Text(
+                "Available in various colors to complement the chart legends component..",
+                style: DLSTextStyle.labelMedium
+                    .copyWith(color: DLSColors.textSub500),
+              )
+            ],
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              LegendWidget(color: DLSColors.pacificBlueBase),
+              SizedBox(width: 16),
+              LegendWidget(color: DLSColors.sunsetYellowBase),
+              SizedBox(width: 16),
+              LegendWidget(color: DLSColors.orangeBase),
+              SizedBox(width: 16),
+              LegendWidget(color: DLSColors.redBase),
+              SizedBox(width: 16),
+              LegendWidget(color: DLSColors.greenBase),
+              SizedBox(width: 16),
+              LegendWidget(color: DLSColors.orchidPurpleBase),
+              SizedBox(width: 16),
+              LegendWidget(color: DLSColors.flamingoPinkBase),
+              SizedBox(width: 16),
+              LegendWidget(color: DLSColors.tealBase),
+              SizedBox(width: 16),
+              LegendWidget(color: DLSColors.iconSub500),
+              SizedBox(width: 16),
+              LegendWidget(color: DLSColors.iconDisabled300),
+            ],
+          ),
+        ),
       ],
     );
   }
