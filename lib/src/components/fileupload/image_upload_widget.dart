@@ -10,15 +10,21 @@ class ImageUploadWidget extends StatefulWidget {
   final String uploadButtonText;
   final String removeButtonText;
   final String changePhotoButtonText;
+  final bool hideTitle;
+  final bool hideSubtitle;
+  final Widget? unsentIcon;
   final Function(File)? onImageChanged;
 
   const ImageUploadWidget(
       {super.key,
       this.title = 'Upload Image',
+      this.unsentIcon,
       this.subtitle = 'Min 400x400px, PNG or JPEG',
       this.uploadButtonText = 'Upload',
       this.removeButtonText = 'Remove',
       this.changePhotoButtonText = 'Change Photo',
+      this.hideSubtitle = false,
+      this.hideTitle = false,
       this.onImageChanged});
 
   @override
@@ -53,34 +59,48 @@ class ImageUploadWidgetState extends State<ImageUploadWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CircleAvatar(
-          radius: 40,
-          backgroundImage:
-              _imagePath != null ? FileImage(File(_imagePath!)) : null,
+        Container(
+          // radius: 40,
+          // backgroundImage:
+          //     _imagePath != null ? FileImage(File(_imagePath!)) : null,
           child: _imagePath == null
-              ? const Icon(
-                  Icons.account_circle,
-                  size: 80,
-                  color: DLSColors.textSoft400,
-                )
-              : null,
+              ? (widget.unsentIcon ??
+                  Image.asset(
+                    "packages/untukmu_flutter_design_system/assets/images/ic_avatar.png",
+                    width: 64,
+                    height: 64,
+                  ))
+              : ClipRRect(
+                  borderRadius: BorderRadius.circular(40),
+                  child: Image.file(
+                    File(_imagePath!),
+                    width: 64,
+                    height: 64,
+                  ),
+                ),
         ),
         const SizedBox(width: 16),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              widget.title,
-              style: DLSTextStyle.labelLarge
-                  .copyWith(color: DLSColors.textMain900),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              widget.subtitle,
-              style: DLSTextStyle.labelMedium
-                  .copyWith(color: DLSColors.textSoft400),
-            ),
-            const SizedBox(height: 16),
+            if (!widget.hideTitle)
+              Container(
+                margin: EdgeInsets.only(bottom: 4),
+                child: Text(
+                  widget.title,
+                  style: DLSTextStyle.labelLarge
+                      .copyWith(color: DLSColors.textMain900),
+                ),
+              ),
+            if (!widget.hideSubtitle)
+              Container(
+                margin: const EdgeInsets.only(bottom: 16),
+                child: Text(
+                  widget.subtitle,
+                  style: DLSTextStyle.labelMedium
+                      .copyWith(color: DLSColors.textSoft400),
+                ),
+              ),
             if (_imagePath == null)
               CircularButtonWidget(
                 label: widget.uploadButtonText,

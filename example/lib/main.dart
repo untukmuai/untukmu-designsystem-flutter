@@ -7,6 +7,7 @@ import 'package:example/base_component/file_upload_example.dart';
 import 'package:example/base_component/key_component_example.dart';
 import 'package:example/base_component/radio_example.dart';
 import 'package:example/base_component/tag_example.dart';
+import 'package:example/base_component/text_area_example.dart';
 import 'package:example/base_component/toggle_example.dart';
 import 'package:example/base_component/divider_example.dart';
 import 'package:example/base_component/breadcrumb_example.dart';
@@ -222,6 +223,17 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: const Text('File Upload Example'),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const TextAreaExample()),
+                );
+              },
+              child: const Text('Text Area Example'),
             ),
             const SizedBox(height: 16),
           ],
