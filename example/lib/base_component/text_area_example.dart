@@ -1,7 +1,5 @@
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 class TextAreaExample extends StatefulWidget {
@@ -29,18 +27,31 @@ class _TextAreaExampleState extends State<TextAreaExample> {
               const SizedBox(height: 16),
               CustomTextAreaWidget(
                   label: "Change Label",
-                  hintText: "hintText",
+                  hintText: "Placeholder text...",
+                  showOptionalLabel: true,
+                  hintTextMessage: "tes",
                   controller: controller),
               const SizedBox(height: 16),
+              if (kIsWeb)
+                Container(
+                  margin: const EdgeInsets.only(bottom: 16),
+                  child: CustomTextAreaWidget(
+                      label: "Change Label",
+                      hintText: "Placeholder text...",
+                      labelDirection: LabelDirection.horizontal,
+                      showOptionalLabel: true,
+                      controller: controller),
+                ),
               CustomTextAreaWidget(
                   label: "Change Label",
-                  hintText: "hintText",
+                  hintText: "Placeholder text...",
                   isInvalid: true,
+                  hintTextMessage: "tes",
                   controller: controller),
               const SizedBox(height: 16),
               CustomTextAreaWidget(
                   label: "Change Label",
-                  hintText: "hintText",
+                  hintText: "Placeholder text...",
                   isEditable: false,
                   controller: controller)
             ],

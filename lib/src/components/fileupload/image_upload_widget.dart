@@ -60,15 +60,13 @@ class ImageUploadWidgetState extends State<ImageUploadWidget> {
     return Row(
       children: [
         Container(
-          // radius: 40,
-          // backgroundImage:
-          //     _imagePath != null ? FileImage(File(_imagePath!)) : null,
           child: _imagePath == null
               ? (widget.unsentIcon ??
                   Image.asset(
                     "packages/untukmu_flutter_design_system/assets/images/ic_avatar.png",
                     width: 64,
                     height: 64,
+                    fit: BoxFit.cover,
                   ))
               : ClipRRect(
                   borderRadius: BorderRadius.circular(40),
@@ -76,6 +74,7 @@ class ImageUploadWidgetState extends State<ImageUploadWidget> {
                     File(_imagePath!),
                     width: 64,
                     height: 64,
+                    fit: BoxFit.cover,
                   ),
                 ),
         ),
@@ -85,7 +84,7 @@ class ImageUploadWidgetState extends State<ImageUploadWidget> {
           children: [
             if (!widget.hideTitle)
               Container(
-                margin: EdgeInsets.only(bottom: 4),
+                margin: const EdgeInsets.only(bottom: 4),
                 child: Text(
                   widget.title,
                   style: DLSTextStyle.labelLarge

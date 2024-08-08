@@ -7,11 +7,13 @@ class LabelWidget extends StatelessWidget {
   final String label;
   final LabelType labelType;
   final bool isDisabled;
-  const LabelWidget(
-      {super.key,
-      required this.label,
-      this.labelType = LabelType.normal,
-      this.isDisabled = false});
+
+  const LabelWidget({
+    super.key,
+    required this.label,
+    this.labelType = LabelType.normal,
+    this.isDisabled = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,41 +23,47 @@ class LabelWidget extends StatelessWidget {
   Widget createLabel(String label) {
     if (labelType == LabelType.mandatory) {
       return Container(
-          padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
-          decoration: BoxDecoration(
-              border: Border.all(
-                  color: isDisabled
-                      ? DLSColors.textDisabled300
-                      : DLSColors.flamingoPinkLight,
-                  width: 1.0),
-              borderRadius: BorderRadius.circular(100)),
-          child: Text(
-            label,
-            style: DLSTextStyle.labelXSmall.copyWith(
-                color: isDisabled
-                    ? DLSColors.textDisabled300
-                    : DLSColors.flamingoPinkBase),
-          ));
+        padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: isDisabled
+                ? DLSColors.textDisabled300
+                : DLSColors.flamingoPinkLight,
+            width: 1.0,
+          ),
+          borderRadius: BorderRadius.circular(100),
+        ),
+        child: Text(
+          label,
+          style: DLSTextStyle.labelXSmall.copyWith(
+            color: isDisabled
+                ? DLSColors.textDisabled300
+                : DLSColors.flamingoPinkBase,
+          ),
+        ),
+      );
     } else if (labelType == LabelType.optional) {
       return Row(
         children: [
-          Text('($label) ',
-              style: DLSTextStyle.labelSmall.copyWith(
-                  color: isDisabled
-                      ? DLSColors.textDisabled300
-                      : DLSColors.textMain900)),
+          Text(
+            '($label) ',
+            style: DLSTextStyle.labelSmall.copyWith(
+              color:
+                  isDisabled ? DLSColors.textDisabled300 : DLSColors.textSub500,
+            ),
+          ),
           const Icon(
             Icons.info,
             color: DLSColors.iconDisabled300,
-          )
+          ),
         ],
       );
     } else {
       return Text(
         label,
         style: DLSTextStyle.labelSmall.copyWith(
-            color:
-                isDisabled ? DLSColors.textDisabled300 : DLSColors.textMain900),
+          color: isDisabled ? DLSColors.textDisabled300 : DLSColors.textMain900,
+        ),
       );
     }
   }

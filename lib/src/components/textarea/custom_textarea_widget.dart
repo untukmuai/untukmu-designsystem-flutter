@@ -1,34 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/state_manager.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
+
+enum LabelDirection { vertical, horizontal }
 
 class CustomTextAreaWidget extends StatefulWidget {
   final String label;
   final String hintText;
   final bool isEditable;
   final bool isInvalid;
-  final String? errorMessage;
   final TextEditingController controller;
   final int maxLength;
+  final LabelDirection labelDirection;
+  final bool showOptionalLabel;
+  final String? hintTextMessage;
 
   const CustomTextAreaWidget({
-    Key? key,
+    super.key,
     required this.label,
     required this.hintText,
     this.isEditable = true,
     this.isInvalid = false,
-    this.errorMessage,
     required this.controller,
     this.maxLength = 200,
-  }) : super(key: key);
+    this.labelDirection = LabelDirection.vertical,
+    this.showOptionalLabel = false,
+    this.hintTextMessage,
+  });
 
   @override
-  _CustomTextAreaWidgetState createState() => _CustomTextAreaWidgetState();
+  CustomTextAreaWidgetState createState() => CustomTextAreaWidgetState();
 }
 
-class _CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
-  FocusNode _focusNode = FocusNode();
+class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
+  final FocusNode _focusNode = FocusNode();
   bool _isFocused = false;
+  final RxString _text = ''.obs;
 
   @override
   void initState() {
@@ -48,26 +57,75 @@ class _CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
 
   @override
   Widget build(BuildContext context) {
+    return widget.labelDirection == LabelDirection.vertical
+        ? _buildVerticalLayout()
+        : _buildHorizontalLayout();
+  }
+
+  Widget _buildVerticalLayout() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
-            Text(
-              widget.label,
-              style: DLSTextStyle.labelSmall,
-            ),
-            SizedBox(width: 4),
-            Text(
-              '(Optional)',
-              style:
-                  DLSTextStyle.labelSmall.copyWith(color: DLSColors.textSub500),
-            ),
-            SizedBox(width: 4),
-            Icon(Icons.info, size: 20, color: DLSColors.iconDisabled300),
+            LabelWidget(label: widget.label),
+            if (widget.showOptionalLabel) const SizedBox(width: 4),
+            if (widget.showOptionalLabel)
+              const LabelWidget(
+                  label: "Optional", labelType: LabelType.optional),
           ],
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
+        _buildTextField(),
+        const SizedBox(height: 4),
+        if (widget.hintTextMessage != null)
+          HintTextWidget(
+              hint: widget.hintTextMessage!,
+              hintState: widget.isInvalid ? HintState.error : HintState.normal),
+      ],
+    );
+  }
+
+  Widget _buildHorizontalLayout() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          flex: 2,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  LabelWidget(label: widget.label),
+                  if (widget.showOptionalLabel) const SizedBox(width: 4),
+                  if (widget.showOptionalLabel)
+                    const LabelWidget(
+                        label: "Optional", labelType: LabelType.optional),
+                ],
+              ),
+              const SizedBox(height: 16),
+              if (widget.hintTextMessage != null)
+                HintTextWidget(
+                    hint: widget.hintTextMessage!,
+                    hintState:
+                        widget.isInvalid ? HintState.error : HintState.normal),
+            ],
+          ),
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          flex: 3,
+          child: _buildTextField(),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTextField() {
+    return Stack(
+      alignment: Alignment.bottomRight,
+      children: [
         TextField(
           controller: widget.controller,
           focusNode: _focusNode,
@@ -75,27 +133,41 @@ class _CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
           enabled: widget.isEditable,
           minLines: 4,
           maxLines: 10,
-          style:
-              TextStyle(color: widget.isEditable ? Colors.black : Colors.grey),
+          onChanged: (value) {
+            _text.value = value;
+          },
+          style: GoogleFonts.plusJakartaSans(
+              fontWeight: FontWeight.w400,
+              color: widget.isEditable
+                  ? DLSColors.textMain900
+                  : DLSColors.textDisabled300),
           decoration: InputDecoration(
             hintText: widget.hintText,
-            fillColor: widget.isEditable ? Colors.white : Colors.grey.shade100,
+            hintStyle: GoogleFonts.plusJakartaSans(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: DLSColors.textSoft400),
+            fillColor: widget.isEditable ? Colors.white : DLSColors.bgWeak100,
             filled: true,
             counterText: '',
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(
-                color: widget.isInvalid
-                    ? DLSColors.errorBase
-                    : _isFocused
-                        ? DLSColors.strokeStrong900
-                        : DLSColors.strokeSoft200,
+                color: !widget.isEditable
+                    ? DLSColors.bgWeak100
+                    : widget.isInvalid
+                        ? DLSColors.errorBase
+                        : _isFocused
+                            ? DLSColors.strokeSoft200
+                            : DLSColors.strokeSoft200,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(
-                color: widget.isInvalid ? DLSColors.errorBase : Colors.black,
+                color: widget.isInvalid
+                    ? DLSColors.errorBase
+                    : DLSColors.strokeStrong900,
               ),
             ),
             enabledBorder: OutlineInputBorder(
@@ -111,44 +183,34 @@ class _CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
               borderSide: BorderSide(
                 color: widget.isInvalid
                     ? DLSColors.errorBase
-                    : DLSColors.strokeSoft200,
+                    : DLSColors.bgWeak100,
               ),
             ),
           ),
         ),
-        SizedBox(height: 4),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
+        Obx(
+          () => Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Icon(
-                  Icons.info,
-                  size: 16,
-                  color: widget.isInvalid
-                      ? DLSColors.errorBase
-                      : DLSColors.iconSoft400,
-                ),
-                SizedBox(width: 4),
                 Text(
-                  widget.isInvalid && widget.errorMessage != null
-                      ? widget.errorMessage!
-                      : 'This is a hint text to help user.',
-                  style: DLSTextStyle.paragraphXSmall.copyWith(
-                    color: widget.isInvalid
-                        ? DLSColors.errorBase
-                        : DLSColors.textSub500,
+                  '${_text.value.length}/${widget.maxLength}',
+                  style: DLSTextStyle.subheadingXSmall.copyWith(
+                    color: DLSColors.iconSoft400,
                   ),
+                ),
+                const SizedBox(width: 8),
+                SvgPicture.asset(
+                  "packages/untukmu_flutter_design_system/assets/icons/ic_resize.svg",
+                  width: 8,
+                  height: 8,
+                  colorFilter: const ColorFilter.mode(
+                      DLSColors.iconSoft400, BlendMode.srcIn),
                 ),
               ],
             ),
-            Text(
-              '${widget.controller.text.length}/${widget.maxLength}',
-              style: TextStyle(
-                color: DLSColors.strokeSoft200,
-              ),
-            ),
-          ],
+          ),
         ),
       ],
     );

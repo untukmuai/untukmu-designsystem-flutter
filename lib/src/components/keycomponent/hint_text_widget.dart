@@ -12,11 +12,13 @@ class HintTextWidget extends StatelessWidget {
   final String hint;
   final String? suggestions;
   final HintState hintState;
-  const HintTextWidget(
-      {super.key,
-      required this.hint,
-      this.suggestions,
-      this.hintState = HintState.normal});
+
+  const HintTextWidget({
+    super.key,
+    required this.hint,
+    this.suggestions,
+    this.hintState = HintState.normal,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +37,11 @@ class HintTextWidget extends StatelessWidget {
             ),
             const SizedBox(width: 4),
             Text(hint,
-                style: DLSTextStyle.labelSmall
+                style: DLSTextStyle.paragraphXSmall
                     .copyWith(color: DLSColors.textDisabled300)),
             const SizedBox(width: 4),
             Text(suggestions!,
-                style: DLSTextStyle.labelSmall
+                style: DLSTextStyle.labelXSmall
                     .copyWith(color: DLSColors.orchidPurpleDark)),
           ],
         );
@@ -48,12 +50,12 @@ class HintTextWidget extends StatelessWidget {
           children: [
             const Icon(
               Icons.info,
-              color: DLSColors.iconSub500,
+              color: DLSColors.iconSoft400,
               size: 16,
             ),
             const SizedBox(width: 4),
             Text(hint,
-                style: DLSTextStyle.labelSmall
+                style: DLSTextStyle.paragraphXSmall
                     .copyWith(color: DLSColors.textSub500)),
           ],
         );
@@ -69,12 +71,12 @@ class HintTextWidget extends StatelessWidget {
             ),
             const SizedBox(width: 4),
             Text(hint,
-                style: DLSTextStyle.labelSmall
+                style: DLSTextStyle.paragraphXSmall
                     .copyWith(color: DLSColors.textDisabled300)),
             const SizedBox(width: 4),
             Text(suggestions!,
-                style:
-                    DLSTextStyle.labelSmall.copyWith(color: DLSColors.redBase)),
+                style: DLSTextStyle.labelXSmall
+                    .copyWith(color: DLSColors.redBase)),
           ],
         );
       } else {
@@ -87,8 +89,8 @@ class HintTextWidget extends StatelessWidget {
             ),
             const SizedBox(width: 4),
             Text(hint,
-                style:
-                    DLSTextStyle.labelSmall.copyWith(color: DLSColors.redBase)),
+                style: DLSTextStyle.paragraphXSmall
+                    .copyWith(color: DLSColors.redBase)),
           ],
         );
       }
@@ -103,11 +105,11 @@ class HintTextWidget extends StatelessWidget {
             ),
             const SizedBox(width: 4),
             Text(hint,
-                style: DLSTextStyle.labelSmall
+                style: DLSTextStyle.paragraphXSmall
                     .copyWith(color: DLSColors.textDisabled300)),
             const SizedBox(width: 4),
             Text(suggestions!,
-                style: DLSTextStyle.labelSmall
+                style: DLSTextStyle.labelXSmall
                     .copyWith(color: DLSColors.textDisabled300)),
           ],
         );
@@ -121,7 +123,7 @@ class HintTextWidget extends StatelessWidget {
             ),
             const SizedBox(width: 4),
             Text(hint,
-                style: DLSTextStyle.labelSmall
+                style: DLSTextStyle.paragraphXSmall
                     .copyWith(color: DLSColors.textDisabled300)),
           ],
         );
