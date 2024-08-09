@@ -20,3 +20,4 @@ export 'src/components/keycomponent/hint_text.dart';
 export 'src/components/divider.dart';
 export 'src/components/tag.dart';
 export 'src/components/banner.dart';
+export 'src/components/pagination/pagination.dart';
