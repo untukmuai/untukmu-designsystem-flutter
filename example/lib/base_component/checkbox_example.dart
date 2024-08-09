@@ -61,7 +61,7 @@ class CheckboxExamplePageState extends State<CheckboxExamplePage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ContentCard(
+            ContentCardWidget(
               label: 'Checkbox 1',
               subLabel: 'Sub 1',
               description: 'Description for checkbox 1',
@@ -76,7 +76,7 @@ class CheckboxExamplePageState extends State<CheckboxExamplePage> {
               controlType: ContentCardType.checkbox,
             ),
             const SizedBox(height: 16),
-            ContentCard(
+            ContentCardWidget(
               label: 'Checkbox 2',
               subLabel: 'Sub 2',
               description: 'Description for checkbox 2',
@@ -90,7 +90,7 @@ class CheckboxExamplePageState extends State<CheckboxExamplePage> {
               controlType: ContentCardType.checkbox,
             ),
             const SizedBox(height: 16),
-            ContentCard(
+            ContentCardWidget(
               label: 'Checkbox 3',
               subLabel: 'Sub 3',
               description: 'Description for checkbox 3',
@@ -103,7 +103,7 @@ class CheckboxExamplePageState extends State<CheckboxExamplePage> {
               controlType: ContentCardType.checkbox,
             ),
             const SizedBox(height: 16),
-            const ContentCard(
+            const ContentCardWidget(
               label: 'Checkbox 4',
               subLabel: 'Sub 4',
               description: 'Description for checkbox 4',

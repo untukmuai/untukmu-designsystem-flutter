@@ -57,7 +57,7 @@ class RadioExamplePageState extends State<RadioExamplePage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ContentCard(
+            ContentCardWidget(
               label: 'Option 1',
               subLabel: '(Sub 1)',
               description: 'Description for option 1',
@@ -72,7 +72,7 @@ class RadioExamplePageState extends State<RadioExamplePage> {
               controlType: ContentCardType.radio,
             ),
             const SizedBox(height: 16),
-            ContentCard(
+            ContentCardWidget(
               label: 'Option 2',
               subLabel: '(Sub 2)',
               description: 'Description for option 2',
@@ -86,7 +86,7 @@ class RadioExamplePageState extends State<RadioExamplePage> {
               controlType: ContentCardType.radio,
             ),
             const SizedBox(height: 16),
-            ContentCard(
+            ContentCardWidget(
               label: 'Option 3',
               subLabel: '(Sub 3)',
               description: 'Description for option 3',
@@ -99,7 +99,7 @@ class RadioExamplePageState extends State<RadioExamplePage> {
               controlType: ContentCardType.radio,
             ),
             const SizedBox(height: 16),
-            ContentCard(
+            ContentCardWidget(
               label: 'Option 4',
               subLabel: '(Sub 4)',
               description: 'Description for option 4',

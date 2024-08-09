@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
-class KeyIcons extends StatelessWidget {
+class KeyIconsWidget extends StatelessWidget {
   final Widget icon;
   final Color? backgroundColor;
   final Color? borderColor;
-  const KeyIcons(
+  const KeyIconsWidget(
       {super.key, required this.icon, this.backgroundColor, this.borderColor});
 
   @override

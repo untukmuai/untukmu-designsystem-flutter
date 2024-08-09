@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
-class ContentLabel extends StatelessWidget {
+class ContentLabelWidget extends StatelessWidget {
   final String label;
   final String description;
   final Widget? leadingWidget;
   final VoidCallback? onTap;
 
-  const ContentLabel({
+  const ContentLabelWidget({
     super.key,
     required this.label,
     required this.description,

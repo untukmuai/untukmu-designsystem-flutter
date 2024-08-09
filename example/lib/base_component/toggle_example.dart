@@ -70,7 +70,7 @@ class ToggleExamplePageState extends State<ToggleExamplePage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ContentCard(
+            ContentCardWidget(
               label: 'Toggle 1',
               subLabel: '(Sub 1)',
               description: 'Description for toggle 1',
@@ -85,7 +85,7 @@ class ToggleExamplePageState extends State<ToggleExamplePage> {
               controlType: ContentCardType.toggle,
             ),
             const SizedBox(height: 16),
-            ContentCard(
+            ContentCardWidget(
               label: 'Toggle 2',
               subLabel: '(Sub 2)',
               description: 'Description for toggle 2',
@@ -99,7 +99,7 @@ class ToggleExamplePageState extends State<ToggleExamplePage> {
               controlType: ContentCardType.toggle,
             ),
             const SizedBox(height: 16),
-            ContentCard(
+            ContentCardWidget(
               label: 'Toggle 3',
               subLabel: '(Sub 3)',
               description: 'Description for toggle 3',

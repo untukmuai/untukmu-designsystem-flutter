@@ -5,7 +5,7 @@ import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart
 
 enum ContentCardType { none, radio, checkbox, toggle }
 
-class ContentCard extends StatelessWidget {
+class ContentCardWidget extends StatelessWidget {
   final String label;
   final String description;
   final bool isActive;
@@ -18,7 +18,7 @@ class ContentCard extends StatelessWidget {
   final VoidCallback? onTap;
   final ContentCardType controlType;
 
-  const ContentCard({
+  const ContentCardWidget({
     super.key,
     required this.label,
     required this.description,
