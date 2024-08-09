@@ -4,6 +4,7 @@ import 'package:example/base_component/badge_example.dart';
 import 'package:example/base_component/banner_example.dart';
 import 'package:example/base_component/checkbox_example.dart';
 import 'package:example/base_component/key_component_example.dart';
+import 'package:example/base_component/pagination_example.dart';
 import 'package:example/base_component/radio_example.dart';
 import 'package:example/base_component/tag_example.dart';
 import 'package:example/base_component/toggle_example.dart';
@@ -177,6 +178,17 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: const Text('Key Component Example'),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PaginationExamplePage()),
+                );
+              },
+              child: const Text('Pagination Example'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
