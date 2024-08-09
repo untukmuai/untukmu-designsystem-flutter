@@ -117,8 +117,8 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
         return const Icon(Iconsax.card, color: DLSColors.iconSoft400);
       case InputMode.website:
         return SizedBox(
-          width: 90,
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 12, top: 8, bottom: 12),
@@ -153,8 +153,8 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
       case InputMode.websiteWithCounter:
         return Container(
           margin: const EdgeInsets.only(right: 8),
-          width: 70,
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const VerticalDivider(
@@ -170,8 +170,8 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
       case InputMode.amount:
         return Container(
           margin: const EdgeInsets.only(right: 8),
-          width: 90,
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               const VerticalDivider(
                 color: DLSColors.strokeSoft200,
