@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 class TextInputExample extends StatefulWidget {
@@ -44,6 +45,9 @@ class _TextInputExampleState extends State<TextInputExample> {
                 isInvalid: true,
                 hintTextMessage: "Please check this field.",
                 controller: controller,
+                inputFormatters: [
+                  PhoneNumberInputFormatter(),
+                ],
                 suffixWidget:
                     const Icon(Icons.info, color: DLSColors.iconSoft400),
                 inputMode: InputMode.phoneNumber,
@@ -55,6 +59,9 @@ class _TextInputExampleState extends State<TextInputExample> {
                 hintTextMessage: "This is a hint text to help user.",
                 controller: controller,
                 inputMode: InputMode.cardNumber,
+                inputFormatters: [
+                  CcDigitInputFormatter(),
+                ],
               ),
               const SizedBox(height: 16),
               CustomTextInputWidget(
@@ -83,6 +90,9 @@ class _TextInputExampleState extends State<TextInputExample> {
                 controller: controller,
                 dateFormat: "dd/MM/yyyy",
                 inputMode: InputMode.date,
+                inputFormatters: [
+                  DateInputTextFormatter(),
+                ],
               ),
               const SizedBox(height: 16),
               CustomTextInputWidget(
