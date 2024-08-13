@@ -3,6 +3,7 @@ import 'package:example/base_component/avatar_example.dart';
 import 'package:example/base_component/badge_example.dart';
 import 'package:example/base_component/banner_example.dart';
 import 'package:example/base_component/checkbox_example.dart';
+import 'package:example/base_component/dropdown_example.dart';
 import 'package:example/base_component/file_upload_example.dart';
 import 'package:example/base_component/key_component_example.dart';
 import 'package:example/base_component/pagination_example.dart';
@@ -53,6 +54,7 @@ class HomePage extends StatelessWidget {
         'page': const ShadowCornerExamplePage()
       },
       {'title': 'Divider Example', 'page': const DividerExamplePage()},
+      {'title': 'Dropdown Example', 'page': const DropdownExample()},
       {'title': 'File Upload Example', 'page': const FileUploadExample()},
       {'title': 'Key Component Example', 'page': const KeyComponentExample()},
       {
