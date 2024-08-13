@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/state_manager.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
+import 'package:untukmu_flutter_design_system/src/common/currency.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 enum InputMode {
@@ -33,6 +34,12 @@ class CustomTextInputWidget extends StatefulWidget {
   final Widget? suffixWidget;
   final String clearLabel;
   final bool enableClear;
+  final String? defaultSelectedCurrency;
+  final String? defaultSelectedAccess;
+  final void Function(String)? onAccessSelected;
+  final void Function(String)? onCurrencySelected;
+  final void Function(DateTime)? onDatePicked;
+  final List<TextInputFormatter>? inputFormatters;
 
   const CustomTextInputWidget({
     super.key,
@@ -51,6 +58,12 @@ class CustomTextInputWidget extends StatefulWidget {
     this.prefixWidget,
     this.clearLabel = 'Clear',
     this.enableClear = false,
+    this.defaultSelectedCurrency,
+    this.defaultSelectedAccess,
+    this.onAccessSelected,
+    this.onCurrencySelected,
+    this.onDatePicked,
+    this.inputFormatters,
   });
 
   @override
@@ -62,6 +75,15 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
   bool _isFocused = false;
   bool _isObscured = true;
   final RxString _text = ''.obs;
+  String selectedCurrency = 'EUR'; // Default selected currency
+  String selectedAccess = 'can view'; // Default selected access
+
+  Currency getSelectedCurrency() {
+    return currencyList.firstWhere(
+      (currency) => currency.code == selectedCurrency,
+      orElse: () => currencyList.first,
+    );
+  }
 
   @override
   void initState() {
@@ -71,6 +93,15 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
         _isFocused = _focusNode.hasFocus;
       });
     });
+
+    // Set the initial selected currency and access level
+    if (widget.defaultSelectedCurrency != null) {
+      selectedCurrency = widget.defaultSelectedCurrency!;
+    }
+
+    if (widget.defaultSelectedAccess != null) {
+      selectedAccess = widget.defaultSelectedAccess!;
+    }
   }
 
   @override
@@ -95,6 +126,9 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
     if (pickedDate != null) {
       String formattedDate = DateFormat(widget.dateFormat).format(pickedDate);
       widget.controller.text = formattedDate;
+      if (widget.onDatePicked != null) {
+        widget.onDatePicked!(pickedDate);
+      }
     }
   }
 
@@ -132,7 +166,19 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
           ),
         );
       case InputMode.amount:
-        return const Icon(Icons.euro_symbol, color: DLSColors.iconSoft400);
+        return SizedBox(
+          width: 12,
+          height: 12,
+          child: Center(
+            child: Text(
+              getSelectedCurrency().symbol,
+              style: DLSTextStyle.paragraphMedium.copyWith(
+                color: DLSColors.iconSoft400,
+                fontSize: 14,
+              ),
+            ),
+          ),
+        );
       case InputMode.date:
         return const Icon(Iconsax.calendar_2, color: DLSColors.iconSoft400);
       case InputMode.password:
@@ -178,14 +224,45 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
                 thickness: 1,
               ),
               DropdownButton<String>(
-                value: 'EUR',
-                items: <String>['EUR', 'USD', 'JPY', 'GBP'].map((String value) {
+                value: selectedCurrency,
+                icon: const Icon(Icons.keyboard_arrow_down),
+                iconSize: 24,
+                elevation: 1,
+                dropdownColor: Colors.white,
+                underline: Container(),
+                items: currencyList.map((Currency currency) {
                   return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
+                    value: currency.code,
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 24,
+                          height: 24,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: Center(
+                            child: Text(currency.flag),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          currency.code,
+                          style: DLSTextStyle.paragraphMedium
+                              .copyWith(fontSize: 14),
+                        ),
+                      ],
+                    ),
                   );
                 }).toList(),
-                onChanged: (_) {},
+                onChanged: (value) {
+                  setState(() {
+                    selectedCurrency = value!;
+                  });
+                  if (widget.onCurrencySelected != null && value != null) {
+                    widget.onCurrencySelected!(value);
+                  }
+                },
               ),
             ],
           ),
@@ -197,8 +274,10 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
         );
       case InputMode.password:
         return IconButton(
-          icon: Icon(_isObscured ? Iconsax.eye : Iconsax.eye_slash,
-              color: DLSColors.iconSub500),
+          icon: Icon(
+            _isObscured ? Iconsax.eye : Iconsax.eye_slash,
+            color: DLSColors.iconSub500,
+          ),
           onPressed: _toggleObscureText,
         );
       case InputMode.shareLink:
@@ -217,15 +296,69 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
           ),
         );
       case InputMode.invite:
-        return DropdownButton<String>(
-          value: 'can view',
-          items: <String>['can view', 'can edit'].map((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
-          onChanged: (_) {},
+        return Container(
+          margin: const EdgeInsets.only(right: 8),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const VerticalDivider(
+                color: DLSColors.strokeSoft200,
+                thickness: 1,
+              ),
+              DropdownButton<String>(
+                value: selectedAccess,
+                icon: const Icon(Icons.keyboard_arrow_down),
+                iconSize: 24,
+                elevation: 1,
+                dropdownColor: Colors.white,
+                underline: Container(),
+                items: <DropdownMenuItem<String>>[
+                  DropdownMenuItem<String>(
+                    value: 'can view',
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Iconsax.global,
+                          size: 16,
+                          color: DLSColors.iconSoft400,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          'can view',
+                          style: DLSTextStyle.paragraphMedium.copyWith(
+                              fontSize: 14, color: DLSColors.textSub500),
+                        ),
+                      ],
+                    ),
+                  ),
+                  DropdownMenuItem<String>(
+                    value: 'can edit',
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Iconsax.edit,
+                          size: 16,
+                          color: DLSColors.iconSoft400,
+                        ),
+                        const SizedBox(width: 8),
+                        Text('can edit',
+                            style: DLSTextStyle.paragraphMedium.copyWith(
+                                fontSize: 14, color: DLSColors.textSub500)),
+                      ],
+                    ),
+                  ),
+                ],
+                onChanged: (value) {
+                  setState(() {
+                    selectedAccess = value!;
+                  });
+                  if (widget.onAccessSelected != null && value != null) {
+                    widget.onAccessSelected!(value);
+                  }
+                },
+              ),
+            ],
+          ),
         );
       default:
         return null;
@@ -321,10 +454,15 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
   Widget _buildTextField() {
     Widget? prefixWidget = widget.prefixWidget ?? _buildPrefixWidget();
     Widget? suffixWidget = widget.suffixWidget ?? _buildSuffixWidget();
+
+    // Combine custom inputFormatters with default ones based on InputMode
+    List<TextInputFormatter> formatters = widget.inputFormatters ?? [];
+
     return TextField(
       controller: widget.controller,
       focusNode: _focusNode,
       enabled: widget.isEditable,
+      inputFormatters: formatters,
       obscureText: widget.inputMode == InputMode.password ? _isObscured : false,
       keyboardType: (widget.inputMode == InputMode.website ||
               widget.inputMode == InputMode.shareLink)
@@ -368,9 +506,9 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(
-            color:
-                widget.isInvalid ? DLSColors.errorBase : DLSColors.primaryBase,
-          ),
+              color: widget.isInvalid
+                  ? DLSColors.errorBase
+                  : DLSColors.primaryBase),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -388,17 +526,11 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
         ),
         prefixIcon: prefixWidget == null
             ? null
-            : SizedBox(
-                height: 24,
-                child: widget.prefixWidget ?? _buildPrefixWidget(),
-              ),
+            : SizedBox(height: 24, child: prefixWidget),
         isCollapsed: true,
         suffixIcon: suffixWidget == null
             ? null
-            : SizedBox(
-                height: 24,
-                child: widget.suffixWidget ?? _buildSuffixWidget(),
-              ),
+            : SizedBox(height: 24, child: suffixWidget),
       ),
     );
   }
