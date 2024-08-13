@@ -9,17 +9,19 @@ class DropdownExample extends StatefulWidget {
 }
 
 class _DropdownExampleState extends State<DropdownExample> {
+  final TextEditingController currencyController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dropdown Example'),
       ),
-      body: const SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Row(
+            const Row(
               children: [
                 InlineDropdownWidget(
                   items: ['USD', 'IDR'],
@@ -33,8 +35,8 @@ class _DropdownExampleState extends State<DropdownExample> {
                 ),
               ],
             ),
-            SizedBox(height: DLSSizing.s3xSmall),
-            Row(
+            const SizedBox(height: DLSSizing.s3xSmall),
+            const Row(
               children: [
                 InlineDropdownWidget(
                   items: ['USD', 'IDR'],
@@ -52,8 +54,8 @@ class _DropdownExampleState extends State<DropdownExample> {
                 ),
               ],
             ),
-            SizedBox(height: DLSSizing.s3xSmall),
-            Row(
+            const SizedBox(height: DLSSizing.s3xSmall),
+            const Row(
               children: [
                 CompactDropdownWidget(
                   items: ['USD', 'IDR'],
@@ -70,6 +72,18 @@ class _DropdownExampleState extends State<DropdownExample> {
                   fillColor: DLSColors.bgWhite0,
                 ),
               ],
+            ),
+            const SizedBox(height: DLSSizing.s3xSmall),
+            CustomDropdownWidget(
+              label: 'Currency',
+              hintText: 'Select Currency',
+              controller: currencyController,
+            ),
+            CustomDropdownWidget(
+              label: 'Currency',
+              hintText: 'Select Currency',
+              controller: currencyController,
+              showOptionalLabel: true,
             ),
           ],
         ),
