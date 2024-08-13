@@ -16,6 +16,7 @@ import 'package:example/base_component/divider_example.dart';
 import 'package:example/base_component/breadcrumb_example.dart';
 import 'package:example/base_component/button_example.dart';
 import 'package:example/base_component/notification_example.dart';
+import 'package:example/base_component/tooltip_example.dart';
 import 'package:example/style/shadow_corner_page.dart';
 import 'package:example/style/text_style_page.dart';
 import 'package:flutter/material.dart';
@@ -68,6 +69,7 @@ class HomePage extends StatelessWidget {
       {'title': 'Text Input Example', 'page': const TextInputExample()},
       {'title': 'Text Style Example', 'page': const TextStyleExamplePage()},
       {'title': 'Toggle Example', 'page': const ToggleExamplePage()},
+      {'title': 'Tooltip Example', 'page': const TooltipExamplePage()},
     ];
 
     examples
