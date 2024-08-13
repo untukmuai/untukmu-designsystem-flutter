@@ -9,19 +9,17 @@ class DropdownExample extends StatefulWidget {
 }
 
 class _DropdownExampleState extends State<DropdownExample> {
-  final TextEditingController currencyController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dropdown Example'),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+      body: const SingleChildScrollView(
+        padding: EdgeInsets.all(16),
         child: Column(
           children: [
-            const Row(
+            Row(
               children: [
                 InlineDropdownWidget(
                   items: ['USD', 'IDR'],
@@ -35,8 +33,8 @@ class _DropdownExampleState extends State<DropdownExample> {
                 ),
               ],
             ),
-            const SizedBox(height: DLSSizing.s3xSmall),
-            const Row(
+            SizedBox(height: DLSSizing.s3xSmall),
+            Row(
               children: [
                 InlineDropdownWidget(
                   items: ['USD', 'IDR'],
@@ -54,8 +52,8 @@ class _DropdownExampleState extends State<DropdownExample> {
                 ),
               ],
             ),
-            const SizedBox(height: DLSSizing.s3xSmall),
-            const Row(
+            SizedBox(height: DLSSizing.s3xSmall),
+            Row(
               children: [
                 CompactDropdownWidget(
                   items: ['USD', 'IDR'],
@@ -73,16 +71,23 @@ class _DropdownExampleState extends State<DropdownExample> {
                 ),
               ],
             ),
-            const SizedBox(height: DLSSizing.s3xSmall),
+            SizedBox(height: DLSSizing.s3xSmall),
             CustomDropdownWidget(
+              items: ['USD', 'IDR'],
               label: 'Currency',
               hintText: 'Select Currency',
-              controller: currencyController,
             ),
             CustomDropdownWidget(
+              items: ['USD', 'IDR'],
               label: 'Currency',
               hintText: 'Select Currency',
-              controller: currencyController,
+              showOptionalLabel: true,
+            ),
+            CustomDropdownWidget(
+              isEditable: false,
+              items: ['USD', 'IDR'],
+              label: 'Currency',
+              hintText: 'Select Currency',
               showOptionalLabel: true,
             ),
           ],
