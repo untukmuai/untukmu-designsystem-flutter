@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
-class CustomTag extends StatelessWidget {
-  const CustomTag({
+class CustomTagWidget extends StatelessWidget {
+  const CustomTagWidget({
     super.key,
     this.label = 'Tag',
     this.disabled = false,
@@ -26,7 +26,7 @@ class CustomTag extends StatelessWidget {
 
   final bool disabled;
 
-  final CustomBadge? badge;
+  final CustomBadgeWidget? badge;
 
   @override
   Widget build(BuildContext context) {

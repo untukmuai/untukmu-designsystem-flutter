@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
-class CustomPagination extends StatelessWidget {
-  const CustomPagination(
+class CustomPaginationWidget extends StatelessWidget {
+  const CustomPaginationWidget(
       {super.key,
       this.active = false,
       this.enabled = true,

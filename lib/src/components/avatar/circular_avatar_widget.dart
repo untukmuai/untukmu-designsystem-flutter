@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:untukmu_flutter_design_system/src/components/avatar/constant/avatar_size.dart';
 import 'package:untukmu_flutter_design_system/src/styles/text_styles.dart';
 
-class CustomCircularAvatar extends StatefulWidget {
-  const CustomCircularAvatar(
+class CustomCircularAvatarWidget extends StatefulWidget {
+  const CustomCircularAvatarWidget(
       {super.key,
       this.avatarSize = AvatarSize.size64,
       this.url,
@@ -19,10 +19,12 @@ class CustomCircularAvatar extends StatefulWidget {
   final AvatarSize avatarSize;
 
   @override
-  State<CustomCircularAvatar> createState() => _CustomCircularAvatarState();
+  State<CustomCircularAvatarWidget> createState() =>
+      _CustomCircularAvatarWidgetState();
 }
 
-class _CustomCircularAvatarState extends State<CustomCircularAvatar> {
+class _CustomCircularAvatarWidgetState
+    extends State<CustomCircularAvatarWidget> {
   @override
   Widget build(BuildContext context) {
     var avatar = CircleAvatar(

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
-class CustomAccordion extends StatefulWidget {
-  const CustomAccordion({
+class CustomAccordionWidget extends StatefulWidget {
+  const CustomAccordionWidget({
     super.key,
     this.title = 'Insert your accordion title here',
     this.content =
@@ -27,10 +27,10 @@ class CustomAccordion extends StatefulWidget {
   final String content;
 
   @override
-  State<CustomAccordion> createState() => _CustomAccordionState();
+  State<CustomAccordionWidget> createState() => _CustomAccordionWidgetState();
 }
 
-class _CustomAccordionState extends State<CustomAccordion>
+class _CustomAccordionWidgetState extends State<CustomAccordionWidget>
     with TickerProviderStateMixin {
   // control the state of the animation
   late final AnimationController _controller;

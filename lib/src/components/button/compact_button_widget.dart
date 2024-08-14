@@ -16,8 +16,8 @@ enum CompactButtonSize {
 
 enum CompactButtonType { stroke, ghost, white }
 
-class CompactButton extends StatelessWidget {
-  const CompactButton({
+class CompactButtonWidget extends StatelessWidget {
+  const CompactButtonWidget({
     super.key,
     this.disabled = false,
     this.onTap,

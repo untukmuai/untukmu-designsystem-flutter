@@ -6,8 +6,8 @@ enum CustomBannerType { error, warning, success, information, feature }
 
 enum CustomBannerStyle { filled, light, lighter, stroke }
 
-class CustomBanner extends StatelessWidget {
-  const CustomBanner({
+class CustomBannerWidget extends StatelessWidget {
+  const CustomBannerWidget({
     super.key,
     this.prefixIcon,
     this.suffixIcon,
@@ -97,7 +97,7 @@ class CustomBanner extends StatelessWidget {
           ),
           Container(
             margin: const EdgeInsets.only(left: DLSSizing.s3xSmall),
-            child: CompactButton(
+            child: CompactButtonWidget(
               onTap: () {
                 if (onDismiss != null) {
                   onDismiss!;

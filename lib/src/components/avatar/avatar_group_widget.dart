@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:untukmu_flutter_design_system/src/components/avatar/circular_avatar.dart';
+import 'package:untukmu_flutter_design_system/src/components/avatar/circular_avatar_widget.dart';
 import 'package:untukmu_flutter_design_system/src/components/avatar/constant/avatar_size.dart';
 import 'package:untukmu_flutter_design_system/src/components/avatar/models/avatar_group_item.dart';
 
-class AvatarGroup extends StatefulWidget {
-  const AvatarGroup(
+class AvatarGroupWidget extends StatefulWidget {
+  const AvatarGroupWidget(
       {super.key, this.items, this.maxItem = 4, this.size = AvatarSize.size32});
 
   final List<AvatarGroupItemModel>? items;
@@ -12,10 +12,10 @@ class AvatarGroup extends StatefulWidget {
   final AvatarSize size;
 
   @override
-  State<AvatarGroup> createState() => _AvatarGroupState();
+  State<AvatarGroupWidget> createState() => _AvatarGroupWidgetState();
 }
 
-class _AvatarGroupState extends State<AvatarGroup> {
+class _AvatarGroupWidgetState extends State<AvatarGroupWidget> {
   @override
   Widget build(BuildContext context) {
     if (widget.maxItem < 3) {
@@ -39,7 +39,7 @@ class _AvatarGroupState extends State<AvatarGroup> {
         (item) {
           return Align(
             widthFactor: 0.75,
-            child: CustomCircularAvatar(
+            child: CustomCircularAvatarWidget(
               name: item.name,
               url: item.url,
               avatarSize: widget.size,
