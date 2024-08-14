@@ -22,24 +22,24 @@ class _BadgeExamplePageState extends State<BadgeExamplePage> {
           children: [
             Row(
               children: [
-                CustomBadge(
+                CustomBadgeWidget(
                   style: CustomBadgeStyle.light,
                   backgroundColor: DLSColors.pacificBlueLight,
                   textColor: DLSColors.pacificBlueDarker,
                 ),
                 SizedBox(width: 8),
-                CustomBadge(
+                CustomBadgeWidget(
                   style: CustomBadgeStyle.filled,
                   backgroundColor: DLSColors.pacificBlueBase,
                 ),
                 SizedBox(width: 8),
-                CustomBadge(
+                CustomBadgeWidget(
                   style: CustomBadgeStyle.stroke,
                   strokeColor: DLSColors.pacificBlueLight,
                   textColor: DLSColors.pacificBlueBase,
                 ),
                 SizedBox(width: 8),
-                CustomBadge(
+                CustomBadgeWidget(
                   style: CustomBadgeStyle.stroke,
                   strokeColor: DLSColors.pacificBlueLight,
                   textColor: DLSColors.pacificBlueBase,
@@ -50,7 +50,7 @@ class _BadgeExamplePageState extends State<BadgeExamplePage> {
             SizedBox(height: 16),
             Row(
               children: [
-                CustomBadge(
+                CustomBadgeWidget(
                   style: CustomBadgeStyle.light,
                   prefixIcon: Icon(
                     Icons.brightness_1,
@@ -61,7 +61,7 @@ class _BadgeExamplePageState extends State<BadgeExamplePage> {
                   textColor: DLSColors.pacificBlueDarker,
                 ),
                 SizedBox(width: 8),
-                CustomBadge(
+                CustomBadgeWidget(
                   style: CustomBadgeStyle.filled,
                   backgroundColor: DLSColors.pacificBlueBase,
                   suffixIcon: Icon(
@@ -71,14 +71,14 @@ class _BadgeExamplePageState extends State<BadgeExamplePage> {
                   ),
                 ),
                 SizedBox(width: 8),
-                CustomBadge(
+                CustomBadgeWidget(
                   style: CustomBadgeStyle.stroke,
                   strokeColor: DLSColors.pacificBlueLight,
                   textColor: DLSColors.pacificBlueBase,
                   title: '2',
                 ),
                 SizedBox(width: 8),
-                CustomBadge(
+                CustomBadgeWidget(
                   style: CustomBadgeStyle.light,
                   prefixIcon: Icon(
                     Icons.brightness_1,

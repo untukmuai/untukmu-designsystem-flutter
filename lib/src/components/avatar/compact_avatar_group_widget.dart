@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:untukmu_flutter_design_system/src/common/radius.dart';
-import 'package:untukmu_flutter_design_system/src/components/avatar/circular_avatar.dart';
+import 'package:untukmu_flutter_design_system/src/components/avatar/circular_avatar_widget.dart';
 import 'package:untukmu_flutter_design_system/src/components/avatar/constant/avatar_size.dart';
 import 'package:untukmu_flutter_design_system/src/components/avatar/constant/compact_avatar_group_style.dart';
 import 'package:untukmu_flutter_design_system/src/components/avatar/models/avatar_group_item.dart';
 import 'package:untukmu_flutter_design_system/src/styles/colors.dart';
 import 'package:untukmu_flutter_design_system/src/styles/text_styles.dart';
 
-class CompactAvatarGroup extends StatelessWidget {
-  const CompactAvatarGroup(
+class CompactAvatarGroupWidget extends StatelessWidget {
+  const CompactAvatarGroupWidget(
       {super.key,
       this.items,
       this.size = AvatarSize.size32,
@@ -62,7 +62,7 @@ class CompactAvatarGroup extends StatelessWidget {
 
             return Align(
               widthFactor: 0.8,
-              child: CustomCircularAvatar(
+              child: CustomCircularAvatarWidget(
                 name: item.name,
                 url: item.url,
                 avatarSize: size,

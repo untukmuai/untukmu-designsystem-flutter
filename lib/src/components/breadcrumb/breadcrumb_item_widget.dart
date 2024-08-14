@@ -4,8 +4,8 @@ import 'package:untukmu_flutter_design_system/src/components/breadcrumb/constant
 import 'package:untukmu_flutter_design_system/src/styles/colors.dart';
 import 'package:untukmu_flutter_design_system/src/styles/text_styles.dart';
 
-class BreadcrumbItem extends StatelessWidget {
-  const BreadcrumbItem(
+class BreadcrumbItemWidget extends StatelessWidget {
+  const BreadcrumbItemWidget(
       {super.key,
       this.icon,
       this.label = 'Breadcrumb',

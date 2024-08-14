@@ -431,7 +431,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
             spacing: 8.0,
             runSpacing: 4.0,
             children: listTag?.map((tag) {
-                  return CustomTag(
+                  return CustomTagWidget(
                     label: tag,
                     suffixIcon: Iconsax.close_circle,
                     onTap: () {

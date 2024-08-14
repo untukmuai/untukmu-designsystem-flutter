@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
-class CustomDivider extends StatelessWidget {
-  const CustomDivider({
+class CustomDividerWidget extends StatelessWidget {
+  const CustomDividerWidget({
     super.key,
     this.verticalSpace,
     this.dividerText,

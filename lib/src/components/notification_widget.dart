@@ -9,8 +9,8 @@ enum NotificationType { error, warning, success, info, feature }
 
 enum NotificationColor { filled, light, lighter, stroke }
 
-class CustomNotification extends StatelessWidget {
-  const CustomNotification({
+class CustomNotificationWidget extends StatelessWidget {
+  const CustomNotificationWidget({
     super.key,
     this.size = NotificationSize.small,
     this.type = NotificationType.feature,

@@ -1,105 +1,89 @@
 import 'package:flutter/material.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
-class CustomButton extends StatelessWidget {
-  const CustomButton({
+enum FancyButtonStyle { filled, stroke, lighter }
+
+class FancyButtonWidget extends StatelessWidget {
+  const FancyButtonWidget({
     super.key,
     this.onPressed,
     this.label = 'Button',
     this.type = CustomButtonType.primary,
-    this.style = CustomButtonStyle.filled,
+    this.style = FancyButtonStyle.filled,
     this.size = CustomButtonSize.medium,
-    this.isIconMode = false,
-    this.icon,
     this.prefixIcon,
     this.suffixIcon,
     this.disabled = false,
-    this.filledColor,
-    this.labelColor,
-    this.strokeColor,
-    this.prefixPadding,
   });
 
   final String label;
   final VoidCallback? onPressed;
 
   final CustomButtonType type;
-  final CustomButtonStyle style;
+  final FancyButtonStyle style;
   final CustomButtonSize? size;
 
-  final IconData? icon;
-  final bool isIconMode;
-
-  final double? prefixPadding;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
 
   final bool disabled;
 
-  final Color? filledColor;
-  final Color? labelColor;
-  final Color? strokeColor;
-
   @override
   Widget build(BuildContext context) {
-    if (isIconMode) {
-      if (icon == null) {
-        throw Exception('Icon cannot be null');
-      } else {
-        return IconButton(
-          onPressed: disabled ? null : onPressed,
-          icon: Icon(
-            icon,
-            size: 16,
-            color: textColor,
-          ),
-          style: TextButton.styleFrom(
-            padding: iconPadding,
-            backgroundColor: backgroundColor,
-            side: border,
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            minimumSize: const Size(28, 28),
-          ),
-        );
-      }
-    }
-
-    return TextButton(
-      onPressed: disabled ? null : onPressed,
-      style: TextButton.styleFrom(
-        padding: padding,
-        backgroundColor: backgroundColor,
-        side: border,
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        minimumSize: const Size(50, 30),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: DLSRadius.radius10,
+        color: backgroundColor,
       ),
-      child: Row(
-        children: [
-          prefixIcon == null
-              ? const SizedBox()
-              : Padding(
-                  padding: prefixIconPadding,
-                  child: Icon(
-                    prefixIcon,
-                    size: 16,
-                    color: textColor,
-                  ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: disabled ? null : onPressed,
+          borderRadius: DLSRadius.radius10,
+          child: Container(
+            margin: const EdgeInsets.all(1),
+            padding: padding,
+            decoration: BoxDecoration(
+              borderRadius: DLSRadius.radius10,
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.white.withOpacity(0.0),
+                  Colors.white.withOpacity(0.12),
+                ],
+              ),
+            ),
+            child: Row(
+              children: [
+                prefixIcon == null
+                    ? const SizedBox()
+                    : Padding(
+                        padding: prefixIconPadding,
+                        child: Icon(
+                          prefixIcon,
+                          size: 14,
+                          color: textColor,
+                        ),
+                      ),
+                Text(
+                  label,
+                  style: textStyle.copyWith(color: textColor),
                 ),
-          Text(
-            label,
-            style: textStyle.copyWith(color: textColor),
+                suffixIcon == null
+                    ? const SizedBox()
+                    : Padding(
+                        padding: suffixIconPadding,
+                        child: Icon(
+                          suffixIcon,
+                          size: 14,
+                          color: textColor,
+                        ),
+                      ),
+              ],
+            ),
           ),
-          suffixIcon == null
-              ? const SizedBox()
-              : Padding(
-                  padding: suffixIconPadding,
-                  child: Icon(
-                    suffixIcon,
-                    size: 16,
-                    color: textColor,
-                  ),
-                ),
-        ],
+        ),
       ),
     );
   }
@@ -118,20 +102,16 @@ class CustomButton extends StatelessWidget {
   EdgeInsetsGeometry get padding {
     switch (size) {
       case CustomButtonSize.xSmall:
-        return const EdgeInsets.symmetric(
-            horizontal: DLSSizing.s3xSmall, vertical: DLSSizing.s4xSmall);
+        return const EdgeInsets.all(6);
       case CustomButtonSize.small:
         return const EdgeInsets.all(DLSSizing.s3xSmall);
       default:
-        return const EdgeInsets.all(DLSSizing.s2xSmall);
+        return const EdgeInsets.symmetric(
+            horizontal: DLSSizing.s3xSmall, vertical: 10);
     }
   }
 
   EdgeInsetsGeometry get prefixIconPadding {
-    if (prefixPadding != null) {
-      return EdgeInsets.only(right: prefixPadding!);
-    }
-
     switch (size) {
       case CustomButtonSize.xSmall:
         return const EdgeInsets.only(right: DLSSizing.s5xSmall);
@@ -150,22 +130,12 @@ class CustomButton extends StatelessWidget {
   }
 
   Color? get backgroundColor {
-    if (style == CustomButtonStyle.ghost) {
-      return null;
-    }
-
-    if (disabled || onPressed == null) {
+    if (disabled) {
       return DLSColors.bgWeak100;
     }
 
-    if (filledColor != null &&
-        style != CustomButtonStyle.stroke &&
-        style != CustomButtonStyle.ghost) {
-      return filledColor;
-    }
-
     switch (style) {
-      case CustomButtonStyle.filled:
+      case FancyButtonStyle.filled:
         switch (type) {
           case CustomButtonType.primary:
             return DLSColors.primaryBase;
@@ -174,7 +144,7 @@ class CustomButton extends StatelessWidget {
           case CustomButtonType.error:
             return DLSColors.redBase;
         }
-      case CustomButtonStyle.lighter:
+      case FancyButtonStyle.lighter:
         switch (type) {
           case CustomButtonType.primary:
             return DLSColors.orchidPurpleLighter;
@@ -189,18 +159,13 @@ class CustomButton extends StatelessWidget {
   }
 
   Color get textColor {
-    if (disabled || onPressed == null) {
+    if (disabled) {
       return DLSColors.textDisabled300;
     }
 
-    if (labelColor != null && style != CustomButtonStyle.filled) {
-      return labelColor!;
-    }
-
     switch (style) {
-      case CustomButtonStyle.lighter:
-      case CustomButtonStyle.stroke:
-      case CustomButtonStyle.ghost:
+      case FancyButtonStyle.lighter:
+      case FancyButtonStyle.stroke:
         switch (type) {
           case CustomButtonType.primary:
             return DLSColors.primaryBase;
@@ -215,16 +180,12 @@ class CustomButton extends StatelessWidget {
   }
 
   BorderSide? get border {
-    if (disabled || onPressed == null) {
+    if (disabled) {
       return null;
     }
 
-    if (strokeColor != null && style == CustomButtonStyle.stroke) {
-      return BorderSide(color: strokeColor!, width: 1);
-    }
-
     switch (style) {
-      case CustomButtonStyle.stroke:
+      case FancyButtonStyle.stroke:
         return BorderSide(color: textColor, width: 1);
       default:
         return null;

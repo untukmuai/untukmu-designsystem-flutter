@@ -54,28 +54,28 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
       children: [
         Row(
           children: [
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.primary,
               style: CustomButtonStyle.filled,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.primary,
               style: CustomButtonStyle.lighter,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.primary,
               style: CustomButtonStyle.stroke,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.primary,
@@ -86,28 +86,28 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
         const SizedBox(height: 16),
         Row(
           children: [
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.neutral,
               style: CustomButtonStyle.filled,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.neutral,
               style: CustomButtonStyle.lighter,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.neutral,
               style: CustomButtonStyle.stroke,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.neutral,
@@ -118,28 +118,28 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
         const SizedBox(height: 16),
         Row(
           children: [
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.error,
               style: CustomButtonStyle.filled,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.error,
               style: CustomButtonStyle.lighter,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.error,
               style: CustomButtonStyle.stroke,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.error,
@@ -150,7 +150,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
         const SizedBox(height: 16),
         Row(
           children: [
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               disabled: true,
               onPressed: () {},
@@ -158,7 +158,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               style: CustomButtonStyle.filled,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               disabled: true,
               onPressed: () {},
@@ -166,7 +166,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               style: CustomButtonStyle.lighter,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               disabled: true,
               onPressed: () {},
@@ -174,7 +174,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               style: CustomButtonStyle.stroke,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               disabled: true,
               onPressed: () {},
@@ -192,7 +192,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
       children: [
         Row(
           children: [
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.primary,
@@ -201,7 +201,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               icon: Iconsax.copy,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.primary,
@@ -210,7 +210,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               icon: Iconsax.copy,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.primary,
@@ -219,7 +219,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               icon: Iconsax.copy,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.primary,
@@ -232,7 +232,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
         const SizedBox(height: 16),
         Row(
           children: [
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.neutral,
@@ -241,7 +241,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               icon: Iconsax.copy,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.neutral,
@@ -250,7 +250,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               icon: Iconsax.copy,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.neutral,
@@ -259,7 +259,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               icon: Iconsax.copy,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.neutral,
@@ -272,7 +272,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
         const SizedBox(height: 16),
         Row(
           children: [
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.error,
@@ -281,7 +281,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               icon: Iconsax.copy,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.error,
@@ -290,7 +290,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               icon: Iconsax.copy,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.error,
@@ -299,7 +299,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               icon: Iconsax.copy,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.error,
@@ -312,7 +312,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
         const SizedBox(height: 16),
         Row(
           children: [
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               disabled: true,
               onPressed: () {},
@@ -322,7 +322,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               icon: Iconsax.copy,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               disabled: true,
               onPressed: () {},
@@ -332,7 +332,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               icon: Iconsax.copy,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               disabled: true,
               onPressed: () {},
@@ -342,7 +342,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               icon: Iconsax.copy,
             ),
             const SizedBox(width: 8),
-            CustomButton(
+            CustomButtonWidget(
               size: selectedButtonSize,
               disabled: true,
               onPressed: () {},
@@ -364,7 +364,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              CustomButton(
+              CustomButtonWidget(
                 size: selectedButtonSize,
                 onPressed: () {},
                 type: CustomButtonType.primary,
@@ -373,7 +373,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
                 suffixIcon: Iconsax.arrow_left1,
               ),
               const SizedBox(width: 8),
-              CustomButton(
+              CustomButtonWidget(
                 size: selectedButtonSize,
                 onPressed: () {},
                 type: CustomButtonType.primary,
@@ -382,7 +382,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
                 suffixIcon: Iconsax.arrow_left1,
               ),
               const SizedBox(width: 8),
-              CustomButton(
+              CustomButtonWidget(
                 size: selectedButtonSize,
                 onPressed: () {},
                 type: CustomButtonType.primary,
@@ -391,7 +391,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
                 suffixIcon: Iconsax.arrow_left1,
               ),
               const SizedBox(width: 8),
-              CustomButton(
+              CustomButtonWidget(
                 size: selectedButtonSize,
                 onPressed: () {},
                 type: CustomButtonType.primary,
@@ -407,7 +407,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              CustomButton(
+              CustomButtonWidget(
                 size: selectedButtonSize,
                 onPressed: () {},
                 type: CustomButtonType.neutral,
@@ -416,7 +416,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
                 suffixIcon: Iconsax.arrow_left1,
               ),
               const SizedBox(width: 8),
-              CustomButton(
+              CustomButtonWidget(
                 size: selectedButtonSize,
                 onPressed: () {},
                 type: CustomButtonType.neutral,
@@ -425,7 +425,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
                 suffixIcon: Iconsax.arrow_left1,
               ),
               const SizedBox(width: 8),
-              CustomButton(
+              CustomButtonWidget(
                 size: selectedButtonSize,
                 onPressed: () {},
                 type: CustomButtonType.neutral,
@@ -434,7 +434,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
                 suffixIcon: Iconsax.arrow_left1,
               ),
               const SizedBox(width: 8),
-              CustomButton(
+              CustomButtonWidget(
                 size: selectedButtonSize,
                 onPressed: () {},
                 type: CustomButtonType.neutral,
@@ -450,7 +450,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              CustomButton(
+              CustomButtonWidget(
                 size: selectedButtonSize,
                 onPressed: () {},
                 type: CustomButtonType.error,
@@ -459,7 +459,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
                 suffixIcon: Iconsax.arrow_left1,
               ),
               const SizedBox(width: 8),
-              CustomButton(
+              CustomButtonWidget(
                 size: selectedButtonSize,
                 onPressed: () {},
                 type: CustomButtonType.error,
@@ -468,7 +468,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
                 suffixIcon: Iconsax.arrow_left1,
               ),
               const SizedBox(width: 8),
-              CustomButton(
+              CustomButtonWidget(
                 size: selectedButtonSize,
                 onPressed: () {},
                 type: CustomButtonType.error,
@@ -477,7 +477,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
                 suffixIcon: Iconsax.arrow_left1,
               ),
               const SizedBox(width: 8),
-              CustomButton(
+              CustomButtonWidget(
                 size: selectedButtonSize,
                 onPressed: () {},
                 type: CustomButtonType.error,
@@ -493,7 +493,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              CustomButton(
+              CustomButtonWidget(
                 size: selectedButtonSize,
                 disabled: true,
                 onPressed: () {},
@@ -503,7 +503,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
                 suffixIcon: Iconsax.arrow_left1,
               ),
               const SizedBox(width: 8),
-              CustomButton(
+              CustomButtonWidget(
                 size: selectedButtonSize,
                 disabled: true,
                 onPressed: () {},
@@ -513,7 +513,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
                 suffixIcon: Iconsax.arrow_left1,
               ),
               const SizedBox(width: 8),
-              CustomButton(
+              CustomButtonWidget(
                 size: selectedButtonSize,
                 disabled: true,
                 onPressed: () {},
@@ -523,7 +523,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
                 suffixIcon: Iconsax.arrow_left1,
               ),
               const SizedBox(width: 8),
-              CustomButton(
+              CustomButtonWidget(
                 size: selectedButtonSize,
                 disabled: true,
                 onPressed: () {},
@@ -552,11 +552,11 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              LinkButton(),
-              LinkButton(style: LinkButtonStyle.black),
-              LinkButton(style: LinkButtonStyle.gray),
-              LinkButton(style: LinkButtonStyle.error),
-              LinkButton(disabled: true),
+              LinkButtonWidget(),
+              LinkButtonWidget(style: LinkButtonStyle.black),
+              LinkButtonWidget(style: LinkButtonStyle.gray),
+              LinkButtonWidget(style: LinkButtonStyle.error),
+              LinkButtonWidget(disabled: true),
             ],
           ),
         ),
@@ -565,14 +565,14 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              LinkButton(size: LinkButtonSize.small),
-              LinkButton(
+              LinkButtonWidget(size: LinkButtonSize.small),
+              LinkButtonWidget(
                   size: LinkButtonSize.small, style: LinkButtonStyle.black),
-              LinkButton(
+              LinkButtonWidget(
                   size: LinkButtonSize.small, style: LinkButtonStyle.gray),
-              LinkButton(
+              LinkButtonWidget(
                   size: LinkButtonSize.small, style: LinkButtonStyle.error),
-              LinkButton(size: LinkButtonSize.small, disabled: true),
+              LinkButtonWidget(size: LinkButtonSize.small, disabled: true),
             ],
           ),
         )
@@ -585,19 +585,19 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
       children: [
         Row(
           children: [
-            FancyButton(
+            FancyButtonWidget(
               onPressed: () {},
               size: selectedButtonSize,
               type: CustomButtonType.primary,
             ),
             const SizedBox(width: 8),
-            FancyButton(
+            FancyButtonWidget(
               onPressed: () {},
               size: selectedButtonSize,
               type: CustomButtonType.neutral,
             ),
             const SizedBox(width: 8),
-            FancyButton(
+            FancyButtonWidget(
               onPressed: () {},
               size: selectedButtonSize,
               type: CustomButtonType.error,
@@ -607,21 +607,21 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
         const SizedBox(height: 4),
         Row(
           children: [
-            FancyButton(
+            FancyButtonWidget(
               disabled: true,
               onPressed: () {},
               size: selectedButtonSize,
               type: CustomButtonType.primary,
             ),
             const SizedBox(width: 8),
-            FancyButton(
+            FancyButtonWidget(
               disabled: true,
               onPressed: () {},
               size: selectedButtonSize,
               type: CustomButtonType.neutral,
             ),
             const SizedBox(width: 8),
-            FancyButton(
+            FancyButtonWidget(
               disabled: true,
               onPressed: () {},
               size: selectedButtonSize,
@@ -632,7 +632,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
         const SizedBox(height: 16),
         Row(
           children: [
-            FancyButton(
+            FancyButtonWidget(
               onPressed: () {},
               size: selectedButtonSize,
               type: CustomButtonType.primary,
@@ -640,7 +640,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               suffixIcon: Iconsax.arrow_left1,
             ),
             const SizedBox(width: 8),
-            FancyButton(
+            FancyButtonWidget(
               onPressed: () {},
               size: selectedButtonSize,
               type: CustomButtonType.neutral,
@@ -648,7 +648,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               suffixIcon: Iconsax.arrow_left1,
             ),
             const SizedBox(width: 8),
-            FancyButton(
+            FancyButtonWidget(
               onPressed: () {},
               size: selectedButtonSize,
               type: CustomButtonType.error,
@@ -660,7 +660,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
         const SizedBox(height: 4),
         Row(
           children: [
-            FancyButton(
+            FancyButtonWidget(
               disabled: true,
               onPressed: () {},
               size: selectedButtonSize,
@@ -669,7 +669,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               suffixIcon: Iconsax.arrow_left1,
             ),
             const SizedBox(width: 8),
-            FancyButton(
+            FancyButtonWidget(
               disabled: true,
               onPressed: () {},
               size: selectedButtonSize,
@@ -678,7 +678,7 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               suffixIcon: Iconsax.arrow_left1,
             ),
             const SizedBox(width: 8),
-            FancyButton(
+            FancyButtonWidget(
               disabled: true,
               onPressed: () {},
               size: selectedButtonSize,
@@ -697,24 +697,24 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
       children: [
         Row(
           children: [
-            CompactButton(
+            CompactButtonWidget(
               onTap: () {},
               icon: Icons.close,
             ),
             const SizedBox(width: 8),
-            CompactButton(
+            CompactButtonWidget(
               onTap: () {},
               icon: Icons.close,
               type: CompactButtonType.ghost,
             ),
             const SizedBox(width: 8),
-            CompactButton(
+            CompactButtonWidget(
               onTap: () {},
               icon: Icons.close,
               type: CompactButtonType.white,
             ),
             const SizedBox(width: 8),
-            CompactButton(
+            CompactButtonWidget(
               disabled: true,
               onTap: () {},
               icon: Icons.close,
@@ -725,27 +725,27 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
         const SizedBox(height: 8),
         Row(
           children: [
-            CompactButton(
+            CompactButtonWidget(
               onTap: () {},
               icon: Icons.close,
               isCircle: true,
             ),
             const SizedBox(width: 8),
-            CompactButton(
+            CompactButtonWidget(
               onTap: () {},
               icon: Icons.close,
               type: CompactButtonType.ghost,
               isCircle: true,
             ),
             const SizedBox(width: 8),
-            CompactButton(
+            CompactButtonWidget(
               onTap: () {},
               icon: Icons.close,
               type: CompactButtonType.white,
               isCircle: true,
             ),
             const SizedBox(width: 8),
-            CompactButton(
+            CompactButtonWidget(
               disabled: true,
               onTap: () {},
               icon: Icons.close,
@@ -765,24 +765,24 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              SocialButton(
+              SocialButtonWidget(
                 icon: Iconsax.activity,
                 label: 'Sign in with Apple',
               ),
               SizedBox(width: 8),
-              SocialButton(
+              SocialButtonWidget(
                 type: SocialButtonType.icon,
                 icon: Iconsax.activity,
                 label: 'Sign in with Apple',
               ),
               SizedBox(width: 8),
-              SocialButton(
+              SocialButtonWidget(
                 type: SocialButtonType.stroke,
                 icon: Iconsax.activity,
                 label: 'Sign in with Apple',
               ),
               SizedBox(width: 8),
-              SocialButton(
+              SocialButtonWidget(
                 type: SocialButtonType.strokeIcon,
                 icon: Iconsax.activity,
                 label: 'Sign in with Apple',
@@ -795,24 +795,24 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              SocialButton(
+              SocialButtonWidget(
                 icon: Iconsax.activity,
                 label: 'Sign in with Twitter',
               ),
               SizedBox(width: 8),
-              SocialButton(
+              SocialButtonWidget(
                 type: SocialButtonType.icon,
                 icon: Iconsax.activity,
                 label: 'Sign in with Twitter',
               ),
               SizedBox(width: 8),
-              SocialButton(
+              SocialButtonWidget(
                 type: SocialButtonType.stroke,
                 icon: Iconsax.activity,
                 label: 'Sign in with Twitter',
               ),
               SizedBox(width: 8),
-              SocialButton(
+              SocialButtonWidget(
                 type: SocialButtonType.strokeIcon,
                 icon: Iconsax.activity,
                 label: 'Sign in with Twitter',
@@ -825,27 +825,27 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              SocialButton(
+              SocialButtonWidget(
                 icon: Iconsax.activity,
                 label: 'Sign in with Google',
                 color: DLSColors.redBase,
               ),
               SizedBox(width: 8),
-              SocialButton(
+              SocialButtonWidget(
                 type: SocialButtonType.icon,
                 icon: Iconsax.activity,
                 label: 'Sign in with Google',
                 color: DLSColors.redBase,
               ),
               SizedBox(width: 8),
-              SocialButton(
+              SocialButtonWidget(
                 type: SocialButtonType.stroke,
                 icon: Iconsax.activity,
                 label: 'Sign in with Google',
                 color: DLSColors.redBase,
               ),
               SizedBox(width: 8),
-              SocialButton(
+              SocialButtonWidget(
                 type: SocialButtonType.strokeIcon,
                 icon: Iconsax.activity,
                 label: 'Sign in with Google',
@@ -859,27 +859,27 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              SocialButton(
+              SocialButtonWidget(
                 icon: Iconsax.activity,
                 label: 'Sign in with Facebook',
                 color: DLSColors.pacificBlueBase,
               ),
               SizedBox(width: 8),
-              SocialButton(
+              SocialButtonWidget(
                 type: SocialButtonType.icon,
                 icon: Iconsax.activity,
                 label: 'Sign in with Facebook',
                 color: DLSColors.pacificBlueBase,
               ),
               SizedBox(width: 8),
-              SocialButton(
+              SocialButtonWidget(
                 type: SocialButtonType.stroke,
                 icon: Iconsax.activity,
                 label: 'Sign in with Facebook',
                 color: DLSColors.pacificBlueBase,
               ),
               SizedBox(width: 8),
-              SocialButton(
+              SocialButtonWidget(
                 type: SocialButtonType.strokeIcon,
                 icon: Iconsax.activity,
                 label: 'Sign in with Facebook',
@@ -893,27 +893,27 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              SocialButton(
+              SocialButtonWidget(
                 icon: Iconsax.activity,
                 label: 'Sign in with LinkedIn',
                 color: DLSColors.pacificBlueDark,
               ),
               SizedBox(width: 8),
-              SocialButton(
+              SocialButtonWidget(
                 type: SocialButtonType.icon,
                 icon: Iconsax.activity,
                 label: 'Sign in with LinkedIn',
                 color: DLSColors.pacificBlueDark,
               ),
               SizedBox(width: 8),
-              SocialButton(
+              SocialButtonWidget(
                 type: SocialButtonType.stroke,
                 icon: Iconsax.activity,
                 label: 'Sign in with LinkedIn',
                 color: DLSColors.pacificBlueDark,
               ),
               SizedBox(width: 8),
-              SocialButton(
+              SocialButtonWidget(
                 type: SocialButtonType.strokeIcon,
                 icon: Iconsax.activity,
                 label: 'Sign in with LinkedIn',

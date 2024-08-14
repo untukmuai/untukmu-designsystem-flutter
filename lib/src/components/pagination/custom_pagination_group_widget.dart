@@ -4,8 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
-class CustomPaginationGroup extends StatelessWidget {
-  const CustomPaginationGroup({
+class CustomPaginationGroupWidget extends StatelessWidget {
+  const CustomPaginationGroupWidget({
     super.key,
     required this.maxPages,
     this.currentPage,
@@ -103,7 +103,7 @@ class CustomPaginationGroup extends StatelessWidget {
                       margin: lastItem
                           ? null
                           : const EdgeInsets.only(right: DLSSizing.s3xSmall),
-                      child: CustomPagination(
+                      child: CustomPaginationWidget(
                         active: isActive,
                         onTap: onTap == null ? null : () => onTap!(index),
                         value: ellipsisable && ellipsisItem

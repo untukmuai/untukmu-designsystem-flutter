@@ -5,8 +5,8 @@ enum LinkButtonStyle { gray, black, primary, error }
 
 enum LinkButtonSize { medium, small }
 
-class LinkButton extends StatelessWidget {
-  const LinkButton(
+class LinkButtonWidget extends StatelessWidget {
+  const LinkButtonWidget(
       {super.key,
       this.size = LinkButtonSize.medium,
       this.style = LinkButtonStyle.primary,

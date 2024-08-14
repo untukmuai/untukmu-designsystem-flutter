@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:untukmu_flutter_design_system/src/common/sizing.dart';
-import 'package:untukmu_flutter_design_system/src/components/breadcrumb/breadcrumb_item.dart';
+import 'package:untukmu_flutter_design_system/src/components/breadcrumb/breadcrumb_item_widget.dart';
 import 'package:untukmu_flutter_design_system/src/components/breadcrumb/constant/breadcrumb_item_type.dart';
 import 'package:untukmu_flutter_design_system/src/styles/colors.dart';
 
-class BreadcrumbGroup extends StatelessWidget {
-  const BreadcrumbGroup(
+class BreadcrumbGroupWidget extends StatelessWidget {
+  const BreadcrumbGroupWidget(
       {super.key,
       this.itemIcon,
       this.separatorIcon = Icons.brightness_1,
@@ -32,7 +32,7 @@ class BreadcrumbGroup extends StatelessWidget {
     List<Widget> children = [];
 
     for (int i = 0; i < items.length; i++) {
-      children.add(BreadcrumbItem(
+      children.add(BreadcrumbItemWidget(
           type: type ?? BreadcrumbItemType.iconLabel,
           icon: itemIcon,
           label: items[i]));

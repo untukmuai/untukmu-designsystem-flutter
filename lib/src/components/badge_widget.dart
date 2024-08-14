@@ -7,8 +7,8 @@ enum CustomBadgeSize { small, medium }
 
 enum CustomBadgeStyle { light, filled, stroke }
 
-class CustomBadge extends StatelessWidget {
-  const CustomBadge({
+class CustomBadgeWidget extends StatelessWidget {
+  const CustomBadgeWidget({
     super.key,
     this.size = CustomBadgeSize.small,
     this.prefixIcon,

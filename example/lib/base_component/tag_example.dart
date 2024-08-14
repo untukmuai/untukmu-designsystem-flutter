@@ -24,18 +24,18 @@ class _TagExamplePageState extends State<TagExamplePage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  CustomTag(),
+                  CustomTagWidget(),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTag(prefixIcon: Iconsax.clock),
+                  CustomTagWidget(prefixIcon: Iconsax.clock),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTag(suffixIcon: Iconsax.close_circle),
+                  CustomTagWidget(suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTag(
+                  CustomTagWidget(
                       prefixIcon: Iconsax.clock,
                       suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTag(
-                    badge: CustomBadge(),
+                  CustomTagWidget(
+                    badge: CustomBadgeWidget(),
                     prefixIcon: Iconsax.clock,
                     suffixIcon: Iconsax.close_circle,
                   ),
@@ -47,20 +47,21 @@ class _TagExamplePageState extends State<TagExamplePage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  CustomTag(disabled: true),
+                  CustomTagWidget(disabled: true),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTag(disabled: true, prefixIcon: Iconsax.clock),
+                  CustomTagWidget(disabled: true, prefixIcon: Iconsax.clock),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTag(disabled: true, suffixIcon: Iconsax.close_circle),
+                  CustomTagWidget(
+                      disabled: true, suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTag(
+                  CustomTagWidget(
                       disabled: true,
                       prefixIcon: Iconsax.clock,
                       suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTag(
+                  CustomTagWidget(
                     disabled: true,
-                    badge: CustomBadge(),
+                    badge: CustomBadgeWidget(),
                     prefixIcon: Iconsax.clock,
                     suffixIcon: Iconsax.close_circle,
                   ),
@@ -72,29 +73,29 @@ class _TagExamplePageState extends State<TagExamplePage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  CustomTag(
+                  CustomTagWidget(
                     filledColor: DLSColors.textMain900,
                     textColor: DLSColors.textWhite0,
                   ),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTag(
+                  CustomTagWidget(
                       filledColor: DLSColors.textMain900,
                       textColor: DLSColors.textWhite0,
                       prefixIcon: Iconsax.clock),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTag(
+                  CustomTagWidget(
                       filledColor: DLSColors.textMain900,
                       textColor: DLSColors.textWhite0,
                       suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTag(
+                  CustomTagWidget(
                       filledColor: DLSColors.textMain900,
                       textColor: DLSColors.textWhite0,
                       prefixIcon: Iconsax.clock,
                       suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTag(
-                    badge: CustomBadge(),
+                  CustomTagWidget(
+                    badge: CustomBadgeWidget(),
                     filledColor: DLSColors.textMain900,
                     textColor: DLSColors.textWhite0,
                     prefixIcon: Iconsax.clock,
@@ -108,34 +109,34 @@ class _TagExamplePageState extends State<TagExamplePage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  CustomTag(
+                  CustomTagWidget(
                     disabled: true,
                     filledColor: DLSColors.textMain900,
                     textColor: DLSColors.textWhite0,
                   ),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTag(
+                  CustomTagWidget(
                       disabled: true,
                       filledColor: DLSColors.textMain900,
                       textColor: DLSColors.textWhite0,
                       prefixIcon: Iconsax.clock),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTag(
+                  CustomTagWidget(
                       disabled: true,
                       filledColor: DLSColors.textMain900,
                       textColor: DLSColors.textWhite0,
                       suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTag(
+                  CustomTagWidget(
                       disabled: true,
                       filledColor: DLSColors.textMain900,
                       textColor: DLSColors.textWhite0,
                       prefixIcon: Iconsax.clock,
                       suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTag(
+                  CustomTagWidget(
                     disabled: true,
-                    badge: CustomBadge(),
+                    badge: CustomBadgeWidget(),
                     filledColor: DLSColors.textMain900,
                     textColor: DLSColors.textWhite0,
                     prefixIcon: Iconsax.clock,

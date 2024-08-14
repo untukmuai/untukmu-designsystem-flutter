@@ -20,33 +20,33 @@ class _DividerExamplePageState extends State<DividerExamplePage> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const CustomDivider(),
+            const CustomDividerWidget(),
             const SizedBox(height: 16),
-            const CustomDivider(verticalSpace: DLSSizing.s5xSmall),
+            const CustomDividerWidget(verticalSpace: DLSSizing.s5xSmall),
             const SizedBox(height: 16),
-            const CustomDivider(
+            const CustomDividerWidget(
               verticalSpace: DLSSizing.s5xSmall,
               dividerText: 'OR',
             ),
             const SizedBox(height: 16),
-            const CustomDivider(
+            const CustomDividerWidget(
               verticalSpace: DLSSizing.s5xSmall,
               dividerText: 'OR',
               showLine: false,
             ),
             const SizedBox(height: 16),
-            const CustomDivider(
+            const CustomDividerWidget(
               verticalSpace: DLSSizing.s5xSmall,
               dividerText: 'AMOUNT & ACCOUNT',
               filled: true,
               showLine: false,
             ),
             const SizedBox(height: 16),
-            CustomDivider(
+            CustomDividerWidget(
               centerWidget: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: DLSSizing.s2xSmall),
-                child: CustomButton(
+                child: CustomButtonWidget(
                   onPressed: () {},
                   style: CustomButtonStyle.stroke,
                   label: 'Add',
