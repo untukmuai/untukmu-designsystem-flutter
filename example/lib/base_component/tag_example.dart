@@ -14,7 +14,7 @@ class _TagExamplePageState extends State<TagExamplePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: DLSColors.bgWhite0,
-      appBar: AppBar(title: const Text('Accordion')),
+      appBar: AppBar(title: const Text('Tag Example')),
       body: const Padding(
         padding: EdgeInsets.all(16),
         child: Column(
@@ -115,19 +115,19 @@ class _TagExamplePageState extends State<TagExamplePage> {
                   ),
                   SizedBox(width: DLSSizing.s3xSmall),
                   CustomTag(
-                    disabled: true,
+                      disabled: true,
                       filledColor: DLSColors.textMain900,
                       textColor: DLSColors.textWhite0,
                       prefixIcon: Iconsax.clock),
                   SizedBox(width: DLSSizing.s3xSmall),
                   CustomTag(
-                    disabled: true,
+                      disabled: true,
                       filledColor: DLSColors.textMain900,
                       textColor: DLSColors.textWhite0,
                       suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
                   CustomTag(
-                    disabled: true,
+                      disabled: true,
                       filledColor: DLSColors.textMain900,
                       textColor: DLSColors.textWhite0,
                       prefixIcon: Iconsax.clock,

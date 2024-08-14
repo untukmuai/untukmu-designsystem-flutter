@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 class TextInputExample extends StatefulWidget {
@@ -130,6 +129,19 @@ class _TextInputExampleState extends State<TextInputExample> {
                 hintTextMessage: "This is a hint text to help user.",
                 controller: controller,
                 inputMode: InputMode.websiteWithCounter,
+              ),
+              const SizedBox(height: 16),
+              CustomTextInputWidget(
+                label: "Tag",
+                hintText: "www.example.com",
+                showOptionalLabel: true,
+                controller: controller,
+                inputMode: InputMode.tag,
+                enableAddNew: true,
+                onTagsChanged: (tags) {
+                  debugPrint(tags.toString());
+                },
+                listTag: const ["London", "Berlin", "Paris"],
               ),
             ],
           ),

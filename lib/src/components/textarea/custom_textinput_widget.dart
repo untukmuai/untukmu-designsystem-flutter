@@ -15,7 +15,8 @@ enum InputMode {
   password,
   shareLink,
   invite,
-  websiteWithCounter
+  websiteWithCounter,
+  tag, // Mode baru untuk tag input
 }
 
 class CustomTextInputWidget extends StatefulWidget {
@@ -41,6 +42,12 @@ class CustomTextInputWidget extends StatefulWidget {
   final void Function(DateTime)? onDatePicked;
   final List<TextInputFormatter>? inputFormatters;
 
+  // Parameter baru untuk mode tag
+  final List<String>? listTag;
+  final bool enableAddNew;
+  final void Function(List<String>)?
+      onTagsChanged; // Callback untuk perubahan tag
+
   const CustomTextInputWidget({
     super.key,
     required this.label,
@@ -64,6 +71,9 @@ class CustomTextInputWidget extends StatefulWidget {
     this.onCurrencySelected,
     this.onDatePicked,
     this.inputFormatters,
+    this.listTag,
+    this.enableAddNew = false, // Default value untuk add new
+    this.onTagsChanged,
   });
 
   @override
@@ -77,6 +87,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
   final RxString _text = ''.obs;
   String selectedCurrency = 'EUR'; // Default selected currency
   String selectedAccess = 'can view'; // Default selected access
+  List<String>? listTag;
 
   Currency getSelectedCurrency() {
     return currencyList.firstWhere(
@@ -88,6 +99,12 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
   @override
   void initState() {
     super.initState();
+    if (widget.listTag != null && widget.listTag!.isNotEmpty) {
+      setState(() {
+        listTag = [];
+        listTag!.addAll(widget.listTag!);
+      });
+    }
     _focusNode.addListener(() {
       setState(() {
         _isFocused = _focusNode.hasFocus;
@@ -194,6 +211,44 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
 
   Widget? _buildSuffixWidget() {
     switch (widget.inputMode) {
+      case InputMode.tag:
+        if (widget.enableAddNew) {
+          return InkWell(
+            onTap: () {
+              setState(() {
+                if (widget.controller.text.isNotEmpty) {
+                  listTag?.add(widget.controller.text);
+                  widget.controller.clear();
+                  if (widget.onTagsChanged != null) {
+                    widget.onTagsChanged!(listTag!);
+                  }
+                }
+              });
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              margin: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                  color: Colors.black, borderRadius: BorderRadius.circular(20)),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "Add New",
+                    style:
+                        DLSTextStyle.labelXSmall.copyWith(color: Colors.white),
+                  ),
+                  const SizedBox(width: 8),
+                  const Icon(
+                    Icons.add,
+                    color: Colors.white,
+                    size: 16,
+                  )
+                ],
+              ),
+            ),
+          );
+        }
       case InputMode.cardNumber:
         return const Icon(Iconsax.card_add, color: DLSColors.iconSub500);
       case InputMode.websiteWithCounter:
@@ -363,6 +418,134 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
       default:
         return null;
     }
+    return null;
+  }
+
+  Widget _buildTagWidget() {
+    return Container(
+      margin: const EdgeInsets.only(top: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(
+            spacing: 8.0,
+            runSpacing: 4.0,
+            children: listTag?.map((tag) {
+                  return CustomTag(
+                    label: tag,
+                    suffixIcon: Iconsax.close_circle,
+                    onTap: () {
+                      setState(() {
+                        listTag!.remove(tag);
+                        if (widget.onTagsChanged != null) {
+                          widget.onTagsChanged!(listTag!);
+                        }
+                      });
+                    },
+                  );
+                }).toList() ??
+                [],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTextField() {
+    Widget? prefixWidget = widget.prefixWidget ?? _buildPrefixWidget();
+    Widget? suffixWidget = widget.suffixWidget ?? _buildSuffixWidget();
+
+    // Combine custom inputFormatters with default ones based on InputMode
+    List<TextInputFormatter> formatters = widget.inputFormatters ?? [];
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextField(
+          controller: widget.controller,
+          focusNode: _focusNode,
+          enabled: widget.isEditable,
+          inputFormatters: formatters,
+          obscureText:
+              widget.inputMode == InputMode.password ? _isObscured : false,
+          keyboardType: (widget.inputMode == InputMode.website ||
+                  widget.inputMode == InputMode.shareLink)
+              ? TextInputType.url
+              : widget.inputMode == InputMode.phoneNumber
+                  ? TextInputType.phone
+                  : (widget.inputMode == InputMode.cardNumber ||
+                          widget.inputMode == InputMode.amount ||
+                          widget.inputMode == InputMode.date)
+                      ? TextInputType.number
+                      : TextInputType.text,
+          onChanged: (value) {
+            _text.value = value;
+          },
+          style: DLSTextStyle.paragraphSmall.copyWith(
+              color: widget.isEditable
+                  ? DLSColors.textMain900
+                  : DLSColors.textDisabled300),
+          textAlignVertical: TextAlignVertical.center,
+          decoration: InputDecoration(
+            isDense: true,
+            contentPadding: EdgeInsets.only(
+                top: 16,
+                bottom: 16,
+                left: prefixWidget == null ? 16 : 0,
+                right: suffixWidget == null ? 16 : 0),
+            hintText: widget.hintText,
+            hintStyle: DLSTextStyle.paragraphSmall.copyWith(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                color: DLSColors.textSoft400),
+            fillColor:
+                widget.isEditable ? Colors.transparent : DLSColors.bgWeak100,
+            filled: true,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: widget.isInvalid
+                    ? DLSColors.errorBase
+                    : _isFocused
+                        ? DLSColors.strokeStrong900
+                        : DLSColors.strokeSoft200,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                  color: widget.isInvalid
+                      ? DLSColors.errorBase
+                      : DLSColors.primaryBase),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: widget.isInvalid
+                    ? DLSColors.errorBase
+                    : DLSColors.strokeSoft200,
+              ),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: widget.isInvalid
+                    ? DLSColors.errorBase
+                    : DLSColors.bgWeak100,
+              ),
+            ),
+            prefixIcon: prefixWidget == null
+                ? null
+                : SizedBox(height: 24, child: prefixWidget),
+            isCollapsed: true,
+            suffixIcon: suffixWidget == null
+                ? null
+                : SizedBox(height: 24, child: suffixWidget),
+          ),
+        ),
+        if (widget.inputMode == InputMode.tag) _buildTagWidget()
+      ],
+    );
   }
 
   @override
@@ -448,90 +631,6 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
                     .copyWith(color: DLSColors.primaryBase)),
           ),
       ],
-    );
-  }
-
-  Widget _buildTextField() {
-    Widget? prefixWidget = widget.prefixWidget ?? _buildPrefixWidget();
-    Widget? suffixWidget = widget.suffixWidget ?? _buildSuffixWidget();
-
-    // Combine custom inputFormatters with default ones based on InputMode
-    List<TextInputFormatter> formatters = widget.inputFormatters ?? [];
-
-    return TextField(
-      controller: widget.controller,
-      focusNode: _focusNode,
-      enabled: widget.isEditable,
-      inputFormatters: formatters,
-      obscureText: widget.inputMode == InputMode.password ? _isObscured : false,
-      keyboardType: (widget.inputMode == InputMode.website ||
-              widget.inputMode == InputMode.shareLink)
-          ? TextInputType.url
-          : widget.inputMode == InputMode.phoneNumber
-              ? TextInputType.phone
-              : (widget.inputMode == InputMode.cardNumber ||
-                      widget.inputMode == InputMode.amount)
-                  ? TextInputType.number
-                  : TextInputType.text,
-      onChanged: (value) {
-        _text.value = value;
-      },
-      style: DLSTextStyle.paragraphSmall.copyWith(
-          color: widget.isEditable
-              ? DLSColors.textMain900
-              : DLSColors.textDisabled300),
-      textAlignVertical: TextAlignVertical.center,
-      decoration: InputDecoration(
-        isDense: true,
-        contentPadding: EdgeInsets.only(
-            left: prefixWidget == null ? 16 : 0,
-            right: suffixWidget == null ? 16 : 0),
-        hintText: widget.hintText,
-        hintStyle: DLSTextStyle.paragraphSmall.copyWith(
-            fontSize: 12,
-            fontWeight: FontWeight.w400,
-            color: DLSColors.textSoft400),
-        fillColor: widget.isEditable ? Colors.transparent : DLSColors.bgWeak100,
-        filled: true,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(
-            color: widget.isInvalid
-                ? DLSColors.errorBase
-                : _isFocused
-                    ? DLSColors.strokeStrong900
-                    : DLSColors.strokeSoft200,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(
-              color: widget.isInvalid
-                  ? DLSColors.errorBase
-                  : DLSColors.primaryBase),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(
-            color: widget.isInvalid
-                ? DLSColors.errorBase
-                : DLSColors.strokeSoft200,
-          ),
-        ),
-        disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(
-            color: widget.isInvalid ? DLSColors.errorBase : DLSColors.bgWeak100,
-          ),
-        ),
-        prefixIcon: prefixWidget == null
-            ? null
-            : SizedBox(height: 24, child: prefixWidget),
-        isCollapsed: true,
-        suffixIcon: suffixWidget == null
-            ? null
-            : SizedBox(height: 24, child: suffixWidget),
-      ),
     );
   }
 }
