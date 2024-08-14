@@ -27,33 +27,33 @@ class _BreadcrumbExamplePageState extends State<BreadcrumbExamplePage> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const BreadcrumbItem(
+            const BreadcrumbItemWidget(
                 type: BreadcrumbItemType.iconLabel,
                 icon: Iconsax.home_24,
                 label: 'Home'),
             const SizedBox(height: 8),
-            const BreadcrumbItem(
+            const BreadcrumbItemWidget(
                 type: BreadcrumbItemType.label,
                 icon: Iconsax.home_24,
                 label: 'Home'),
             const SizedBox(height: 8),
-            const BreadcrumbItem(
+            const BreadcrumbItemWidget(
                 type: BreadcrumbItemType.icon,
                 icon: Iconsax.home_24,
                 label: 'Home'),
             const Divider(),
-            BreadcrumbGroup(
+            BreadcrumbGroupWidget(
               itemIcon: Iconsax.home_24,
               items: breads,
             ),
             const SizedBox(height: 8),
-            BreadcrumbGroup(
+            BreadcrumbGroupWidget(
               itemIcon: Iconsax.home_24,
               items: breads,
               type: BreadcrumbItemType.label,
             ),
             const SizedBox(height: 8),
-            BreadcrumbGroup(
+            BreadcrumbGroupWidget(
               itemIcon: Iconsax.home_24,
               items: breads,
               type: BreadcrumbItemType.icon,

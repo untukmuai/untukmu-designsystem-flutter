@@ -19,47 +19,47 @@ class _PaginationExamplePageState extends State<PaginationExamplePage> {
           children: [
             Row(
               children: [
-                CustomPagination(onTap: () {}),
+                CustomPaginationWidget(onTap: () {}),
                 const SizedBox(width: 8),
-                CustomPagination(onTap: () {}, active: true),
+                CustomPaginationWidget(onTap: () {}, active: true),
                 const SizedBox(width: 8),
-                CustomPagination(onTap: () {}, enabled: false),
+                CustomPaginationWidget(onTap: () {}, enabled: false),
               ],
             ),
             const SizedBox(height: 8),
             Row(
               children: [
-                CustomPagination(
+                CustomPaginationWidget(
                     onTap: () {}, type: CustomPaginationType.circle),
                 const SizedBox(width: 8),
-                CustomPagination(
+                CustomPaginationWidget(
                     onTap: () {},
                     type: CustomPaginationType.circle,
                     active: true),
                 const SizedBox(width: 8),
-                CustomPagination(
+                CustomPaginationWidget(
                     onTap: () {},
                     type: CustomPaginationType.circle,
                     enabled: false),
               ],
             ),
-            const CustomDivider(verticalSpace: DLSSizing.s2xSmall),
-            CustomPaginationGroup(
+            const CustomDividerWidget(verticalSpace: DLSSizing.s2xSmall),
+            CustomPaginationGroupWidget(
               onTap: (index) {},
               maxPages: 10,
             ),
             const SizedBox(height: 8),
-            CustomPaginationGroup(
+            CustomPaginationGroupWidget(
               onTap: (index) {},
               maxPages: 2,
             ),
             const SizedBox(height: 8),
-            CustomPaginationGroup(
+            CustomPaginationGroupWidget(
               onTap: (index) {},
               maxPages: 5,
             ),
             const SizedBox(height: 8),
-            CustomPaginationGroup(
+            CustomPaginationGroupWidget(
               onTap: (index) {},
               maxPages: 100,
             ),

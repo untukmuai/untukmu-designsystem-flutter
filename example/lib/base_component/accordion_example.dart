@@ -19,13 +19,13 @@ class _AccordionExamplePageState extends State<AccordionExamplePage> {
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
-            CustomAccordion(
+            CustomAccordionWidget(
               title: 'You\'ve got a message!',
               content:
                   'Greetings! You are special to someone and don\'t give up!',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomAccordion(
+            CustomAccordionWidget(
               prefixIcon: Iconsax.message,
               title: 'You\'ve got a message!',
               content:
@@ -34,7 +34,7 @@ class _AccordionExamplePageState extends State<AccordionExamplePage> {
               expandedSuffixIcon: Iconsax.minus,
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomAccordion(
+            CustomAccordionWidget(
               prefixIcon: Iconsax.add,
               title: 'You\'ve got a message!',
               content:

@@ -39,93 +39,93 @@ class _NotificationExamplePageState extends State<NotificationExamplePage> {
             ),
             Text('X Small Notification', style: DLSTextStyle.labelLarge),
             const SizedBox(height: DLSSizing.xSmall),
-            CustomNotification(
+            CustomNotificationWidget(
               size: NotificationSize.xsmall,
               type: NotificationType.error,
               color: notificationColor,
             ),
             const SizedBox(height: DLSSizing.xSmall),
-            CustomNotification(
+            CustomNotificationWidget(
               size: NotificationSize.xsmall,
               type: NotificationType.warning,
               color: notificationColor,
             ),
             const SizedBox(height: DLSSizing.xSmall),
-            CustomNotification(
+            CustomNotificationWidget(
               size: NotificationSize.xsmall,
               type: NotificationType.success,
               color: notificationColor,
             ),
             const SizedBox(height: DLSSizing.xSmall),
-            CustomNotification(
+            CustomNotificationWidget(
               size: NotificationSize.xsmall,
               type: NotificationType.info,
               color: notificationColor,
             ),
             const SizedBox(height: DLSSizing.xSmall),
-            CustomNotification(
+            CustomNotificationWidget(
               size: NotificationSize.xsmall,
               color: notificationColor,
             ),
             const SizedBox(height: DLSSizing.small),
             Text('Small Notification', style: DLSTextStyle.labelLarge),
             const SizedBox(height: DLSSizing.xSmall),
-            CustomNotification(
+            CustomNotificationWidget(
               size: NotificationSize.small,
               type: NotificationType.error,
               color: notificationColor,
             ),
             const SizedBox(height: DLSSizing.xSmall),
-            CustomNotification(
+            CustomNotificationWidget(
               size: NotificationSize.small,
               type: NotificationType.warning,
               color: notificationColor,
             ),
             const SizedBox(height: DLSSizing.xSmall),
-            CustomNotification(
+            CustomNotificationWidget(
               size: NotificationSize.small,
               type: NotificationType.success,
               color: notificationColor,
             ),
             const SizedBox(height: DLSSizing.xSmall),
-            CustomNotification(
+            CustomNotificationWidget(
               size: NotificationSize.small,
               type: NotificationType.info,
               color: notificationColor,
             ),
             const SizedBox(height: DLSSizing.xSmall),
-            CustomNotification(
+            CustomNotificationWidget(
               size: NotificationSize.small,
               color: notificationColor,
             ),
             const SizedBox(height: DLSSizing.small),
             Text('Large Notification', style: DLSTextStyle.labelLarge),
             const SizedBox(height: DLSSizing.xSmall),
-            CustomNotification(
+            CustomNotificationWidget(
               size: NotificationSize.large,
               type: NotificationType.error,
               color: notificationColor,
             ),
             const SizedBox(height: DLSSizing.xSmall),
-            CustomNotification(
+            CustomNotificationWidget(
               size: NotificationSize.large,
               type: NotificationType.warning,
               color: notificationColor,
             ),
             const SizedBox(height: DLSSizing.xSmall),
-            CustomNotification(
+            CustomNotificationWidget(
               size: NotificationSize.large,
               type: NotificationType.success,
               color: notificationColor,
             ),
             const SizedBox(height: DLSSizing.xSmall),
-            CustomNotification(
+            CustomNotificationWidget(
               size: NotificationSize.large,
               type: NotificationType.info,
               color: notificationColor,
             ),
             const SizedBox(height: DLSSizing.xSmall),
-            CustomNotification(
+            CustomNotificationWidget(
               size: NotificationSize.large,
               color: notificationColor,
             ),

@@ -21,44 +21,44 @@ class _BannerExampleState extends State<BannerExample> {
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.error,
               title: 'Promos Available!',
               content: 'Kemerdekaan Indonesia 2024',
               subtitle: 'Pelajari Lebih Lanjut',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.warning,
               title: 'Promos Available!',
               content: 'Kemerdekaan Indonesia 2024',
               subtitle: 'Pelajari Lebih Lanjut',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.success,
               title: 'Promos Available!',
               content: 'Kemerdekaan Indonesia 2024',
               subtitle: 'Pelajari Lebih Lanjut',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.information,
               title: 'Promos Available!',
               content: 'Kemerdekaan Indonesia 2024',
               subtitle: 'Pelajari Lebih Lanjut',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.feature,
               title: 'Promos Available!',
               content: 'Kemerdekaan Indonesia 2024',
               subtitle: 'Pelajari Lebih Lanjut',
             ),
-            CustomDivider(
+            CustomDividerWidget(
               verticalSpace: DLSSizing.xSmall,
             ),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.error,
               style: CustomBannerStyle.light,
               title: 'Promos Available!',
@@ -66,7 +66,7 @@ class _BannerExampleState extends State<BannerExample> {
               subtitle: 'Pelajari Lebih Lanjut',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.warning,
               style: CustomBannerStyle.light,
               title: 'Promos Available!',
@@ -74,7 +74,7 @@ class _BannerExampleState extends State<BannerExample> {
               subtitle: 'Pelajari Lebih Lanjut',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.success,
               style: CustomBannerStyle.light,
               title: 'Promos Available!',
@@ -82,7 +82,7 @@ class _BannerExampleState extends State<BannerExample> {
               subtitle: 'Pelajari Lebih Lanjut',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.information,
               style: CustomBannerStyle.light,
               title: 'Promos Available!',
@@ -90,17 +90,17 @@ class _BannerExampleState extends State<BannerExample> {
               subtitle: 'Pelajari Lebih Lanjut',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.feature,
               style: CustomBannerStyle.light,
               title: 'Promos Available!',
               content: 'Kemerdekaan Indonesia 2024',
               subtitle: 'Pelajari Lebih Lanjut',
             ),
-            CustomDivider(
+            CustomDividerWidget(
               verticalSpace: DLSSizing.xSmall,
             ),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.error,
               style: CustomBannerStyle.lighter,
               title: 'Promos Available!',
@@ -108,7 +108,7 @@ class _BannerExampleState extends State<BannerExample> {
               subtitle: 'Pelajari Lebih Lanjut',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.warning,
               style: CustomBannerStyle.lighter,
               title: 'Promos Available!',
@@ -116,7 +116,7 @@ class _BannerExampleState extends State<BannerExample> {
               subtitle: 'Pelajari Lebih Lanjut',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.success,
               style: CustomBannerStyle.lighter,
               title: 'Promos Available!',
@@ -124,7 +124,7 @@ class _BannerExampleState extends State<BannerExample> {
               subtitle: 'Pelajari Lebih Lanjut',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.information,
               style: CustomBannerStyle.lighter,
               title: 'Promos Available!',
@@ -132,17 +132,17 @@ class _BannerExampleState extends State<BannerExample> {
               subtitle: 'Pelajari Lebih Lanjut',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.feature,
               style: CustomBannerStyle.lighter,
               title: 'Promos Available!',
               content: 'Kemerdekaan Indonesia 2024',
               subtitle: 'Pelajari Lebih Lanjut',
             ),
-            CustomDivider(
+            CustomDividerWidget(
               verticalSpace: DLSSizing.xSmall,
             ),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.error,
               style: CustomBannerStyle.stroke,
               title: 'Promos Available!',
@@ -150,7 +150,7 @@ class _BannerExampleState extends State<BannerExample> {
               subtitle: 'Pelajari Lebih Lanjut',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.warning,
               style: CustomBannerStyle.stroke,
               title: 'Promos Available!',
@@ -158,7 +158,7 @@ class _BannerExampleState extends State<BannerExample> {
               subtitle: 'Pelajari Lebih Lanjut',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.success,
               style: CustomBannerStyle.stroke,
               title: 'Promos Available!',
@@ -166,7 +166,7 @@ class _BannerExampleState extends State<BannerExample> {
               subtitle: 'Pelajari Lebih Lanjut',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.information,
               style: CustomBannerStyle.stroke,
               title: 'Promos Available!',
@@ -174,7 +174,7 @@ class _BannerExampleState extends State<BannerExample> {
               subtitle: 'Pelajari Lebih Lanjut',
             ),
             SizedBox(height: DLSSizing.s3xSmall),
-            CustomBanner(
+            CustomBannerWidget(
               type: CustomBannerType.feature,
               style: CustomBannerStyle.stroke,
               title: 'Promos Available!',
