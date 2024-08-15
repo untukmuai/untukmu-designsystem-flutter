@@ -38,6 +38,7 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
   final FocusNode _focusNode = FocusNode();
   bool _isFocused = false;
   final RxString _text = ''.obs;
+  int _maxLines = 4;
 
   @override
   void initState() {
@@ -132,7 +133,7 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
           maxLength: widget.maxLength,
           enabled: widget.isEditable,
           minLines: 4,
-          maxLines: 10,
+          maxLines: _maxLines,
           onChanged: (value) {
             _text.value = value;
           },
@@ -201,12 +202,29 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
                   ),
                 ),
                 const SizedBox(width: 8),
-                SvgPicture.asset(
-                  "packages/untukmu_flutter_design_system/assets/icons/ic_resize.svg",
-                  width: 8,
-                  height: 8,
-                  colorFilter: const ColorFilter.mode(
-                      DLSColors.iconSoft400, BlendMode.srcIn),
+                GestureDetector(
+                  onPanUpdate: (details) {
+                    setState(() {
+                      _maxLines += details.delta.dy < 0 ? 1 : -1;
+                      if (_maxLines < 4)
+                        _maxLines = 4; // Minimal sesuai dengan minLines
+                      if (_maxLines > 10) _maxLines = 10; // Maksimal 10 line
+                    });
+                  },
+                  child: Container(
+                    // Tambahkan Container untuk memastikan area interaktif
+                    color: Colors
+                        .transparent, // Warna transparan agar tidak mengganggu tampilan
+                    padding: const EdgeInsets.all(
+                        8.0), // Menambahkan padding agar area interaktif lebih besar
+                    child: SvgPicture.asset(
+                      "packages/untukmu_flutter_design_system/assets/icons/ic_resize.svg",
+                      width: 16,
+                      height: 16,
+                      colorFilter: const ColorFilter.mode(
+                          DLSColors.iconSoft400, BlendMode.srcIn),
+                    ),
+                  ),
                 ),
               ],
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 class TextInputExample extends StatefulWidget {
@@ -24,6 +25,15 @@ class _TextInputExampleState extends State<TextInputExample> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 16),
+              CustomTextInputWidget(
+                  showOptionalLabel: true,
+                  controller: controller,
+                  hintTextMessage: "This is a hint text to help user.",
+                  prefixWidget:
+                      const Icon(Iconsax.user, color: DLSColors.iconSoft400),
+                  label: "Input Name",
+                  inputMode: InputMode.text),
               const SizedBox(height: 16),
               CustomTextInputWidget(
                 label: "Phone Number",
@@ -143,6 +153,14 @@ class _TextInputExampleState extends State<TextInputExample> {
                 },
                 listTag: const ["London", "Berlin", "Paris"],
               ),
+              const SizedBox(height: 16),
+              CustomTextInputWidget(
+                  label: "Counter",
+                  hintText: "0",
+                  showOptionalLabel: true,
+                  controller: controller,
+                  inputMode: InputMode.counter),
+              const SizedBox(height: 16),
             ],
           ),
         ),

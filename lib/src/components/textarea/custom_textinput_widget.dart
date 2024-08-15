@@ -7,6 +7,7 @@ import 'package:untukmu_flutter_design_system/src/common/currency.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 enum InputMode {
+  text,
   phoneNumber,
   cardNumber,
   website,
@@ -16,12 +17,13 @@ enum InputMode {
   shareLink,
   invite,
   websiteWithCounter,
-  tag, // Mode baru untuk tag input
+  tag,
+  counter,
 }
 
 class CustomTextInputWidget extends StatefulWidget {
-  final String label;
-  final String hintText;
+  final String? label;
+  final String? hintText;
   final bool isEditable;
   final bool isInvalid;
   final bool showOptionalLabel;
@@ -42,16 +44,15 @@ class CustomTextInputWidget extends StatefulWidget {
   final void Function(DateTime)? onDatePicked;
   final List<TextInputFormatter>? inputFormatters;
 
-  // Parameter baru untuk mode tag
+  // Parameter untuk mode tag
   final List<String>? listTag;
   final bool enableAddNew;
-  final void Function(List<String>)?
-      onTagsChanged; // Callback untuk perubahan tag
+  final void Function(List<String>)? onTagsChanged;
 
   const CustomTextInputWidget({
     super.key,
-    required this.label,
-    required this.hintText,
+    this.label,
+    this.hintText,
     this.isEditable = true,
     this.isInvalid = false,
     this.errorMessage,
@@ -59,7 +60,7 @@ class CustomTextInputWidget extends StatefulWidget {
     this.labelDirection = LabelDirection.vertical,
     this.showOptionalLabel = false,
     this.hintTextMessage,
-    this.inputMode = InputMode.website,
+    this.inputMode = InputMode.text,
     this.dateFormat = 'DD/MM/YYYY',
     this.suffixWidget,
     this.prefixWidget,
@@ -72,7 +73,7 @@ class CustomTextInputWidget extends StatefulWidget {
     this.onDatePicked,
     this.inputFormatters,
     this.listTag,
-    this.enableAddNew = false, // Default value untuk add new
+    this.enableAddNew = false,
     this.onTagsChanged,
   });
 
@@ -85,14 +86,16 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
   bool _isFocused = false;
   bool _isObscured = true;
   final RxString _text = ''.obs;
-  String selectedCurrency = 'EUR'; // Default selected currency
+  String selectedCurrency = 'USD'; // Default selected currency
   String selectedAccess = 'can view'; // Default selected access
   List<String>? listTag;
+  int _counterValue = 0;
+  Country selectedCountry = countryList.first; // Default selected country
 
-  Currency getSelectedCurrency() {
-    return currencyList.firstWhere(
+  Country getSelectedCurrency() {
+    return countryList.firstWhere(
       (currency) => currency.code == selectedCurrency,
-      orElse: () => currencyList.first,
+      orElse: () => countryList.first,
     );
   }
 
@@ -160,10 +163,73 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
     widget.controller.clear();
   }
 
+  void _decrementCounter() {
+    _counterValue = int.tryParse(widget.controller.text) ?? 0;
+    setState(() {
+      if (_counterValue > 0) {
+        _counterValue--;
+      }
+    });
+    widget.controller.text = _counterValue.toString();
+  }
+
+  void _incrementCounter() {
+    _counterValue = int.tryParse(widget.controller.text) ?? 0;
+    setState(() {
+      _counterValue++;
+    });
+    widget.controller.text = _counterValue.toString();
+  }
+
   Widget? _buildPrefixWidget() {
     switch (widget.inputMode) {
       case InputMode.phoneNumber:
-        return const Icon(Iconsax.user, color: DLSColors.iconSoft400);
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(left: 16),
+              child: DropdownButton<Country>(
+                value: selectedCountry,
+                icon: const Icon(Icons.keyboard_arrow_down,
+                    color: DLSColors.iconSoft400),
+                iconSize: 24,
+                elevation: 1,
+                dropdownColor: Colors.white,
+                underline: Container(),
+                items: countryList.map((Country country) {
+                  return DropdownMenuItem<Country>(
+                    value: country,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(country.flag,
+                            style: const TextStyle(fontSize: 16)),
+                        const SizedBox(width: 8),
+                        Text(
+                          country.phoneCode,
+                          style: DLSTextStyle.paragraphMedium.copyWith(
+                            color: DLSColors.textMain900,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList(),
+                onChanged: (Country? newCountry) {
+                  setState(() {
+                    selectedCountry = newCountry!;
+                  });
+                },
+              ),
+            ),
+            const VerticalDivider(
+              color: DLSColors.strokeSoft200,
+              thickness: 1,
+            ),
+          ],
+        );
       case InputMode.cardNumber:
         return const Icon(Iconsax.card, color: DLSColors.iconSoft400);
       case InputMode.website:
@@ -204,8 +270,13 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
         return const Icon(Iconsax.link, color: DLSColors.iconSoft400);
       case InputMode.invite:
         return const Icon(Iconsax.user, color: DLSColors.iconSoft400);
+      case InputMode.counter:
+        return IconButton(
+          icon: const Icon(Icons.remove, color: DLSColors.iconSoft400),
+          onPressed: _decrementCounter,
+        );
       default:
-        return null;
+        return widget.prefixWidget;
     }
   }
 
@@ -249,6 +320,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
             ),
           );
         }
+        break;
       case InputMode.cardNumber:
         return const Icon(Iconsax.card_add, color: DLSColors.iconSub500);
       case InputMode.websiteWithCounter:
@@ -285,7 +357,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
                 elevation: 1,
                 dropdownColor: Colors.white,
                 underline: Container(),
-                items: currencyList.map((Currency currency) {
+                items: countryList.map((Country currency) {
                   return DropdownMenuItem<String>(
                     value: currency.code,
                     child: Row(
@@ -415,6 +487,11 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
             ],
           ),
         );
+      case InputMode.counter:
+        return IconButton(
+          icon: const Icon(Icons.add, color: DLSColors.iconSoft400),
+          onPressed: _incrementCounter,
+        );
       default:
         return null;
     }
@@ -455,9 +532,6 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
     Widget? prefixWidget = widget.prefixWidget ?? _buildPrefixWidget();
     Widget? suffixWidget = widget.suffixWidget ?? _buildSuffixWidget();
 
-    // Combine custom inputFormatters with default ones based on InputMode
-    List<TextInputFormatter> formatters = widget.inputFormatters ?? [];
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -465,7 +539,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
           controller: widget.controller,
           focusNode: _focusNode,
           enabled: widget.isEditable,
-          inputFormatters: formatters,
+          inputFormatters: widget.inputFormatters ?? [],
           obscureText:
               widget.inputMode == InputMode.password ? _isObscured : false,
           keyboardType: (widget.inputMode == InputMode.website ||
@@ -481,6 +555,9 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
           onChanged: (value) {
             _text.value = value;
           },
+          textAlign: widget.inputMode == InputMode.counter
+              ? TextAlign.center
+              : TextAlign.left,
           style: DLSTextStyle.paragraphSmall.copyWith(
               color: widget.isEditable
                   ? DLSColors.textMain900
@@ -559,27 +636,28 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                LabelWidget(label: widget.label),
-                if (widget.showOptionalLabel) const SizedBox(width: 4),
-                if (widget.showOptionalLabel)
-                  const LabelWidget(
-                      label: "Optional", labelType: LabelType.optional),
-              ],
-            ),
-            if (widget.enableClear)
-              GestureDetector(
-                onTap: _clearText,
-                child: Text(widget.clearLabel,
-                    style: DLSTextStyle.labelSmall
-                        .copyWith(color: DLSColors.textSub500)),
+        if (widget.label != null)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  LabelWidget(label: widget.label!),
+                  if (widget.showOptionalLabel) const SizedBox(width: 4),
+                  if (widget.showOptionalLabel)
+                    const LabelWidget(
+                        label: "Optional", labelType: LabelType.optional),
+                ],
               ),
-          ],
-        ),
+              if (widget.enableClear)
+                GestureDetector(
+                  onTap: _clearText,
+                  child: Text(widget.clearLabel,
+                      style: DLSTextStyle.labelSmall
+                          .copyWith(color: DLSColors.textSub500)),
+                ),
+            ],
+          ),
         const SizedBox(height: 8),
         _buildTextField(),
         const SizedBox(height: 4),
@@ -600,15 +678,16 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  LabelWidget(label: widget.label),
-                  if (widget.showOptionalLabel) const SizedBox(width: 4),
-                  if (widget.showOptionalLabel)
-                    const LabelWidget(
-                        label: "Optional", labelType: LabelType.optional),
-                ],
-              ),
+              if (widget.label != null)
+                Row(
+                  children: [
+                    LabelWidget(label: widget.label!),
+                    if (widget.showOptionalLabel) const SizedBox(width: 4),
+                    if (widget.showOptionalLabel)
+                      const LabelWidget(
+                          label: "Optional", labelType: LabelType.optional),
+                  ],
+                ),
               const SizedBox(height: 16),
               if (widget.hintTextMessage != null)
                 HintTextWidget(
