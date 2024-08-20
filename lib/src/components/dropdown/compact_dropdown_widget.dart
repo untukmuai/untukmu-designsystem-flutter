@@ -80,6 +80,7 @@ class _CompactDropdownWidgetState extends State<CompactDropdownWidget> {
                 ),
           DropdownButtonHideUnderline(
             child: DropdownButton<String>(
+              dropdownColor: DLSColors.bgWhite0,
               value: selectedValue,
               isDense: true,
               alignment: widget.valueAlignment,
