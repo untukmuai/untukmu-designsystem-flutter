@@ -139,9 +139,15 @@ class _CustomPaginationGroupWidgetState
                           : const EdgeInsets.only(right: DLSSizing.s3xSmall),
                       child: CustomPaginationWidget(
                         active: isActive,
-                        onTap: widget.onTap == null
-                            ? null
-                            : () => widget.onTap!(index),
+                        onTap: () {
+                          if (widget.onTap != null) {
+                            widget.onTap!(index + 1);
+                          }
+
+                          setState(() {
+                            currentPage = (index + 1);
+                          });
+                        },
                         value: ellipsisable && ellipsisItem
                             ? '...'
                             : lastItem
