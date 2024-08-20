@@ -12,6 +12,7 @@ class _PaginationExamplePageState extends State<PaginationExamplePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: DLSColors.bgWhite0,
       appBar: AppBar(title: const Text('Pagination')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
