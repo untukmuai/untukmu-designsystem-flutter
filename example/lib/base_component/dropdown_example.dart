@@ -63,6 +63,14 @@ class _DropdownExampleState extends State<DropdownExample> {
                 ),
                 SizedBox(width: DLSSizing.s3xSmall),
                 CompactDropdownWidget(
+                  items: ['USD', 'IDR'],
+                  hintText: 'Currency',
+                  filled: true,
+                  fillColor: DLSColors.bgWhite0,
+                  type: CompactDropdownType.icon,
+                ),
+                SizedBox(width: DLSSizing.s3xSmall),
+                CompactDropdownWidget(
                   enabled: false,
                   items: ['USD', 'IDR'],
                   hintText: 'Currency',
