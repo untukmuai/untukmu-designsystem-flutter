@@ -23,7 +23,7 @@ export 'src/components/divider_widget.dart';
 export 'src/components/tag_widget.dart';
 export 'src/components/banner_widget.dart';
 export 'src/components/pagination/pagination.dart';
-export 'src/components/fileupload/file_upload_area_widget.dart';
+export 'src/components/fileupload/area/file_upload_area_widget.dart';
 export 'src/components/fileupload/image_upload_widget.dart';
 export 'src/components/fileupload/image_selector_widget.dart';
 export 'src/components/textarea/custom_textarea_widget.dart';
