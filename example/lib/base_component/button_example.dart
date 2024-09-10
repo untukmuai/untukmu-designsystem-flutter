@@ -196,6 +196,12 @@ class _ButtonExamplePageState extends State<ButtonExamplePage> {
               size: selectedButtonSize,
               onPressed: () {},
               type: CustomButtonType.primary,
+              style: CustomButtonStyle.stroke,
+            ),
+            CustomButtonWidget(
+              size: selectedButtonSize,
+              onPressed: () {},
+              type: CustomButtonType.primary,
               style: CustomButtonStyle.filled,
               isIconMode: true,
               icon: Iconsax.copy,

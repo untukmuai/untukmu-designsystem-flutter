@@ -145,6 +145,166 @@ class _TagExamplePageState extends State<TagExamplePage> {
                 ],
               ),
             ),
+            CustomDividerWidget(),
+            SizedBox(height: DLSSizing.s3xSmall),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  CustomProductTagWidget(),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                  CustomProductTagWidget(selected: true),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                  CustomProductTagWidget(selected: true, disabled: true),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                ],
+              ),
+            ),
+            SizedBox(height: DLSSizing.s3xSmall),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  CustomProductTagWidget(tagColor: CustomProductTagColor.grey),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                  CustomProductTagWidget(
+                      tagColor: CustomProductTagColor.grey, selected: true),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                  CustomProductTagWidget(
+                      tagColor: CustomProductTagColor.grey,
+                      selected: true,
+                      disabled: true),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                ],
+              ),
+            ),
+            SizedBox(height: DLSSizing.s3xSmall),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  CustomProductTagWidget(tagSize: CustomProductTagSize.small),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                  CustomProductTagWidget(
+                      tagSize: CustomProductTagSize.small, selected: true),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                  CustomProductTagWidget(
+                      tagSize: CustomProductTagSize.small,
+                      selected: true,
+                      disabled: true),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                ],
+              ),
+            ),
+            SizedBox(height: DLSSizing.s3xSmall),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  CustomProductTagWidget(
+                      tagSize: CustomProductTagSize.small,
+                      tagColor: CustomProductTagColor.grey),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                  CustomProductTagWidget(
+                      tagSize: CustomProductTagSize.small,
+                      tagColor: CustomProductTagColor.grey,
+                      selected: true),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                  CustomProductTagWidget(
+                      tagSize: CustomProductTagSize.small,
+                      tagColor: CustomProductTagColor.grey,
+                      selected: true,
+                      disabled: true),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                ],
+              ),
+            ),
+            CustomDividerWidget(),
+            SizedBox(height: DLSSizing.s3xSmall),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  CustomProductTagWidget(showImage: false),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                  CustomProductTagWidget(showImage: false, selected: true),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                  CustomProductTagWidget(
+                      showImage: false, selected: true, disabled: true),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                ],
+              ),
+            ),
+            SizedBox(height: DLSSizing.s3xSmall),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  CustomProductTagWidget(
+                      showImage: false, tagColor: CustomProductTagColor.grey),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                  CustomProductTagWidget(
+                      showImage: false,
+                      tagColor: CustomProductTagColor.grey,
+                      selected: true),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                  CustomProductTagWidget(
+                      showImage: false,
+                      tagColor: CustomProductTagColor.grey,
+                      selected: true,
+                      disabled: true),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                ],
+              ),
+            ),
+            SizedBox(height: DLSSizing.s3xSmall),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  CustomProductTagWidget(
+                      showImage: false, tagSize: CustomProductTagSize.small),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                  CustomProductTagWidget(
+                      showImage: false,
+                      tagSize: CustomProductTagSize.small,
+                      selected: true),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                  CustomProductTagWidget(
+                      showImage: false,
+                      tagSize: CustomProductTagSize.small,
+                      selected: true,
+                      disabled: true),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                ],
+              ),
+            ),
+            SizedBox(height: DLSSizing.s3xSmall),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  CustomProductTagWidget(
+                      showImage: false,
+                      tagSize: CustomProductTagSize.small,
+                      tagColor: CustomProductTagColor.grey),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                  CustomProductTagWidget(
+                      showImage: false,
+                      tagSize: CustomProductTagSize.small,
+                      tagColor: CustomProductTagColor.grey,
+                      selected: true),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                  CustomProductTagWidget(
+                      showImage: false,
+                      tagSize: CustomProductTagSize.small,
+                      tagColor: CustomProductTagColor.grey,
+                      selected: true,
+                      disabled: true),
+                  SizedBox(width: DLSSizing.s3xSmall),
+                ],
+              ),
+            ),
           ],
         ),
       ),
