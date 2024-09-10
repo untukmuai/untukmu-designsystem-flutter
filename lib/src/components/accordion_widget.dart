@@ -18,6 +18,7 @@ class CustomAccordionWidget extends StatefulWidget {
     /// icon for expanded container
     /// collapsed icon shouldn't null to animated the icons
     this.expandedSuffixIcon,
+    this.disableHover = false,
   });
 
   final IconData? prefixIcon;
@@ -25,6 +26,8 @@ class CustomAccordionWidget extends StatefulWidget {
   final IconData? expandedSuffixIcon;
   final String title;
   final String content;
+
+  final bool disableHover;
 
   @override
   State<CustomAccordionWidget> createState() => _CustomAccordionWidgetState();
@@ -81,8 +84,8 @@ class _CustomAccordionWidgetState extends State<CustomAccordionWidget>
         widget.expandedSuffixIcon == null && widget.collapsedSuffixIcon == null;
 
     return MouseRegion(
-      onHover: _onHover,
-      onExit: _onExit,
+      onHover: widget.disableHover ? null : _onHover,
+      onExit: widget.disableHover ? null : _onExit,
       child: GestureDetector(
         onTap: _expandOnChanged,
         child: Container(

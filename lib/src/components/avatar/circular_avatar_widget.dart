@@ -3,18 +3,24 @@ import 'package:untukmu_flutter_design_system/src/components/avatar/constant/ava
 import 'package:untukmu_flutter_design_system/src/styles/text_styles.dart';
 
 class CustomCircularAvatarWidget extends StatefulWidget {
-  const CustomCircularAvatarWidget(
-      {super.key,
-      this.avatarSize = AvatarSize.size64,
-      this.url,
-      this.name,
-      this.showBorder = false,
-      this.isExtendValue = false});
+  const CustomCircularAvatarWidget({
+    super.key,
+    this.avatarSize = AvatarSize.size64,
+    this.url,
+    this.name,
+    this.showBorder = false,
+    this.isExtendValue = false,
+    this.icon,
+    this.backgroundColor,
+  });
 
   final String? url;
   final String? name;
   final bool showBorder;
   final bool isExtendValue;
+
+  final Widget? icon;
+  final Color? backgroundColor;
 
   final AvatarSize avatarSize;
 
@@ -29,20 +35,22 @@ class _CustomCircularAvatarWidgetState
   Widget build(BuildContext context) {
     var avatar = CircleAvatar(
       foregroundImage: widget.url == null ? null : NetworkImage(widget.url!),
+      backgroundColor: widget.backgroundColor,
       radius: widget.avatarSize.value / 2,
-      child: Text(
-        widget.name ?? '',
-        style: nameStyle.copyWith(
-          fontSize: widget.avatarSize.value * 0.35,
-        ),
-      ),
+      child: widget.icon ??
+          Text(
+            widget.name ?? '',
+            style: nameStyle.copyWith(
+              fontSize: widget.avatarSize.value * 0.35,
+            ),
+          ),
     );
 
     if (widget.showBorder) {
       return CircleAvatar(
         radius: (widget.avatarSize.value / 2) + 2,
-        backgroundColor: Colors.white,
-        child: avatar,
+        backgroundColor: widget.backgroundColor ?? Colors.white,
+        child: widget.icon ?? avatar,
       );
     }
 

@@ -46,6 +46,7 @@ class CustomBadgeWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
               margin: EdgeInsets.only(right: prefixIcon == null ? 0 : 4),

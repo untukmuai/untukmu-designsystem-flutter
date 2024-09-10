@@ -12,6 +12,7 @@ class CustomTagWidget extends StatelessWidget {
     this.badge,
     this.filledColor,
     this.textColor,
+    this.textStyle,
   });
 
   final VoidCallback? onTap;
@@ -22,6 +23,8 @@ class CustomTagWidget extends StatelessWidget {
   final IconData? prefixIcon;
   final IconData? suffixIcon;
 
+  final TextStyle? textStyle;
+
   final String label;
 
   final bool disabled;
@@ -30,6 +33,8 @@ class CustomTagWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isTextOnly = prefixIcon == null && suffixIcon == null && badge == null;
+
     return Container(
       decoration: BoxDecoration(
         color: backgroundColor,
@@ -55,35 +60,47 @@ class CustomTagWidget extends StatelessWidget {
                   ? Border.all(width: 1, color: borderColor!)
                   : null,
             ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (badge != null) badge!,
-                if (badge != null) const SizedBox(width: DLSSizing.s4xSmall),
-                if (prefixIcon != null)
-                  Icon(
-                    prefixIcon,
-                    color: labelColor,
-                    size: 16,
+            child: (isTextOnly)
+                ? Text(
+                    label,
+                    style: (textStyle ?? DLSTextStyle.labelSmall)
+                        .copyWith(color: labelColor),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  )
+                : Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (badge != null) badge!,
+                      if (badge != null)
+                        const SizedBox(width: DLSSizing.s4xSmall),
+                      if (prefixIcon != null)
+                        Icon(
+                          prefixIcon,
+                          color: labelColor,
+                          size: 16,
+                        ),
+                      if (prefixIcon != null)
+                        const SizedBox(width: DLSSizing.s4xSmall),
+                      Text(
+                        label,
+                        style: (textStyle ?? DLSTextStyle.labelSmall)
+                            .copyWith(color: labelColor),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      if (suffixIcon != null)
+                        const SizedBox(width: DLSSizing.s4xSmall),
+                      if (suffixIcon != null)
+                        Icon(
+                          suffixIcon,
+                          color: labelColor,
+                          size: 14,
+                        ),
+                    ],
                   ),
-                if (prefixIcon != null)
-                  const SizedBox(width: DLSSizing.s4xSmall),
-                Text(
-                  label,
-                  style: DLSTextStyle.labelSmall.copyWith(color: labelColor),
-                ),
-                if (suffixIcon != null)
-                  const SizedBox(width: DLSSizing.s4xSmall),
-                if (suffixIcon != null)
-                  Icon(
-                    suffixIcon,
-                    color: labelColor,
-                    size: 14,
-                  ),
-              ],
-            ),
           ),
         ),
       ),

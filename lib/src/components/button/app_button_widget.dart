@@ -71,9 +71,10 @@ class CustomButtonWidget extends StatelessWidget {
         backgroundColor: backgroundColor,
         side: border,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        minimumSize: const Size(50, 30),
+        minimumSize: minimumSize,
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           prefixIcon == null
               ? const SizedBox()
@@ -102,6 +103,17 @@ class CustomButtonWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Size get minimumSize {
+    switch (size) {
+      case CustomButtonSize.xSmall:
+        return const Size(50, 37);
+      case CustomButtonSize.small:
+        return const Size(50, 45);
+      default:
+        return const Size(50, 47);
+    }
   }
 
   EdgeInsetsGeometry get iconPadding {
@@ -184,7 +196,7 @@ class CustomButtonWidget extends StatelessWidget {
             return DLSColors.redLighter;
         }
       default:
-        return DLSColors.bgWhite0;
+        return null;
     }
   }
 
