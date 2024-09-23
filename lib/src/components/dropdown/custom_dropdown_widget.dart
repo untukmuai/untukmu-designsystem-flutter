@@ -106,6 +106,7 @@ class CustomDropdownWidgetState extends State<CustomDropdownWidget> {
 
   Widget _buildDropdown() {
     return DropdownButtonFormField<String?>(
+      isExpanded: true,
       items: widget.items.map(
         (e) {
           return DropdownMenuItem(value: e, child: Text(e));
@@ -114,6 +115,8 @@ class CustomDropdownWidgetState extends State<CustomDropdownWidget> {
       hint: Text(
         widget.hintText,
         style: DLSTextStyle.labelSmall.copyWith(color: DLSColors.textSoft400),
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
       ),
       style: DLSTextStyle.labelSmall.copyWith(color: DLSColors.textMain900),
       icon: const Padding(
