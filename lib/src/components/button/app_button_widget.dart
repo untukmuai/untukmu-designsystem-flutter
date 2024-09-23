@@ -11,6 +11,8 @@ class CustomButtonWidget extends StatelessWidget {
     this.size = CustomButtonSize.medium,
     this.isIconMode = false,
     this.icon,
+    this.iconColor,
+    this.iconSize = 16,
     this.prefixIcon,
     this.suffixIcon,
     this.disabled = false,
@@ -28,7 +30,9 @@ class CustomButtonWidget extends StatelessWidget {
   final CustomButtonSize? size;
 
   final IconData? icon;
+  final Color? iconColor;
   final bool isIconMode;
+  final double iconSize;
 
   final double? prefixPadding;
   final IconData? prefixIcon;
@@ -50,7 +54,7 @@ class CustomButtonWidget extends StatelessWidget {
           onPressed: disabled ? null : onPressed,
           icon: Icon(
             icon,
-            size: 16,
+            size: iconSize,
             color: textColor,
           ),
           style: TextButton.styleFrom(
@@ -86,9 +90,14 @@ class CustomButtonWidget extends StatelessWidget {
                     color: textColor,
                   ),
                 ),
-          Text(
-            label,
-            style: textStyle.copyWith(color: textColor),
+          Expanded(
+            child: Text(
+              label,
+              style: textStyle.copyWith(color: textColor),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           suffixIcon == null
               ? const SizedBox()
@@ -111,8 +120,10 @@ class CustomButtonWidget extends StatelessWidget {
         return const Size(50, 37);
       case CustomButtonSize.small:
         return const Size(50, 45);
-      default:
+      case CustomButtonSize.medium:
         return const Size(50, 47);
+      default:
+        return const Size(50, 50);
     }
   }
 
@@ -203,6 +214,10 @@ class CustomButtonWidget extends StatelessWidget {
   Color get textColor {
     if (disabled || onPressed == null) {
       return DLSColors.textDisabled300;
+    }
+
+    if (iconColor != null) {
+      return iconColor!;
     }
 
     if (labelColor != null && style != CustomButtonStyle.filled) {

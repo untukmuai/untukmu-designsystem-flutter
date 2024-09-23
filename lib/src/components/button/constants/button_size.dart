@@ -7,4 +7,7 @@ enum CustomButtonSize {
 
   /// size 40
   medium,
+
+  /// size 44
+  xMedium,
 }
