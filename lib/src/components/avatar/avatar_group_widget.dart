@@ -18,8 +18,8 @@ class AvatarGroupWidget extends StatefulWidget {
 class _AvatarGroupWidgetState extends State<AvatarGroupWidget> {
   @override
   Widget build(BuildContext context) {
-    if (widget.maxItem < 3) {
-      throw Exception('Max item should be >2 item');
+    if (widget.maxItem < 1) {
+      throw Exception('Max item should be at least 1');
     }
 
     List<AvatarGroupItemModel> items = widget.items ?? [];
