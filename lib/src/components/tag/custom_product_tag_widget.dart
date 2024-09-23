@@ -8,6 +8,7 @@ enum CustomProductTagSize { medium, small }
 class CustomProductTagWidget extends StatelessWidget {
   const CustomProductTagWidget({
     super.key,
+    this.onTap,
     this.text = 'Tag',
     this.selected = false,
     this.disabled = false,
@@ -17,6 +18,8 @@ class CustomProductTagWidget extends StatelessWidget {
     this.backgroundColor,
     this.textColor,
   });
+
+  final VoidCallback? onTap;
 
   final bool selected;
   final bool disabled;
@@ -38,6 +41,7 @@ class CustomProductTagWidget extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
+          onTap: onTap,
           borderRadius: DLSRadius.radiusFull,
           child: Container(
             padding: padding,
