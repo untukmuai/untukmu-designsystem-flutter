@@ -19,6 +19,7 @@ class CustomBadgeWidget extends StatelessWidget {
     this.backgroundColor = DLSColors.textMain900,
     this.textColor = DLSColors.bgWhite0,
     this.disabled = false,
+    this.isExpanded = false,
   });
 
   final CustomBadgeSize size;
@@ -33,6 +34,7 @@ class CustomBadgeWidget extends StatelessWidget {
   final Color textColor;
 
   final bool disabled;
+  final bool isExpanded;
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +53,12 @@ class CustomBadgeWidget extends StatelessWidget {
           Container(
               margin: EdgeInsets.only(right: prefixIcon == null ? 0 : 4),
               child: icon(prefixIcon)),
-          Text(
-            title,
-            style: DLSTextStyle.labelXSmall.copyWith(color: labelColor),
+          expandedWidget(
+            Text(
+              title,
+              style: DLSTextStyle.labelXSmall.copyWith(color: labelColor),
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           Container(
               margin: EdgeInsets.only(left: suffixIcon == null ? 0 : 4),
@@ -61,6 +66,14 @@ class CustomBadgeWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget expandedWidget(Widget child) {
+    if (isExpanded) {
+      return Expanded(child: child);
+    }
+
+    return child;
   }
 
   EdgeInsetsGeometry get padding => EdgeInsets.symmetric(
