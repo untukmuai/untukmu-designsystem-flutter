@@ -161,6 +161,52 @@ class _TextInputExampleState extends State<TextInputExample> {
                   controller: controller,
                   inputMode: InputMode.counter),
               const SizedBox(height: 16),
+              LabelWidget(label: "Digit Input"),
+              const SizedBox(height: 8),
+              CustomDigitInputWidget(
+                controller: controller,
+                maxDigit: 3,
+                isEditable: true,
+                isFocused: false,
+                isInvalid: false,
+                onChanged: (value) {
+                  debugPrint(value);
+                },
+              ),
+              // Row(
+              //   children: [
+              //     CustomDigitInputWidget(
+              //       controller: controller,
+              //       isEditable: true,
+              //       isFocused: false,
+              //       isInvalid: false,
+              //       onChanged: (value) {
+              //         debugPrint(value);
+              //       },
+              //     ),
+              //     SizedBox(width: 8),
+              //     CustomDigitInputWidget(
+              //       controller: controller,
+              //       isEditable: true,
+              //       isFocused: false,
+              //       isInvalid: false,
+              //       onChanged: (value) {
+              //         debugPrint(value);
+              //       },
+              //     ),
+              //     SizedBox(width: 8),
+              //     CustomDigitInputWidget(
+              //       controller: controller,
+              //       isEditable: true,
+              //       isFocused: false,
+              //       isInvalid: false,
+              //       onChanged: (value) {
+              //         debugPrint(value);
+              //       },
+              //     ),
+              //   ],
+              // ),
+              const SizedBox(height: 16),
             ],
           ),
         ),

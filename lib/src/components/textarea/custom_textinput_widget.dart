@@ -36,6 +36,7 @@ class CustomTextInputWidget extends StatefulWidget {
   final Widget? prefixWidget;
   final Widget? suffixWidget;
   final String clearLabel;
+  final String addNewTagLabel;
   final bool enableClear;
   final String? defaultSelectedCurrency;
   final String? defaultSelectedAccess;
@@ -43,6 +44,7 @@ class CustomTextInputWidget extends StatefulWidget {
   final void Function(String)? onCurrencySelected;
   final void Function(DateTime)? onDatePicked;
   final List<TextInputFormatter>? inputFormatters;
+  final Color? focusedBorderColor;
 
   // Parameter untuk mode tag
   final List<String>? listTag;
@@ -65,6 +67,7 @@ class CustomTextInputWidget extends StatefulWidget {
     this.suffixWidget,
     this.prefixWidget,
     this.clearLabel = 'Clear',
+    this.addNewTagLabel = 'Add New',
     this.enableClear = false,
     this.defaultSelectedCurrency,
     this.defaultSelectedAccess,
@@ -75,6 +78,7 @@ class CustomTextInputWidget extends StatefulWidget {
     this.listTag,
     this.enableAddNew = false,
     this.onTagsChanged,
+    this.focusedBorderColor,
   });
 
   @override
@@ -593,7 +597,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
               borderSide: BorderSide(
                   color: widget.isInvalid
                       ? DLSColors.errorBase
-                      : DLSColors.primaryBase),
+                      : widget.focusedBorderColor ?? DLSColors.primaryBase),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),

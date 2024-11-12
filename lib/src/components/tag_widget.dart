@@ -10,6 +10,7 @@ class CustomTagWidget extends StatelessWidget {
     this.suffixIcon,
     this.onTap,
     this.badge,
+    this.borderColor,
     this.filledColor,
     this.textColor,
   });
@@ -18,6 +19,7 @@ class CustomTagWidget extends StatelessWidget {
 
   final Color? filledColor;
   final Color? textColor;
+  final Color? borderColor;
 
   final IconData? prefixIcon;
   final IconData? suffixIcon;
@@ -51,8 +53,8 @@ class CustomTagWidget extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               borderRadius: DLSRadius.radiusFull,
-              border: borderColor != null
-                  ? Border.all(width: 1, color: borderColor!)
+              border: vBorderColor != null
+                  ? Border.all(width: 1, color: vBorderColor!)
                   : null,
             ),
             child: Row(
@@ -102,9 +104,13 @@ class CustomTagWidget extends StatelessWidget {
     return DLSColors.bgWhite0;
   }
 
-  Color? get borderColor {
+  Color? get vBorderColor {
     if (disabled || filledColor != null) {
       return null;
+    }
+
+    if (borderColor != null) {
+      return borderColor;
     }
 
     return DLSColors.strokeSoft200;
