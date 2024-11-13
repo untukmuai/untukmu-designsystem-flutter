@@ -3,8 +3,11 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 class VideoTab extends StatefulWidget {
   final String interest;
+  final Color backgroundColor;
 
-  const VideoTab({Key? key, required this.interest}) : super(key: key);
+  const VideoTab(
+      {Key? key, required this.interest, required this.backgroundColor})
+      : super(key: key);
 
   @override
   _VideoTabState createState() => _VideoTabState();
@@ -73,6 +76,14 @@ class _VideoTabState extends State<VideoTab> {
 
   @override
   Widget build(BuildContext context) {
-    return WebViewWidget(controller: _webViewController);
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Center(
+          child: CircularProgressIndicator(color: widget.backgroundColor),
+        ),
+        WebViewWidget(controller: _webViewController),
+      ],
+    );
   }
 }

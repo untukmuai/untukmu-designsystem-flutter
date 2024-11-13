@@ -24,9 +24,10 @@ class ProductController extends GetxController {
     final key = _generateKey(mainCategory, subCategory, subCategory2);
 
 // Check if data is already in cache
-    if (productList.containsKey(key)) {
+    if (productList.containsKey(key) && productList[key].isNotEmpty) {
       // Data is cached, so skip fetching
-      debugPrint("Data fetched from cache for key: $key");
+      debugPrint(
+          "Data fetched from cache for key: $key size: ${productList[key].length}");
       isLoadingMap[key] = false;
       return;
     }
@@ -55,7 +56,7 @@ class ProductController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        debugPrint("response ${response.body}");
+        debugPrint("json response ${response.body}");
         final jsonResponse = jsonDecode(response.body);
 
         if (jsonResponse["error_code"] != 0) {

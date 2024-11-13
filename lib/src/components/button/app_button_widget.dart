@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 class CustomButtonWidget extends StatelessWidget {
-  const CustomButtonWidget({
-    super.key,
-    this.onPressed,
-    this.label = 'Button',
-    this.type = CustomButtonType.primary,
-    this.style = CustomButtonStyle.filled,
-    this.size = CustomButtonSize.medium,
-    this.isIconMode = false,
-    this.icon,
-    this.prefixIcon,
-    this.suffixIcon,
-    this.disabled = false,
-    this.filledColor,
-    this.labelColor,
-    this.strokeColor,
-    this.prefixPadding,
-  });
+  const CustomButtonWidget(
+      {super.key,
+      this.onPressed,
+      this.label = 'Button',
+      this.type = CustomButtonType.primary,
+      this.style = CustomButtonStyle.filled,
+      this.size = CustomButtonSize.medium,
+      this.isIconMode = false,
+      this.icon,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.disabled = false,
+      this.filledColor,
+      this.labelColor,
+      this.strokeColor,
+      this.prefixPadding,
+      this.mainAxisAlignment});
 
   final String label;
   final VoidCallback? onPressed;
@@ -39,6 +39,7 @@ class CustomButtonWidget extends StatelessWidget {
   final Color? filledColor;
   final Color? labelColor;
   final Color? strokeColor;
+  final MainAxisAlignment? mainAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +75,7 @@ class CustomButtonWidget extends StatelessWidget {
         minimumSize: const Size(50, 30),
       ),
       child: Row(
+        mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
         children: [
           prefixIcon == null
               ? const SizedBox()

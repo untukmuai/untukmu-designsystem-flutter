@@ -1,4 +1,5 @@
 import 'package:example/implementation/model/news_response.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -15,7 +16,7 @@ class NewsController extends GetxController {
 
   Future<void> fetchNews(String query) async {
     // If the query exists in the cache, use the cached data
-    if (_cache.containsKey(query)) {
+    if (_cache.containsKey(query) && _cache[query]!.isNotEmpty) {
       articles.value = _cache[query]!;
       return;
     }

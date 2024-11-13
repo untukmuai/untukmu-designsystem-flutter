@@ -1,5 +1,6 @@
 import 'package:example/implementation/model/gemini_response.dart';
 import 'package:example/implementation/model/product_response.dart';
+import 'package:example/implementation/page/order_whatsapp_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
@@ -45,6 +46,12 @@ class _ProductListState extends State<ProductList> {
     }
   }
 
+  String cleanUpText(String input) {
+    String cleanup = input.replaceAll(RegExp(r'[^\x00-\x7F]+'), '');
+    cleanup = cleanup.replaceFirst(RegExp(r'^\s+'), '');
+    return cleanup;
+  }
+
   void fetchProducts() {
     setState(() {
       isLoading = true;
@@ -52,10 +59,10 @@ class _ProductListState extends State<ProductList> {
 
     productController
         .fetchProducts(
-      interest: widget.interest,
-      mainCategory: widget.title,
-      subCategory: selectedSubCategory1!,
-      subCategory2: selectedSubCategory2!,
+      interest: cleanUpText(widget.interest),
+      mainCategory: cleanUpText(widget.title),
+      subCategory: cleanUpText(selectedSubCategory1!),
+      subCategory2: cleanUpText(selectedSubCategory2!),
     )
         .then((_) {
       setState(() {
@@ -158,7 +165,9 @@ class _ProductListState extends State<ProductList> {
           child: Obx(() {
             // Check loading state for the specific category key
             if (productController.isLoadingForCategory(
-                widget.title, selectedSubCategory1!, selectedSubCategory2!)) {
+                cleanUpText(widget.title),
+                cleanUpText(selectedSubCategory1!),
+                cleanUpText(selectedSubCategory2!))) {
               return ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 scrollDirection: Axis.horizontal,
@@ -211,9 +220,9 @@ class _ProductListState extends State<ProductList> {
             } else {
               final products =
                   productController.getProductsForSelectedCategories(
-                      widget.title,
-                      selectedSubCategory1!,
-                      selectedSubCategory2!);
+                      cleanUpText(widget.title),
+                      cleanUpText(selectedSubCategory1!),
+                      cleanUpText(selectedSubCategory2!));
               if (products.isEmpty) {
                 return const Center(child: Text('No products available'));
               } else {
@@ -223,52 +232,65 @@ class _ProductListState extends State<ProductList> {
                   itemCount: products.length,
                   itemBuilder: (context, index) {
                     final Product product = products[index];
-                    return Container(
-                      width: 160,
-                      margin: const EdgeInsets.only(right: 16, bottom: 4),
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        // color: DLSColors.neutral100,
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                          color: DLSColors.neutral200,
-                          width: 1,
+                    return InkWell(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return OrderWhatsappDialog(
+                              product: product,
+                              themeColor: widget.buttonColor,
+                            );
+                          },
+                        );
+                      },
+                      child: Container(
+                        width: 160,
+                        margin: const EdgeInsets.only(right: 16, bottom: 4),
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          // color: DLSColors.neutral100,
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: DLSColors.neutral200,
+                            width: 1,
+                          ),
+                          // boxShadow: [
+                          //   BoxShadow(
+                          //     color: Colors.grey.shade300,
+                          //     blurRadius: 2,
+                          //     offset: const Offset(2, 2),
+                          //   ),
+                          // ],
                         ),
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //     color: Colors.grey.shade300,
-                        //     blurRadius: 2,
-                        //     offset: const Offset(2, 2),
-                        //   ),
-                        // ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.network(
-                              product.thumbnail,
-                              height: 120,
-                              fit: BoxFit.cover,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.network(
+                                product.thumbnail,
+                                height: 120,
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            product.title,
-                            style: DLSTextStyle.labelLarge
-                                .copyWith(color: DLSColors.textMain900),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            product.price,
-                            style: DLSTextStyle.labelSmall
-                                .copyWith(color: DLSColors.textSub500),
-                          ),
-                        ],
+                            const SizedBox(height: 8),
+                            Text(
+                              product.title,
+                              style: DLSTextStyle.labelLarge
+                                  .copyWith(color: DLSColors.textMain900),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              product.price,
+                              style: DLSTextStyle.labelSmall
+                                  .copyWith(color: DLSColors.textSub500),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },

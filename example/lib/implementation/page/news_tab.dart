@@ -2,7 +2,9 @@ import 'package:example/implementation/controller/news_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class NewsTab extends StatefulWidget {
   final String interest;
@@ -70,10 +72,10 @@ class NewsTabState extends State<NewsTab> {
                           children: [
                             Container(
                               width: MediaQuery.of(context).size.width,
-                              child: Image.network(
-                                article.imageUrl,
+                              child: CachedNetworkImage(
+                                imageUrl: article.imageUrl,
                                 fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) {
+                                errorWidget: (context, error, stackTrace) {
                                   return Container(
                                     color: Colors.grey.shade200,
                                     child: const Center(
@@ -145,12 +147,19 @@ class NewsTabState extends State<NewsTab> {
                               ),
                             ),
                           ),
-                    title: Text(article.title,
-                        maxLines: 2, overflow: TextOverflow.ellipsis),
+                    title: Text(
+                      article.title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: DLSTextStyle.labelLarge
+                          .copyWith(color: DLSColors.textMain900),
+                    ),
                     subtitle: Text(
                       article.description,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
+                      style: DLSTextStyle.labelSmall
+                          .copyWith(color: DLSColors.textSoft400),
                     ),
                     onTap: () {
                       _launchURL(article.url);

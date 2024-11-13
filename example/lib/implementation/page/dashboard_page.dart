@@ -1,8 +1,9 @@
 import 'package:example/implementation/model/gemini_response.dart';
 import 'package:example/implementation/page/interest_input_page.dart';
 import 'package:example/implementation/page/news_tab.dart';
+import 'package:example/implementation/page/photos_tab.dart';
 import 'package:example/implementation/page/video_tab.dart';
-import 'package:example/implementation/product_list.dart';
+import 'package:example/implementation/page/product_list.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shimmer/shimmer.dart';
@@ -60,6 +61,7 @@ class _DashboardExamplePageState extends State<DashboardExamplePage> {
         selectedItemColor: themeBackgroundColor,
         backgroundColor: Colors.white,
         unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed,
         onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(
@@ -69,6 +71,10 @@ class _DashboardExamplePageState extends State<DashboardExamplePage> {
           BottomNavigationBarItem(
             icon: Icon(Iconsax.note_text),
             label: 'News',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Iconsax.image),
+            label: 'Images',
           ),
           BottomNavigationBarItem(
             icon: Icon(Iconsax.video),
@@ -96,7 +102,16 @@ class _DashboardExamplePageState extends State<DashboardExamplePage> {
           textColor: textColor,
         );
       case 2:
-        return VideoTab(interest: widget.interest);
+        return PhotosTab(
+          interest: widget.interest,
+          backgroundColor: backgroundColor,
+          textColor: textColor,
+        );
+      case 3:
+        return VideoTab(
+          interest: widget.interest,
+          backgroundColor: backgroundColor,
+        );
       default:
         return _buildShopTab();
     }
