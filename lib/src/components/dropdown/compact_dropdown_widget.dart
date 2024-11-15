@@ -60,8 +60,7 @@ class _CompactDropdownWidgetState extends State<CompactDropdownWidget> {
     bool isTextType = widget.type == CompactDropdownType.text;
 
     return Container(
-      padding: const EdgeInsets.symmetric(
-          horizontal: DLSSizing.s3xSmall, vertical: DLSSizing.s4xSmall),
+      padding: const EdgeInsets.all(DLSSizing.s3xSmall),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: DLSRadius.radius12,
