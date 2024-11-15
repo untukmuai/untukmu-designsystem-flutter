@@ -43,6 +43,8 @@ class CustomTextInputWidget extends StatefulWidget {
   final void Function(String)? onCurrencySelected;
   final void Function(DateTime)? onDatePicked;
   final List<TextInputFormatter>? inputFormatters;
+  final Function(String)? onChanged;
+  final bool readOnly;
 
   // Parameter untuk mode tag
   final List<String>? listTag;
@@ -75,6 +77,8 @@ class CustomTextInputWidget extends StatefulWidget {
     this.listTag,
     this.enableAddNew = false,
     this.onTagsChanged,
+    this.onChanged,
+    this.readOnly = false,
   });
 
   @override
@@ -536,6 +540,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextField(
+          readOnly: widget.readOnly,
           controller: widget.controller,
           focusNode: _focusNode,
           enabled: widget.isEditable,
@@ -554,6 +559,9 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
                       : TextInputType.text,
           onChanged: (value) {
             _text.value = value;
+            if (widget.onChanged != null) {
+              widget.onChanged!(value);
+            }
           },
           textAlign: widget.inputMode == InputMode.counter
               ? TextAlign.center
