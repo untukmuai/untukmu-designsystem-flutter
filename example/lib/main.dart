@@ -17,7 +17,6 @@ import 'package:example/base_component/breadcrumb_example.dart';
 import 'package:example/base_component/button_example.dart';
 import 'package:example/base_component/notification_example.dart';
 import 'package:example/base_component/tooltip_example.dart';
-import 'package:example/page/product_creation_page.dart';
 import 'package:example/style/shadow_corner_page.dart';
 import 'package:example/style/text_style_page.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProductCreationPage(),
+      home: HomePage(),
       // home: AccordionExamplePage(),
     );
   }
