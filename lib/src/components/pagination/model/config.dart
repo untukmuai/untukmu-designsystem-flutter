@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untukmu_flutter_design_system/src/components/pagination/model/pagination_type.dart';
+import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 /// Holds all the relevant information for the configuration of how the
 /// [NumberPaginator] should look like.
@@ -14,8 +14,8 @@ class NumberPaginatorUIConfig {
 
   /// The [PaginatorButton]'s foreground color (text/icon color) when unselected.
   ///
-  /// Defaults to `null`.
-  final Color? buttonUnselectedForegroundColor;
+  /// Defaults to DLSColors.textSub500.
+  final Color buttonUnselectedForegroundColor;
 
   /// The [PaginatorButton]'s background color when selected.
   ///
@@ -51,7 +51,7 @@ class NumberPaginatorUIConfig {
   const NumberPaginatorUIConfig({
     this.type,
     this.buttonSelectedForegroundColor,
-    this.buttonUnselectedForegroundColor,
+    this.buttonUnselectedForegroundColor = DLSColors.textSub500,
     this.buttonSelectedBackgroundColor,
     this.buttonUnselectedBackgroundColor,
     this.mainAxisAlignment = MainAxisAlignment.start,

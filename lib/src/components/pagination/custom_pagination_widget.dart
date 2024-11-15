@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 class CustomPaginationWidget extends StatelessWidget {
-  const CustomPaginationWidget(
-      {super.key,
-      this.active = false,
-      this.enabled = true,
-      this.type = CustomPaginationType.rounded,
-      this.value = '1',
-      this.icon,
-      this.iconSize = 20,
-      this.onTap});
+  const CustomPaginationWidget({
+    super.key,
+    this.active = false,
+    this.enabled = true,
+    this.type = CustomPaginationType.rounded,
+    this.value = '1',
+    this.icon,
+    this.iconSize = 20,
+    this.onTap,
+    this.isArrow = false,
+  });
 
   final VoidCallback? onTap;
 
@@ -23,13 +25,17 @@ class CustomPaginationWidget extends StatelessWidget {
   final IconData? icon;
   final double iconSize;
 
+  final bool isArrow;
+
   @override
   Widget build(BuildContext context) {
     bool isCircle = type == CustomPaginationType.circle;
 
     return Container(
       decoration: BoxDecoration(
-        color: enabled && active ? DLSColors.bgWeak100 : DLSColors.bgWhite0,
+        color: (isArrow || enabled && active)
+            ? DLSColors.bgWeak100
+            : DLSColors.bgWhite0,
         borderRadius: isCircle ? DLSRadius.radiusFull : DLSRadius.radius8,
       ),
       child: Material(
@@ -59,9 +65,11 @@ class CustomPaginationWidget extends StatelessWidget {
                 : Text(
                     value,
                     style: DLSTextStyle.labelMedium.copyWith(
-                        color: enabled
-                            ? DLSColors.textSub500
-                            : DLSColors.textDisabled300),
+                        color: active
+                            ? DLSColors.primaryBase
+                            : enabled
+                                ? DLSColors.textSub500
+                                : DLSColors.textDisabled300),
                     textAlign: TextAlign.center,
                   ),
           ),

@@ -99,9 +99,8 @@ class NumberContent extends StatelessWidget {
             "...",
             style: TextStyle(
               color: InheritedNumberPaginator.of(context)
-                      .config
-                      .buttonUnselectedForegroundColor ??
-                  Theme.of(context).colorScheme.secondary,
+                  .config
+                  .buttonUnselectedForegroundColor,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),

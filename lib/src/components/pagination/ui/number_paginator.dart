@@ -55,6 +55,9 @@ class NumberPaginator extends StatefulWidget {
   /// Content of the "last" button which when pressed goes to last page.
   final IconData? lastPageButtonIcon;
 
+  // Width constraint
+  final double? widthConstraint;
+
   /// Creates an instance of [NumberPaginator].
   const NumberPaginator({
     super.key,
@@ -70,6 +73,7 @@ class NumberPaginator extends StatefulWidget {
     this.nextButtonIcon = Icons.chevron_right,
     this.firstPageButtonIcon = Icons.keyboard_double_arrow_left_rounded,
     this.lastPageButtonIcon = Icons.keyboard_double_arrow_right_rounded,
+    this.widthConstraint,
   })  : assert(initialPage >= 0),
         assert(initialPage <= numberPages - 1);
 
@@ -81,6 +85,7 @@ class NumberPaginator extends StatefulWidget {
     this.config = const NumberPaginatorUIConfig(),
     this.contentBuilder,
     this.controller,
+    this.widthConstraint,
   })  : showPrevButton = false,
         showNextButton = false,
         prevButtonIcon = null,
@@ -110,7 +115,7 @@ class NumberPaginatorState extends State<NumberPaginator> {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    var width = widget.widthConstraint ?? MediaQuery.of(context).size.width;
     bool isCollapsed = width < 640;
 
     return InheritedNumberPaginator(
@@ -119,6 +124,7 @@ class NumberPaginatorState extends State<NumberPaginator> {
       onPageChange: _controller.navigateToPage,
       config: widget.config,
       child: SizedBox(
+        width: width,
         height: 48,
         child: Row(
           mainAxisAlignment: widget.config.mainAxisAlignment,
@@ -130,10 +136,12 @@ class NumberPaginatorState extends State<NumberPaginator> {
                   : null,
               icon: widget.firstPageButtonIcon,
               iconSize: 16,
+              isArrow: true,
             ),
             CustomPaginationWidget(
               onTap: _controller.currentPage > 0 ? _controller.prev : null,
               icon: widget.prevButtonIcon,
+              isArrow: true,
             ),
             _buildCenterContent(),
             CustomPaginationWidget(
@@ -141,6 +149,7 @@ class NumberPaginatorState extends State<NumberPaginator> {
                   ? _controller.next
                   : null,
               icon: widget.nextButtonIcon,
+              isArrow: true,
             ),
             CustomPaginationWidget(
               onTap: _controller.currentPage < widget.numberPages - 1
@@ -148,6 +157,7 @@ class NumberPaginatorState extends State<NumberPaginator> {
                   : null,
               icon: widget.lastPageButtonIcon,
               iconSize: 16,
+              isArrow: true,
             ),
             pageDropdown(isCollapsed: isCollapsed),
           ],
