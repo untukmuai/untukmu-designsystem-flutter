@@ -77,7 +77,7 @@ class CustomBadgeWidget extends StatelessWidget {
   }
 
   EdgeInsetsGeometry get padding => EdgeInsets.symmetric(
-      horizontal: 8, vertical: size == CustomBadgeSize.small ? 1 : 3);
+      horizontal: 8, vertical: size == CustomBadgeSize.small ? 1 : 4);
 
   BorderRadius get radius =>
       size == CustomBadgeSize.small ? DLSRadius.radius4 : DLSRadius.radius8;
