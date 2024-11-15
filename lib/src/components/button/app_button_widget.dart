@@ -20,6 +20,8 @@ class CustomButtonWidget extends StatelessWidget {
     this.labelColor,
     this.strokeColor,
     this.prefixPadding,
+    this.isLoading = false,
+    this.labelPadding,
   });
 
   final String label;
@@ -43,6 +45,10 @@ class CustomButtonWidget extends StatelessWidget {
   final Color? filledColor;
   final Color? labelColor;
   final Color? strokeColor;
+
+  final bool isLoading;
+
+  final double? labelPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +74,65 @@ class CustomButtonWidget extends StatelessWidget {
       }
     }
 
+    Widget widget;
+    if (isLoading) {
+      widget = const Center(
+          child: SizedBox(
+              height: 12,
+              width: 12,
+              child: CircularProgressIndicator(strokeWidth: 2)));
+    } else {
+      if (prefixIcon == null && suffixIcon == null) {
+        widget = Text(
+          label,
+          style: textStyle.copyWith(color: textColor),
+          textAlign: TextAlign.center,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        );
+      } else {
+        widget = Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            prefixIcon == null
+                ? const SizedBox()
+                : Padding(
+                    padding: prefixIconPadding,
+                    child: Icon(
+                      prefixIcon,
+                      size: 16,
+                      color: textColor,
+                    ),
+                  ),
+            Text(
+              label,
+              style: textStyle.copyWith(color: textColor),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            suffixIcon == null
+                ? const SizedBox()
+                : Padding(
+                    padding: suffixIconPadding,
+                    child: Icon(
+                      suffixIcon,
+                      size: 16,
+                      color: textColor,
+                    ),
+                  ),
+          ],
+        );
+      }
+    }
+
     return TextButton(
-      onPressed: disabled ? null : onPressed,
+      onPressed: isLoading
+          ? null
+          : disabled
+              ? null
+              : onPressed,
       style: TextButton.styleFrom(
         padding: padding,
         backgroundColor: backgroundColor,
@@ -77,40 +140,7 @@ class CustomButtonWidget extends StatelessWidget {
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         minimumSize: minimumSize,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          prefixIcon == null
-              ? const SizedBox()
-              : Padding(
-                  padding: prefixIconPadding,
-                  child: Icon(
-                    prefixIcon,
-                    size: 16,
-                    color: textColor,
-                  ),
-                ),
-          Expanded(
-            child: Text(
-              label,
-              style: textStyle.copyWith(color: textColor),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          suffixIcon == null
-              ? const SizedBox()
-              : Padding(
-                  padding: suffixIconPadding,
-                  child: Icon(
-                    suffixIcon,
-                    size: 16,
-                    color: textColor,
-                  ),
-                ),
-        ],
-      ),
+      child: widget,
     );
   }
 
@@ -139,6 +169,10 @@ class CustomButtonWidget extends StatelessWidget {
   }
 
   EdgeInsetsGeometry get padding {
+    if (labelPadding != null) {
+      return EdgeInsets.symmetric(horizontal: labelPadding!);
+    }
+
     switch (size) {
       case CustomButtonSize.xSmall:
         return const EdgeInsets.symmetric(
@@ -177,7 +211,7 @@ class CustomButtonWidget extends StatelessWidget {
       return null;
     }
 
-    if (disabled || onPressed == null) {
+    if (isLoading || disabled || onPressed == null) {
       return DLSColors.bgWeak100;
     }
 
@@ -237,7 +271,7 @@ class CustomButtonWidget extends StatelessWidget {
             return DLSColors.redBase;
         }
       default:
-        return DLSColors.bgWhite0;
+        return labelColor ?? DLSColors.bgWhite0;
     }
   }
 
