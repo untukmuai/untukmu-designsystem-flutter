@@ -17,8 +17,6 @@ import 'package:example/base_component/breadcrumb_example.dart';
 import 'package:example/base_component/button_example.dart';
 import 'package:example/base_component/notification_example.dart';
 import 'package:example/base_component/tooltip_example.dart';
-import 'package:example/implementation/page/dashboard_page.dart';
-import 'package:example/implementation/page/interest_input_page.dart';
 import 'package:example/style/shadow_corner_page.dart';
 import 'package:example/style/text_style_page.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +43,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final examples = [
-      {'title': 'Dashboard Example', 'page': InterestInputPage()},
       {'title': 'Accordion Example', 'page': const AccordionExamplePage()},
       {'title': 'Avatar Example', 'page': const AvatarExamplePage()},
       {'title': 'Badge Example', 'page': const BadgeExamplePage()},
