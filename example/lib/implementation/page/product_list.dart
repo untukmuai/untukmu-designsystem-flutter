@@ -28,7 +28,7 @@ class ProductList extends StatefulWidget {
 }
 
 class _ProductListState extends State<ProductList> {
-  final ProductController productController = Get.put(ProductController());
+  final ProductController productController = Get.find();
 
   String? selectedSubCategory1;
   String? selectedSubCategory2;
@@ -165,6 +165,7 @@ class _ProductListState extends State<ProductList> {
           child: Obx(() {
             // Check loading state for the specific category key
             if (productController.isLoadingForCategory(
+                cleanUpText(widget.interest),
                 cleanUpText(widget.title),
                 cleanUpText(selectedSubCategory1!),
                 cleanUpText(selectedSubCategory2!))) {
@@ -220,6 +221,7 @@ class _ProductListState extends State<ProductList> {
             } else {
               final products =
                   productController.getProductsForSelectedCategories(
+                      cleanUpText(widget.interest),
                       cleanUpText(widget.title),
                       cleanUpText(selectedSubCategory1!),
                       cleanUpText(selectedSubCategory2!));

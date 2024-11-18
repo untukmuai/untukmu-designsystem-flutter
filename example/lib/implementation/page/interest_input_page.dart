@@ -1,3 +1,5 @@
+import 'package:example/implementation/controller/chatbot_controller.dart';
+import 'package:example/implementation/controller/product_controller.dart';
 import 'package:example/implementation/model/gemini_response.dart';
 import 'package:example/implementation/page/dashboard_page.dart';
 import 'package:example/implementation/controller/gemini_controller.dart';
@@ -12,6 +14,8 @@ class InterestInputPage extends StatefulWidget {
 class _InterestInputPageState extends State<InterestInputPage> {
   final TextEditingController _interestController = TextEditingController();
   final GeminiController geminiController = Get.put(GeminiController());
+  final ChatbotController chatbotController = Get.put(ChatbotController());
+  final ProductController productController = Get.put(ProductController());
   String selectedLanguage = 'english'; // Default language
   bool isLoading = false;
 
@@ -23,19 +27,22 @@ class _InterestInputPageState extends State<InterestInputPage> {
         isLoading = true;
       });
 
-      GeminiResponseData? jsonData =
+      GeminiResponseData? geminiResponseData =
           await geminiController.process(interest, selectedLanguage);
+      chatbotController.reset();
+      chatbotController.setCharacter(interest);
+      chatbotController.setLanguage(selectedLanguage);
 
       setState(() {
         isLoading = false;
       });
 
-      if (jsonData != null) {
+      if (geminiResponseData != null) {
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => DashboardExamplePage(
-              geminiResponseData: jsonData,
+              geminiResponseData: geminiResponseData,
               interest: interest,
             ),
           ),

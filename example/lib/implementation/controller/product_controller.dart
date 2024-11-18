@@ -10,9 +10,9 @@ class ProductController extends GetxController {
   var errorMessage = ''.obs;
   RxMap productList = <String, List<Product>>{}.obs;
 
-  String _generateKey(
-      String mainCategory, String subCategory1, String subCategory2) {
-    return "$mainCategory-$subCategory1-$subCategory2";
+  String _generateKey(String interest, String mainCategory, String subCategory1,
+      String subCategory2) {
+    return "$interest-$mainCategory-$subCategory1-$subCategory2";
   }
 
   Future<void> fetchProducts({
@@ -21,7 +21,7 @@ class ProductController extends GetxController {
     required String subCategory,
     required String subCategory2,
   }) async {
-    final key = _generateKey(mainCategory, subCategory, subCategory2);
+    final key = _generateKey(interest, mainCategory, subCategory, subCategory2);
 
 // Check if data is already in cache
     if (productList.containsKey(key) && productList[key].isNotEmpty) {
@@ -54,6 +54,7 @@ class ProductController extends GetxController {
         },
         body: jsonRequest,
       );
+      debugPrint("status code ${response.statusCode}");
 
       if (response.statusCode == 200) {
         debugPrint("json response ${response.body}");
@@ -79,15 +80,15 @@ class ProductController extends GetxController {
     }
   }
 
-  List<Product> getProductsForSelectedCategories(
+  List<Product> getProductsForSelectedCategories(String interest,
       String mainCategory, String subCategory, String subCategory2) {
-    final key = _generateKey(mainCategory, subCategory, subCategory2);
+    final key = _generateKey(interest, mainCategory, subCategory, subCategory2);
     return productList[key] ?? [];
   }
 
-  bool isLoadingForCategory(
-      String mainCategory, String subCategory, String subCategory2) {
-    final key = _generateKey(mainCategory, subCategory, subCategory2);
+  bool isLoadingForCategory(String interest, String mainCategory,
+      String subCategory, String subCategory2) {
+    final key = _generateKey(interest, mainCategory, subCategory, subCategory2);
     return isLoadingMap[key] ?? false;
   }
 }

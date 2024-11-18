@@ -1,5 +1,6 @@
+import 'package:example/implementation/controller/chatbot_controller.dart';
 import 'package:example/implementation/model/gemini_response.dart';
-import 'package:example/implementation/page/interest_input_page.dart';
+import 'package:example/implementation/page/chatbot_tab.dart';
 import 'package:example/implementation/page/news_tab.dart';
 import 'package:example/implementation/page/photos_tab.dart';
 import 'package:example/implementation/page/video_tab.dart';
@@ -8,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:get/get.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class DashboardExamplePage extends StatefulWidget {
   final String interest;
@@ -24,6 +25,7 @@ class DashboardExamplePage extends StatefulWidget {
 
 class _DashboardExamplePageState extends State<DashboardExamplePage> {
   TextEditingController searchController = TextEditingController();
+  ChatbotController chatbotController = Get.find();
   RxBool isImageLoading = true.obs;
 
   int _selectedIndex = 0; // Added to keep track of the selected tab
@@ -37,12 +39,15 @@ class _DashboardExamplePageState extends State<DashboardExamplePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    chatbotController.sendGreeting();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    String imageUrl = 'https://image.pollinations.ai/prompt/${widget.interest}';
     Color themeBackgroundColor =
         hexToColor(widget.geminiResponseData.themeColor.backgroundColor);
-    Color secondaryThemeBackgroundColor = hexToColor(
-        widget.geminiResponseData.themeColor.secondaryBackgroundColor);
     Color textColor =
         hexToColor(widget.geminiResponseData.themeColor.textColor);
 
@@ -80,6 +85,10 @@ class _DashboardExamplePageState extends State<DashboardExamplePage> {
             icon: Icon(Iconsax.video),
             label: 'Video',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Iconsax.message),
+            label: 'Chat',
+          ),
         ],
       ),
     );
@@ -112,6 +121,12 @@ class _DashboardExamplePageState extends State<DashboardExamplePage> {
           interest: widget.interest,
           backgroundColor: backgroundColor,
         );
+      case 4:
+        return ChatbotTab(
+          character: widget.interest,
+          backgroundColor: backgroundColor,
+          textColor: textColor,
+        );
       default:
         return _buildShopTab();
     }
@@ -141,22 +156,18 @@ class _DashboardExamplePageState extends State<DashboardExamplePage> {
                     color: Colors.grey.shade300,
                   ),
                 ),
-                Image.network(
-                  imageUrl,
+                CachedNetworkImage(
+                  imageUrl: imageUrl,
                   fit: BoxFit.cover,
                   alignment: Alignment.topCenter,
-                  loadingBuilder: (context, child, loadingProgress) {
-                    debugPrint("loading progress: $loadingProgress");
-                    if (loadingProgress == null) return child;
-                    return Shimmer.fromColors(
-                      baseColor: Colors.grey.shade300,
-                      highlightColor: Colors.grey.shade100,
-                      child: Container(
-                        color: Colors.grey.shade300,
-                      ),
-                    );
-                  },
-                  errorBuilder: (context, error, stackTrace) {
+                  placeholder: (context, url) => Shimmer.fromColors(
+                    baseColor: Colors.grey.shade300,
+                    highlightColor: Colors.grey.shade100,
+                    child: Container(
+                      color: Colors.grey.shade300,
+                    ),
+                  ),
+                  errorWidget: (context, error, stackTrace) {
                     return Container(
                       color: Colors.grey.shade200,
                       child: const Center(

@@ -55,61 +55,65 @@ class NewsTabState extends State<NewsTab> {
           child: Column(
             children: [
               // Carousel Slider for top 3 articles
-              CarouselSlider(
-                options: CarouselOptions(
-                  height: 250.0,
-                  autoPlay: true,
-                  enlargeCenterPage: true,
-                ),
-                items: topArticles.map((article) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return GestureDetector(
-                        onTap: () {
-                          _launchURL(article.url);
-                        },
-                        child: Stack(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              child: CachedNetworkImage(
-                                imageUrl: article.imageUrl,
-                                fit: BoxFit.cover,
-                                errorWidget: (context, error, stackTrace) {
-                                  return Container(
-                                    color: Colors.grey.shade200,
-                                    child: const Center(
-                                      child: Text(
-                                        'Image not available',
-                                        style: TextStyle(color: Colors.red),
+              Container(
+                color: Colors.black,
+                child: CarouselSlider(
+                  options: CarouselOptions(
+                    height: 250.0,
+                    autoPlay: true,
+                    enlargeCenterPage: true,
+                    aspectRatio: 2.0,
+                  ),
+                  items: topArticles.map((article) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return GestureDetector(
+                          onTap: () {
+                            _launchURL(article.url);
+                          },
+                          child: Stack(
+                            children: [
+                              Container(
+                                color: Colors.black,
+                                width: MediaQuery.of(context).size.width,
+                                child: CachedNetworkImage(
+                                  imageUrl: article.imageUrl,
+                                  fit: BoxFit.cover,
+                                  errorWidget: (context, error, stackTrace) {
+                                    return Container(
+                                      color: Colors.grey.shade200,
+                                      child: const Center(
+                                        child: Text(
+                                          'Image not available',
+                                          style: TextStyle(color: Colors.red),
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                },
+                                    );
+                                  },
+                                ),
                               ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              left: 0,
-                              right: 0,
-                              child: Container(
-                                color: Colors.black54,
-                                padding: const EdgeInsets.all(8),
-                                child: Text(
-                                  article.title,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
+                              Positioned(
+                                bottom: 10,
+                                left: 0,
+                                right: 0,
+                                child: Container(
+                                  color: Colors.black.withOpacity(.5),
+                                  padding: const EdgeInsets.all(8),
+                                  child: Text(
+                                    article.title,
+                                    style: DLSTextStyle.labelMedium.copyWith(
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                }).toList(),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  }).toList(),
+                ),
               ),
               // ListView for remaining articles
               ListView.builder(
@@ -120,11 +124,11 @@ class NewsTabState extends State<NewsTab> {
                   final article = remainingArticles[index];
                   return ListTile(
                     leading: article.imageUrl.isNotEmpty
-                        ? Image.network(
-                            article.imageUrl,
+                        ? CachedNetworkImage(
+                            imageUrl: article.imageUrl,
                             width: 100,
                             fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
+                            errorWidget: (context, error, stackTrace) {
                               return Container(
                                 width: 100,
                                 color: Colors.grey.shade200,

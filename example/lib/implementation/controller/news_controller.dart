@@ -26,10 +26,10 @@ class NewsController extends GetxController {
       final now = DateTime.now();
       final fromDate = DateTime(now.year, now.month - 1, now.day);
       final formattedFromDate = fromDate.toIso8601String().split('T').first;
-
-      final url = Uri.parse(
-        'https://newsapi.org/v2/everything?q=$query&from=$formattedFromDate&sortBy=publishedAt&apiKey=$apiKey&pageSize=20&language=en',
-      );
+      final String surl =
+          'https://newsapi.org/v2/everything?q=$query&from=$formattedFromDate&sortBy=publishedAt&apiKey=$apiKey&pageSize=20&language=en';
+      debugPrint("url news $surl");
+      final url = Uri.parse(surl);
 
       final response = await http.get(url);
 
@@ -45,7 +45,8 @@ class NewsController extends GetxController {
         articles.value = fetchedArticles;
 
         //remove removed article
-        articles.removeWhere((element) => element.title == "[Removed]");
+        articles.removeWhere((element) =>
+            element.title == "[Removed]" || element.imageUrl.isEmpty);
 
         // Store the fetched articles in the cache
         _cache[query] = fetchedArticles;

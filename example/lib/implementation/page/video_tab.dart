@@ -5,21 +5,28 @@ class VideoTab extends StatefulWidget {
   final String interest;
   final Color backgroundColor;
 
-  const VideoTab(
-      {Key? key, required this.interest, required this.backgroundColor})
-      : super(key: key);
+  const VideoTab({
+    Key? key,
+    required this.interest,
+    required this.backgroundColor,
+  }) : super(key: key);
 
   @override
   _VideoTabState createState() => _VideoTabState();
 }
 
-class _VideoTabState extends State<VideoTab> {
+class _VideoTabState extends State<VideoTab>
+    with AutomaticKeepAliveClientMixin {
   late final WebViewController _webViewController;
+  bool _isWebViewInitialized = false;
 
   @override
   void initState() {
     super.initState();
+    _initializeWebView();
+  }
 
+  void _initializeWebView() {
     String interest = widget.interest;
     String url =
         'https://www.youtube.com/results?search_query=${Uri.encodeComponent(interest)}';
@@ -64,18 +71,22 @@ class _VideoTabState extends State<VideoTab> {
           onHttpError: (HttpResponseError error) {},
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {
-            // if (request.url.startsWith('https://www.youtube.com/')) {
-            //   return NavigationDecision.prevent;
-            // }
             return NavigationDecision.navigate;
           },
         ),
-      )
-      ..loadRequest(Uri.parse(url));
+      );
+
+    // Load URL hanya jika belum pernah diinisialisasi sebelumnya
+    if (!_isWebViewInitialized) {
+      _webViewController.loadRequest(Uri.parse(url));
+      _isWebViewInitialized = true;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(
+        context); // Penting untuk memanggil super.build saat menggunakan AutomaticKeepAliveClientMixin
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -86,4 +97,7 @@ class _VideoTabState extends State<VideoTab> {
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

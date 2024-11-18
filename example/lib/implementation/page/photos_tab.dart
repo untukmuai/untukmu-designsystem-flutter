@@ -4,6 +4,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:example/implementation/controller/photos_controller.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class PhotosTab extends StatefulWidget {
   final Color backgroundColor;
@@ -71,12 +72,11 @@ class _PhotosTabState extends State<PhotosTab> {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          photo.src["medium"] ?? '',
+                        child: CachedNetworkImage(
+                          imageUrl: photo.src["medium"] ?? '',
                           fit: BoxFit.cover,
                           width: double.infinity,
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) return child;
+                          placeholder: (context, _) {
                             return Shimmer.fromColors(
                               baseColor: Colors.grey.shade300,
                               highlightColor: Colors.grey.shade100,
@@ -86,7 +86,7 @@ class _PhotosTabState extends State<PhotosTab> {
                               ),
                             );
                           },
-                          errorBuilder: (context, error, stackTrace) {
+                          errorWidget: (context, error, stackTrace) {
                             return Container(
                               color: Colors.grey.shade200,
                               child: const Center(

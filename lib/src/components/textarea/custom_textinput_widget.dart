@@ -45,41 +45,44 @@ class CustomTextInputWidget extends StatefulWidget {
   final void Function(DateTime)? onDatePicked;
   final List<TextInputFormatter>? inputFormatters;
   final Color? focusedBorderColor;
+  final Color? backgroundColor;
+  final BorderRadius? borderRadius;
 
   // Parameter untuk mode tag
   final List<String>? listTag;
   final bool enableAddNew;
   final void Function(List<String>)? onTagsChanged;
 
-  const CustomTextInputWidget({
-    super.key,
-    this.label,
-    this.hintText,
-    this.isEditable = true,
-    this.isInvalid = false,
-    this.errorMessage,
-    required this.controller,
-    this.labelDirection = LabelDirection.vertical,
-    this.showOptionalLabel = false,
-    this.hintTextMessage,
-    this.inputMode = InputMode.text,
-    this.dateFormat = 'DD/MM/YYYY',
-    this.suffixWidget,
-    this.prefixWidget,
-    this.clearLabel = 'Clear',
-    this.addNewTagLabel = 'Add New',
-    this.enableClear = false,
-    this.defaultSelectedCurrency,
-    this.defaultSelectedAccess,
-    this.onAccessSelected,
-    this.onCurrencySelected,
-    this.onDatePicked,
-    this.inputFormatters,
-    this.listTag,
-    this.enableAddNew = false,
-    this.onTagsChanged,
-    this.focusedBorderColor,
-  });
+  const CustomTextInputWidget(
+      {super.key,
+      this.label,
+      this.hintText,
+      this.isEditable = true,
+      this.isInvalid = false,
+      this.errorMessage,
+      required this.controller,
+      this.labelDirection = LabelDirection.vertical,
+      this.showOptionalLabel = false,
+      this.hintTextMessage,
+      this.inputMode = InputMode.text,
+      this.borderRadius,
+      this.dateFormat = 'DD/MM/YYYY',
+      this.suffixWidget,
+      this.prefixWidget,
+      this.clearLabel = 'Clear',
+      this.addNewTagLabel = 'Add New',
+      this.enableClear = false,
+      this.defaultSelectedCurrency,
+      this.defaultSelectedAccess,
+      this.onAccessSelected,
+      this.onCurrencySelected,
+      this.onDatePicked,
+      this.inputFormatters,
+      this.listTag,
+      this.enableAddNew = false,
+      this.onTagsChanged,
+      this.focusedBorderColor,
+      this.backgroundColor});
 
   @override
   CustomTextInputWidgetState createState() => CustomTextInputWidgetState();
@@ -579,11 +582,12 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 color: DLSColors.textSoft400),
-            fillColor:
-                widget.isEditable ? Colors.transparent : DLSColors.bgWeak100,
+            fillColor: widget.isEditable
+                ? widget.backgroundColor ?? Colors.transparent
+                : DLSColors.bgWeak100,
             filled: true,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: widget.borderRadius ?? BorderRadius.circular(12),
               borderSide: BorderSide(
                 color: widget.isInvalid
                     ? DLSColors.errorBase
@@ -593,14 +597,14 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: widget.borderRadius ?? BorderRadius.circular(12),
               borderSide: BorderSide(
                   color: widget.isInvalid
                       ? DLSColors.errorBase
                       : widget.focusedBorderColor ?? DLSColors.primaryBase),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: widget.borderRadius ?? BorderRadius.circular(12),
               borderSide: BorderSide(
                 color: widget.isInvalid
                     ? DLSColors.errorBase
@@ -608,7 +612,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
               ),
             ),
             disabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: widget.borderRadius ?? BorderRadius.circular(12),
               borderSide: BorderSide(
                 color: widget.isInvalid
                     ? DLSColors.errorBase
