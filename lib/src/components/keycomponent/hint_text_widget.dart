@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
+
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 enum HintState {
@@ -31,7 +32,7 @@ class HintTextWidget extends StatelessWidget {
         return Row(
           children: [
             const Icon(
-              Iconsax.hashtag,
+              IconsaxPlusLinear.hashtag,
               color: DLSColors.iconDisabled300,
               size: 16,
             ),
@@ -65,7 +66,7 @@ class HintTextWidget extends StatelessWidget {
         return Row(
           children: [
             const Icon(
-              Iconsax.hashtag,
+              IconsaxPlusLinear.hashtag,
               color: DLSColors.redDark,
               size: 16,
             ),
@@ -99,7 +100,7 @@ class HintTextWidget extends StatelessWidget {
         return Row(
           children: [
             const Icon(
-              Iconsax.hashtag,
+              IconsaxPlusLinear.hashtag,
               color: DLSColors.textDisabled300,
               size: 16,
             ),

@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
+
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 class CustomPaginationGroupWidget extends StatelessWidget {
@@ -75,7 +76,7 @@ class CustomPaginationGroupWidget extends StatelessWidget {
                       constraints:
                           const BoxConstraints(minHeight: 34, minWidth: 34),
                       child: const Icon(
-                        Iconsax.arrow_left_2,
+                        IconsaxPlusLinear.arrow_left_2,
                         size: 20,
                       ),
                     ),
@@ -132,7 +133,7 @@ class CustomPaginationGroupWidget extends StatelessWidget {
                       constraints:
                           const BoxConstraints(minHeight: 34, minWidth: 34),
                       child: const Icon(
-                        Iconsax.arrow_right_3,
+                        IconsaxPlusLinear.arrow_right_3,
                         size: 20,
                       ),
                     ),

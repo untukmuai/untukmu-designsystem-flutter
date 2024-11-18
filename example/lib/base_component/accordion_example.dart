@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 
 class AccordionExamplePage extends StatefulWidget {
   const AccordionExamplePage({super.key});
@@ -26,16 +27,16 @@ class _AccordionExamplePageState extends State<AccordionExamplePage> {
             ),
             SizedBox(height: DLSSizing.s3xSmall),
             CustomAccordionWidget(
-              prefixIcon: Iconsax.message,
+              prefixIcon: IconsaxPlusLinear.message,
               title: 'You\'ve got a message!',
               content:
                   'Greetings! You are special to someone and don\'t give up!',
-              collapsedSuffixIcon: Iconsax.add,
-              expandedSuffixIcon: Iconsax.minus,
+              collapsedSuffixIcon: IconsaxPlusLinear.add,
+              expandedSuffixIcon: IconsaxPlusLinear.minus,
             ),
             SizedBox(height: DLSSizing.s3xSmall),
             CustomAccordionWidget(
-              prefixIcon: Iconsax.add,
+              prefixIcon: IconsaxPlusLinear.add,
               title: 'You\'ve got a message!',
               content:
                   'Greetings! You are special to someone and don\'t give up!',

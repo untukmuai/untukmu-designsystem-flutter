@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
+
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 enum NotificationSize { xsmall, small, large }
@@ -78,7 +79,7 @@ class CustomNotificationWidget extends StatelessWidget {
             ),
             const SizedBox(width: DLSSizing.s3xSmall),
             Icon(
-              Iconsax.close_square,
+              IconsaxPlusLinear.close_square,
               size: iconSize,
               color: suffixIconColor,
             )
@@ -111,7 +112,7 @@ class CustomNotificationWidget extends StatelessWidget {
               ),
               const SizedBox(width: DLSSizing.s3xSmall),
               Icon(
-                Iconsax.close_square,
+                IconsaxPlusLinear.close_square,
                 size: iconSize,
                 color: suffixIconColor,
               )
@@ -239,15 +240,15 @@ class CustomNotificationWidget extends StatelessWidget {
   IconData get icons {
     switch (type) {
       case NotificationType.error:
-        return Iconsax.info_circle;
+        return IconsaxPlusLinear.info_circle;
       case NotificationType.warning:
-        return Iconsax.danger;
+        return IconsaxPlusLinear.danger;
       case NotificationType.success:
-        return Iconsax.tick_circle;
+        return IconsaxPlusLinear.tick_circle;
       case NotificationType.info:
-        return Iconsax.info_circle;
+        return IconsaxPlusLinear.info_circle;
       default:
-        return Iconsax.magic_star;
+        return IconsaxPlusLinear.magic_star;
     }
   }
 

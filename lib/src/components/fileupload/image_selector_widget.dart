@@ -1,7 +1,8 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
+
 import 'dart:io';
 
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
@@ -56,7 +57,7 @@ class ImageSelectorWidgetState extends State<ImageSelectorWidget> {
           width: size,
           height: size,
           child: Center(
-            child: Icon(Iconsax.gallery_add,
+            child: Icon(IconsaxPlusLinear.gallery_add,
                 color: widget.isDisabled
                     ? DLSColors.strokeSub300
                     : DLSColors.primaryBase,
