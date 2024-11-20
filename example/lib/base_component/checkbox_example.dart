@@ -60,7 +60,29 @@ class CheckboxExamplePageState extends State<CheckboxExamplePage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const CustomCheckboxLabelWidget(
+              label: 'Test Radio',
+              sublabel: 'Testing',
+              description: 'Hi, this is only for testing.',
+              badgetLabel: 'TEST',
+              linkButtonLabel: 'GO',
+            ),
+            const CustomCheckboxLabelWidget(
+              label: 'Test Radio',
+              widthConstraint: 280,
+              checkboxPosition: CheckboxPosition.end,
+            ),
+            const CustomCheckboxLabelWidget(
+              label: 'Test Radio',
+              isDisabled: true,
+            ),
+            const CustomCheckboxLabelWidget(
+              label: 'Test Radio',
+              isDisabled: true,
+              checkboxActiveState: CheckboxActiveState.checked,
+            ),
             ContentCardWidget(
               label: 'Checkbox 1',
               subLabel: 'Sub 1',

@@ -10,6 +10,7 @@ export 'src/components/avatar/avatar.dart';
 export 'src/components/breadcrumb/breadcrumb.dart';
 export 'src/components/badge_widget.dart';
 export 'src/components/button/button.dart';
+export 'src/components/checkbox/custom_checkbox_label_widget.dart';
 export 'src/components/notification_widget.dart';
 export 'src/components/keycomponent/content_card_widget.dart';
 export 'src/components/keycomponent/content_label_widget.dart';
