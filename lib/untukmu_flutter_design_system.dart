@@ -25,6 +25,7 @@ export 'src/components/tag/custom_tag_widget.dart';
 export 'src/components/banner_widget.dart';
 export 'src/components/pagination/pagination.dart';
 export 'src/components/pagination/model/config.dart';
+export 'src/components/radio/custom_radio_label_widget.dart';
 export 'src/components/switch/custom_switch_widget.dart';
 export 'src/components/fileupload/area/file_upload_area_widget.dart';
 export 'src/components/fileupload/image_upload_widget.dart';

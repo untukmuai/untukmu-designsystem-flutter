@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
 
 class DLSShadow {
+  static const BoxShadow radioShadow = BoxShadow(
+    blurRadius: 2,
+    offset: Offset(0, 2),
+    spreadRadius: 0,
+    color: Color(0x1B1C1D1F),
+  );
+
+  static const BoxShadow radioDotActive = BoxShadow(
+    blurRadius: 3,
+    offset: Offset(0, -2),
+    spreadRadius: 0,
+    color: Color(0x1BCFD1D3),
+  );
+
   static final BoxShadow xSmallShadow = BoxShadow(
     offset: const Offset(0, 1),
     blurRadius: 2,

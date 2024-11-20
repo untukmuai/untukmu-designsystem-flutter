@@ -7,7 +7,7 @@ import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart
 enum LabelDirection { vertical, horizontal }
 
 class CustomTextAreaWidget extends StatefulWidget {
-  final String label;
+  final String? label;
   final String hintText;
   final bool isEditable;
   final bool isInvalid;
@@ -19,7 +19,7 @@ class CustomTextAreaWidget extends StatefulWidget {
 
   const CustomTextAreaWidget({
     super.key,
-    required this.label,
+    this.label,
     required this.hintText,
     this.isEditable = true,
     this.isInvalid = false,
@@ -69,14 +69,19 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
       children: [
         Row(
           children: [
-            LabelWidget(label: widget.label),
+            if (widget.label != null) LabelWidget(label: widget.label!),
             if (widget.showOptionalLabel) const SizedBox(width: 4),
             if (widget.showOptionalLabel)
               const LabelWidget(
                   label: "Optional", labelType: LabelType.optional),
           ],
         ),
-        const SizedBox(height: 8),
+        SizedBox(
+            height: widget.label != null &&
+                    widget.showOptionalLabel &&
+                    widget.showOptionalLabel
+                ? 8
+                : 0),
         _buildTextField(),
         const SizedBox(height: 4),
         if (widget.hintTextMessage != null)
@@ -98,7 +103,7 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
             children: [
               Row(
                 children: [
-                  LabelWidget(label: widget.label),
+                  if (widget.label != null) LabelWidget(label: widget.label!),
                   if (widget.showOptionalLabel) const SizedBox(width: 4),
                   if (widget.showOptionalLabel)
                     const LabelWidget(
