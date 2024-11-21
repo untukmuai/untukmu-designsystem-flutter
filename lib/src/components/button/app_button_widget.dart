@@ -21,7 +21,7 @@ class CustomButtonWidget extends StatelessWidget {
     this.strokeColor,
     this.prefixPadding,
     this.isLoading = false,
-    this.labelPadding,
+    this.contentPadding,
   });
 
   final String label;
@@ -48,7 +48,7 @@ class CustomButtonWidget extends StatelessWidget {
 
   final bool isLoading;
 
-  final double? labelPadding;
+  final EdgeInsets? contentPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -169,8 +169,8 @@ class CustomButtonWidget extends StatelessWidget {
   }
 
   EdgeInsetsGeometry get padding {
-    if (labelPadding != null) {
-      return EdgeInsets.symmetric(horizontal: labelPadding!);
+    if (contentPadding != null) {
+      return contentPadding!;
     }
 
     switch (size) {
