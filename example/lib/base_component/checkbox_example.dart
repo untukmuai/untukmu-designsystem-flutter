@@ -73,6 +73,7 @@ class CheckboxExamplePageState extends State<CheckboxExamplePage> {
               label: 'Test Radio',
               widthConstraint: 280,
               checkboxPosition: CheckboxPosition.end,
+              withInderteminate: false,
             ),
             const CustomCheckboxLabelWidget(
               label: 'Test Radio',

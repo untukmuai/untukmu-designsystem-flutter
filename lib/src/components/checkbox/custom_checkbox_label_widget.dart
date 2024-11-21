@@ -20,6 +20,8 @@ class CustomCheckboxLabelWidget extends StatefulWidget {
     this.checkboxPosition = CheckboxPosition.start,
     this.widthConstraint = double.infinity,
     this.checkboxActiveState = CheckboxActiveState.unchecked,
+    this.withInderteminate = true,
+    this.onChanged,
   });
 
   final double size;
@@ -36,6 +38,9 @@ class CustomCheckboxLabelWidget extends StatefulWidget {
   final CheckboxPosition checkboxPosition;
 
   final double widthConstraint;
+  final bool withInderteminate;
+
+  final ValueChanged<CheckboxActiveState>? onChanged;
 
   @override
   State<CustomCheckboxLabelWidget> createState() =>
@@ -167,10 +172,15 @@ class _CustomCheckboxLabelWidgetState extends State<CustomCheckboxLabelWidget> {
         borderRadius: BorderRadius.circular(4),
         onTap: widget.isDisabled
             ? null
-            : () => setState(() {
+            : () {
+                setState(() {
                   switch (state) {
                     case CheckboxActiveState.checked:
-                      state = CheckboxActiveState.indeterminate;
+                      if (widget.withInderteminate) {
+                        state = CheckboxActiveState.indeterminate;
+                      } else {
+                        state = CheckboxActiveState.unchecked;
+                      }
                       break;
                     case CheckboxActiveState.indeterminate:
                       state = CheckboxActiveState.unchecked;
@@ -179,7 +189,12 @@ class _CustomCheckboxLabelWidgetState extends State<CustomCheckboxLabelWidget> {
                       state = CheckboxActiveState.checked;
                       break;
                   }
-                }),
+                });
+
+                if (widget.onChanged != null) {
+                  widget.onChanged!(state);
+                }
+              },
         child: _buildCheckboxState(),
       ),
     );
@@ -199,7 +214,8 @@ class _CustomCheckboxLabelWidgetState extends State<CustomCheckboxLabelWidget> {
         icon = null;
     }
 
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
       width: widget.size,
       height: widget.size,
       decoration: BoxDecoration(
