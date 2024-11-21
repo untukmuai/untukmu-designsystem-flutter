@@ -56,7 +56,7 @@ class CustomBadgeWidget extends StatelessWidget {
           expandedWidget(
             Text(
               title,
-              style: DLSTextStyle.labelXSmall.copyWith(color: labelColor),
+              style: DLSTextStyle.labelMedium.copyWith(color: labelColor),
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -77,7 +77,7 @@ class CustomBadgeWidget extends StatelessWidget {
   }
 
   EdgeInsetsGeometry get padding => EdgeInsets.symmetric(
-      horizontal: 8, vertical: size == CustomBadgeSize.small ? 1 : 4);
+      horizontal: 12, vertical: size == CustomBadgeSize.small ? 1 : 4);
 
   BorderRadius get radius =>
       size == CustomBadgeSize.small ? DLSRadius.radius4 : DLSRadius.radius8;

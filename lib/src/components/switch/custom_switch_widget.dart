@@ -9,6 +9,7 @@ class CustomSwitchWidget extends StatefulWidget {
     this.label = '',
     this.isMandatory = false,
     this.isOptional = false,
+    this.minWidth,
   });
 
   final List<String> items;
@@ -17,6 +18,8 @@ class CustomSwitchWidget extends StatefulWidget {
   final String label;
   final bool isMandatory;
   final bool isOptional;
+
+  final double? minWidth;
 
   @override
   State<CustomSwitchWidget> createState() => _CustomSwitchWidgetState();
@@ -70,6 +73,7 @@ class _CustomSwitchWidgetState extends State<CustomSwitchWidget> {
                   });
                 },
                 child: Container(
+                  constraints: BoxConstraints(minWidth: widget.minWidth ?? 0),
                   margin: EdgeInsets.only(
                       right: index != (widget.items.length - 1) ? 4 : 0),
                   padding:
@@ -94,12 +98,14 @@ class _CustomSwitchWidgetState extends State<CustomSwitchWidget> {
                           ]
                         : null,
                   ),
-                  child: Text(
-                    widget.items[index],
-                    style: DLSTextStyle.labelMedium.copyWith(
-                        color: selectedIndex == index
-                            ? DLSColors.textMain900
-                            : DLSColors.textSoft400),
+                  child: Center(
+                    child: Text(
+                      widget.items[index],
+                      style: DLSTextStyle.labelMedium.copyWith(
+                          color: selectedIndex == index
+                              ? DLSColors.textMain900
+                              : DLSColors.textSoft400),
+                    ),
                   ),
                 ),
               ),
