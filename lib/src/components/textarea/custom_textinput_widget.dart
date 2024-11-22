@@ -27,6 +27,7 @@ class CustomTextInputWidget extends StatefulWidget {
   final bool isEditable;
   final bool isInvalid;
   final bool showOptionalLabel;
+  final bool showOptionalWithoutIconLabel;
   final String? errorMessage;
   final TextEditingController controller;
   final LabelDirection labelDirection;
@@ -61,6 +62,7 @@ class CustomTextInputWidget extends StatefulWidget {
     required this.controller,
     this.labelDirection = LabelDirection.vertical,
     this.showOptionalLabel = false,
+    this.showOptionalWithoutIconLabel = false,
     this.hintTextMessage,
     this.inputMode = InputMode.text,
     this.dateFormat = 'DD/MM/YYYY',
@@ -651,10 +653,16 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
               Row(
                 children: [
                   LabelWidget(label: widget.label!),
-                  if (widget.showOptionalLabel) const SizedBox(width: 4),
-                  if (widget.showOptionalLabel)
-                    const LabelWidget(
-                        label: "Optional", labelType: LabelType.optional),
+                  if (widget.showOptionalLabel ||
+                      widget.showOptionalWithoutIconLabel)
+                    const SizedBox(width: 4),
+                  if (widget.showOptionalLabel ||
+                      widget.showOptionalWithoutIconLabel)
+                    LabelWidget(
+                        label: "Optional",
+                        labelType: widget.showOptionalLabel
+                            ? LabelType.optional
+                            : LabelType.optionalWithouIcon),
                 ],
               ),
               if (widget.enableClear)
@@ -690,10 +698,16 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
                 Row(
                   children: [
                     LabelWidget(label: widget.label!),
-                    if (widget.showOptionalLabel) const SizedBox(width: 4),
-                    if (widget.showOptionalLabel)
-                      const LabelWidget(
-                          label: "Optional", labelType: LabelType.optional),
+                    if (widget.showOptionalLabel ||
+                        widget.showOptionalWithoutIconLabel)
+                      const SizedBox(width: 4),
+                    if (widget.showOptionalLabel ||
+                        widget.showOptionalWithoutIconLabel)
+                      LabelWidget(
+                          label: "Optional",
+                          labelType: widget.showOptionalLabel
+                              ? LabelType.optional
+                              : LabelType.optionalWithouIcon),
                   ],
                 ),
               const SizedBox(height: 16),
