@@ -48,9 +48,8 @@ class _CustomRadioLabelWidgetState extends State<CustomRadioLabelWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: widget.widthConstraint,
-      padding: const EdgeInsets.all(8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
