@@ -22,6 +22,7 @@ class CustomButtonWidget extends StatelessWidget {
     this.prefixPadding,
     this.isLoading = false,
     this.contentPadding,
+    this.labelTextStyle,
   });
 
   final String label;
@@ -49,6 +50,7 @@ class CustomButtonWidget extends StatelessWidget {
   final bool isLoading;
 
   final EdgeInsets? contentPadding;
+  final TextStyle? labelTextStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -293,6 +295,10 @@ class CustomButtonWidget extends StatelessWidget {
   }
 
   TextStyle get textStyle {
+    if (labelTextStyle != null) {
+      return labelTextStyle!;
+    }
+
     switch (size) {
       case CustomButtonSize.xSmall:
         return DLSTextStyle.labelXSmall;
