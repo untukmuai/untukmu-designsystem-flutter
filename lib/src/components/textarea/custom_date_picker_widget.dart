@@ -23,6 +23,7 @@ class CustomDateInputWidget extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final Function(String)? onChanged;
   final bool readOnly;
+  final VoidCallback? onTap;
 
   const CustomDateInputWidget({
     super.key,
@@ -43,6 +44,7 @@ class CustomDateInputWidget extends StatefulWidget {
     this.inputFormatters,
     this.onChanged,
     this.readOnly = false,
+    this.onTap,
   });
 
   @override
@@ -108,7 +110,7 @@ class CustomDateInputWidgetState extends State<CustomDateInputWidget> {
     Widget? suffixWidget = widget.suffixWidget ?? _buildSuffixWidget();
 
     return TextField(
-      onTap: widget.readOnly ? null : _showDatePicker,
+      onTap: widget.readOnly ? null : widget.onTap ?? _showDatePicker,
       readOnly: true,
       controller: widget.controller,
       focusNode: _focusNode,
