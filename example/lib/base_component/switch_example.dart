@@ -13,16 +13,22 @@ class _SwitchExampleState extends State<SwitchExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: const Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomSwitchWidget(
             label: 'Menu',
-            items: ['Label 1', 'Label 2'],
+            items: [
+              CustomSwitchModel(title: 'Label 1'),
+              CustomSwitchModel(title: 'Label 2', hasNotification: true),
+            ],
           ),
           CustomSwitchWidget(
-            items: ['Label 1', 'Label 2'],
+            items: [
+              CustomSwitchModel(title: 'Label 1'),
+              CustomSwitchModel(title: 'Label 2', hasNotification: true),
+            ],
           ),
         ],
       ),

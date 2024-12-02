@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
+part 'models/custom_switch_model.dart';
+
 class CustomSwitchWidget extends StatefulWidget {
   const CustomSwitchWidget({
     super.key,
@@ -12,7 +14,7 @@ class CustomSwitchWidget extends StatefulWidget {
     this.minWidth,
   });
 
-  final List<String> items;
+  final List<CustomSwitchModel> items;
   final Function(int index)? onSwitchChanged;
 
   final String label;
@@ -98,14 +100,25 @@ class _CustomSwitchWidgetState extends State<CustomSwitchWidget> {
                           ]
                         : null,
                   ),
-                  child: Center(
-                    child: Text(
-                      widget.items[index],
-                      style: DLSTextStyle.labelMedium.copyWith(
+                  child: Row(
+                    children: [
+                      Text(
+                        widget.items[index].title,
+                        style: DLSTextStyle.labelMedium.copyWith(
                           color: selectedIndex == index
                               ? DLSColors.textMain900
-                              : DLSColors.textSoft400),
-                    ),
+                              : DLSColors.textSoft400,
+                        ),
+                      ),
+                      if (widget.items[index].hasNotification)
+                        const SizedBox(width: DLSSizing.s3xSmall),
+                      if (widget.items[index].hasNotification)
+                        const Icon(
+                          Icons.brightness_1,
+                          size: 8,
+                          color: DLSColors.redBase,
+                        )
+                    ],
                   ),
                 ),
               ),
