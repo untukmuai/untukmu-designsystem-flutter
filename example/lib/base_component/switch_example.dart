@@ -19,6 +19,7 @@ class _SwitchExampleState extends State<SwitchExample> {
         children: [
           CustomSwitchWidget(
             label: 'Menu',
+            minWidth: 150,
             items: [
               CustomSwitchModel(title: 'Label 1'),
               CustomSwitchModel(title: 'Label 2', hasNotification: true),

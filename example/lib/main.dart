@@ -8,6 +8,7 @@ import 'package:example/base_component/file_upload_example.dart';
 import 'package:example/base_component/key_component_example.dart';
 import 'package:example/base_component/pagination_example.dart';
 import 'package:example/base_component/radio_example.dart';
+import 'package:example/base_component/switch_example.dart';
 import 'package:example/base_component/tag_example.dart';
 import 'package:example/base_component/text_area_example.dart';
 import 'package:example/base_component/text_input_example.dart';
@@ -65,6 +66,7 @@ class HomePage extends StatelessWidget {
       },
       {'title': 'Pagination Example', 'page': const PaginationExamplePage()},
       {'title': 'Radio Example', 'page': const RadioExamplePage()},
+      {'title': 'Switch Example', 'page': const SwitchExample()},
       {'title': 'Tag Example', 'page': const TagExamplePage()},
       {'title': 'Text Area Example', 'page': const TextAreaExample()},
       {'title': 'Text Input Example', 'page': const TextInputExample()},

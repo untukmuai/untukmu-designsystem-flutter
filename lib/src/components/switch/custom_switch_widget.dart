@@ -101,6 +101,7 @@ class _CustomSwitchWidgetState extends State<CustomSwitchWidget> {
                         : null,
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         widget.items[index].title,
