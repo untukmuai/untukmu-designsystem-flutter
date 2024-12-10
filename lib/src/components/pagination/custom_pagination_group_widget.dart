@@ -45,6 +45,10 @@ class _CustomPaginationGroupWidgetState
       numberPages: widget.maxPages,
       initialPage: currentPage,
       onPageChange: (page) {
+        if (widget.onTap != null) {          
+          widget.onTap!(page);
+        }
+
         setState(() {
           currentPage = page;
         });
