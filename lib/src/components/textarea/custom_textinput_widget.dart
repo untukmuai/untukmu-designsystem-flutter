@@ -51,6 +51,7 @@ class CustomTextInputWidget extends StatefulWidget {
   final List<String>? listTag;
   final bool enableAddNew;
   final void Function(List<String>)? onTagsChanged;
+  final ValueChanged<String>? onSubmitted;
 
   const CustomTextInputWidget({
     super.key,
@@ -81,6 +82,7 @@ class CustomTextInputWidget extends StatefulWidget {
     this.onTagsChanged,
     this.onChanged,
     this.readOnly = false,
+    this.onSubmitted,
   });
 
   @override
@@ -629,6 +631,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
                 ? null
                 : SizedBox(height: 24, child: suffixWidget),
           ),
+          onSubmitted: widget.onSubmitted,
         ),
         if (widget.inputMode == InputMode.tag) _buildTagWidget()
       ],

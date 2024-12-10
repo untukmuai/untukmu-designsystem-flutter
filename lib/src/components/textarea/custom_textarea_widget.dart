@@ -16,6 +16,7 @@ class CustomTextAreaWidget extends StatefulWidget {
   final LabelDirection labelDirection;
   final bool showOptionalLabel;
   final String? hintTextMessage;
+  final ValueChanged<String>? onSubmitted;
 
   const CustomTextAreaWidget({
     super.key,
@@ -28,6 +29,7 @@ class CustomTextAreaWidget extends StatefulWidget {
     this.labelDirection = LabelDirection.vertical,
     this.showOptionalLabel = false,
     this.hintTextMessage,
+    this.onSubmitted,
   });
 
   @override
@@ -193,6 +195,7 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
               ),
             ),
           ),
+          onSubmitted: widget.onSubmitted,
         ),
         Obx(
           () => Padding(
