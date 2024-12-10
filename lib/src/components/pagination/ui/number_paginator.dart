@@ -108,9 +108,13 @@ class NumberPaginatorState extends State<NumberPaginator> {
 
     _controller = widget.controller ?? NumberPaginatorController();
     _controller.currentPage = widget.initialPage;
-    _controller.addListener(() {
-      widget.onPageChange?.call(_controller.currentPage);
-    });
+  }
+
+  void _handlePageChange(int page) {
+    if (widget.onPageChange != null && page != _controller.currentPage) {
+      widget.onPageChange!(page);
+    }
+    _controller.currentPage = page;
   }
 
   @override
@@ -121,7 +125,7 @@ class NumberPaginatorState extends State<NumberPaginator> {
     return InheritedNumberPaginator(
       numberPages: widget.numberPages,
       initialPage: widget.initialPage,
-      onPageChange: _controller.navigateToPage,
+      onPageChange: _handlePageChange,
       config: widget.config,
       child: SizedBox(
         width: width,
@@ -132,28 +136,30 @@ class NumberPaginatorState extends State<NumberPaginator> {
             pageIndicator(isCollapsed: isCollapsed),
             CustomPaginationWidget(
               onTap: _controller.currentPage > 0
-                  ? () => _controller.navigateToPage(0)
+                  ? () => _handlePageChange(0)
                   : null,
               icon: widget.firstPageButtonIcon,
               iconSize: 16,
               isArrow: true,
             ),
             CustomPaginationWidget(
-              onTap: _controller.currentPage > 0 ? _controller.prev : null,
+              onTap: _controller.currentPage > 0 
+                  ? () => _handlePageChange(_controller.currentPage - 1)
+                  : null,
               icon: widget.prevButtonIcon,
               isArrow: true,
             ),
             _buildCenterContent(),
             CustomPaginationWidget(
               onTap: _controller.currentPage < widget.numberPages - 1
-                  ? _controller.next
+                  ? () => _handlePageChange(_controller.currentPage + 1)
                   : null,
               icon: widget.nextButtonIcon,
               isArrow: true,
             ),
             CustomPaginationWidget(
               onTap: _controller.currentPage < widget.numberPages - 1
-                  ? () => _controller.navigateToPage(widget.numberPages - 1)
+                  ? () => _handlePageChange(widget.numberPages - 1)
                   : null,
               icon: widget.lastPageButtonIcon,
               iconSize: 16,
@@ -208,7 +214,7 @@ class NumberPaginatorState extends State<NumberPaginator> {
       fillColor: DLSColors.bgWhite0,
       onChanged: (value) {
         if (value != null) {
-          _controller.navigateToPage(int.parse(value) - 1);
+          _handlePageChange(int.parse(value) - 1);
         }
       },
     );
