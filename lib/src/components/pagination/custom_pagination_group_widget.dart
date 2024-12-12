@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:untukmu_flutter_design_system/src/components/pagination/model/config.dart';
 import 'package:untukmu_flutter_design_system/src/components/pagination/ui/number_paginator.dart';
+import 'package:untukmu_flutter_design_system/src/components/pagination/ui/number_paginator_controller.dart';
 
 class CustomPaginationGroupWidget extends StatefulWidget {
   const CustomPaginationGroupWidget({
     super.key,
+    this.controller,
     this.config = const NumberPaginatorUIConfig(),
     required this.maxPages,
     this.currentPage,
@@ -14,6 +16,7 @@ class CustomPaginationGroupWidget extends StatefulWidget {
   });
 
   final NumberPaginatorUIConfig config;
+  final NumberPaginatorController? controller;
 
   final Function(int index)? onTap;
   final int activePage;
@@ -40,12 +43,13 @@ class _CustomPaginationGroupWidgetState
   @override
   Widget build(BuildContext context) {
     return NumberPaginator(
+      controller: widget.controller,
       config: widget.config,
       widthConstraint: widget.widthConstraint,
       numberPages: widget.maxPages,
       initialPage: currentPage,
       onPageChange: (page) {
-        if (widget.onTap != null) {          
+        if (widget.onTap != null) {
           widget.onTap!(page);
         }
 
