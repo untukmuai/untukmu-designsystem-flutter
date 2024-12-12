@@ -5,6 +5,7 @@ import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart
 enum DropdownLabelDirection { vertical, horizontal }
 
 class CustomDropdownWidget extends StatefulWidget {
+  final CustomDropdownData? selectedItem;
   final String? label;
   final String hintText;
   final bool isEditable;
@@ -21,6 +22,7 @@ class CustomDropdownWidget extends StatefulWidget {
 
   const CustomDropdownWidget({
     super.key,
+    this.selectedItem,
     this.label,
     required this.hintText,
     this.isEditable = true,
@@ -108,6 +110,7 @@ class CustomDropdownWidgetState extends State<CustomDropdownWidget> {
 
   Widget _buildDropdown() {
     return DropdownButtonFormField<CustomDropdownData?>(
+      value: widget.selectedItem,
       isExpanded: true,
       items: widget.items.map(
         (e) {

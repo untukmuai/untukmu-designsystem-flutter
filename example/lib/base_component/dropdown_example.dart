@@ -11,6 +11,8 @@ class DropdownExample extends StatefulWidget {
 class _DropdownExampleState extends State<DropdownExample> {
   @override
   Widget build(BuildContext context) {
+    final data = CustomDropdownData(code: '1', name: 'USD');
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dropdown Example'),
@@ -81,9 +83,10 @@ class _DropdownExampleState extends State<DropdownExample> {
             ),
             const SizedBox(height: DLSSizing.s3xSmall),
             CustomDropdownWidget(
+              selectedItem: data,
               onChanged: (value) => debugPrint(value?.code),
               items: [
-                CustomDropdownData(code: '1', name: 'USD'),
+                data,
                 CustomDropdownData(code: '2', name: 'IDR'),
               ],
               label: 'Currency',
