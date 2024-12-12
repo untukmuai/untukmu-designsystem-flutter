@@ -15,9 +15,9 @@ class CustomDropdownWidget extends StatefulWidget {
   final bool readOnly;
 
   final Widget? prefixIcon;
-  final List<String> items;
+  final List<CustomDropdownData> items;
 
-  final ValueChanged<String?>? onChanged;
+  final ValueChanged<CustomDropdownData?>? onChanged;
 
   const CustomDropdownWidget({
     super.key,
@@ -107,11 +107,11 @@ class CustomDropdownWidgetState extends State<CustomDropdownWidget> {
   }
 
   Widget _buildDropdown() {
-    return DropdownButtonFormField<String?>(
+    return DropdownButtonFormField<CustomDropdownData?>(
       isExpanded: true,
       items: widget.items.map(
         (e) {
-          return DropdownMenuItem(value: e, child: Text(e));
+          return DropdownMenuItem(value: e, child: Text(e.name));
         },
       ).toList(),
       hint: Text(
@@ -161,4 +161,14 @@ class CustomDropdownWidgetState extends State<CustomDropdownWidget> {
   InputBorder get border => OutlineInputBorder(
       borderRadius: DLSRadius.radius12,
       borderSide: const BorderSide(color: DLSColors.strokeSoft200));
+}
+
+class CustomDropdownData {
+  final String code;
+  final String name;
+
+  CustomDropdownData({
+    required this.code,
+    required this.name,
+  });
 }

@@ -509,14 +509,14 @@ class SecondWidget extends StatelessWidget {
                           color: DLSColors.bgWeak100),
                       child: Row(
                         children: [
-                          const Flexible(
+                          Flexible(
                             flex: 1,
                             child: CustomDropdownWidget(
                               label: 'Dikirim ke',
                               hintText: 'Pilih Alamat',
                               items: [
-                                'Rumah Feriyal',
-                                'Kantor',
+                                CustomDropdownData(code: '1', name: 'Rumah'),
+                                CustomDropdownData(code: '2', name: 'Kantor'),
                               ],
                             ),
                           ),
