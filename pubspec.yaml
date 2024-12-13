@@ -1,6 +1,6 @@
 name: untukmu_flutter_design_system
 description: "Untukmu AI Design System"
-version: 0.0.1
+version: 0.0.2
 homepage: https://untukmu.ai
 
 environment:
@@ -32,7 +32,6 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
-
 #   - images/a_dot_burr.jpeg
 #   - images/a_dot_ham.jpeg
 #
