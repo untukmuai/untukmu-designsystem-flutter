@@ -4,6 +4,8 @@ import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart
 
 enum CompactDropdownType { icon, text }
 
+enum CompactDropdownSize { medium, large }
+
 class CompactDropdownWidget extends StatefulWidget {
   const CompactDropdownWidget({
     super.key,
@@ -17,9 +19,14 @@ class CompactDropdownWidget extends StatefulWidget {
     this.iconSize = 20,
     this.suffixIcon,
     this.type = CompactDropdownType.text,
+    this.size = CompactDropdownSize.medium,
+    this.valueAlignment = Alignment.centerLeft,
+    this.selectedValue,
+    this.suffix,
   });
 
   final CompactDropdownType type;
+  final CompactDropdownSize size;
 
   final bool enabled;
   final bool filled;
@@ -29,10 +36,14 @@ class CompactDropdownWidget extends StatefulWidget {
   final double iconSize;
   final Widget? suffixIcon;
 
+  final String? selectedValue;
   final String? hintText;
   final List<String> items;
+  final AlignmentGeometry valueAlignment;
 
   final ValueChanged<String?>? onChanged;
+
+  final String? suffix;
 
   @override
   State<CompactDropdownWidget> createState() => _CompactDropdownWidgetState();
@@ -43,11 +54,13 @@ class _CompactDropdownWidgetState extends State<CompactDropdownWidget> {
 
   @override
   Widget build(BuildContext context) {
+    selectedValue = widget.selectedValue;
+
+    bool isLarge = widget.size == CompactDropdownSize.large;
     bool isTextType = widget.type == CompactDropdownType.text;
 
     return Container(
-      padding: const EdgeInsets.symmetric(
-          horizontal: DLSSizing.s3xSmall, vertical: DLSSizing.s4xSmall),
+      padding: const EdgeInsets.all(DLSSizing.s3xSmall),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: DLSRadius.radius12,
@@ -66,13 +79,17 @@ class _CompactDropdownWidgetState extends State<CompactDropdownWidget> {
                 ),
           DropdownButtonHideUnderline(
             child: DropdownButton<String>(
+              dropdownColor: DLSColors.bgWhite0,
               value: selectedValue,
               isDense: true,
+              alignment: widget.valueAlignment,
               padding: EdgeInsets.only(
-                left: isTextType ? 0 : widget.iconSize + DLSSizing.s4xSmall,
-                right: DLSSizing.s5xSmall,
-                top: DLSSizing.s3xSmall,
-                bottom: DLSSizing.s3xSmall,
+                left: isTextType
+                    ? DLSSizing.s4xSmall
+                    : widget.iconSize + DLSSizing.s4xSmall,
+                right: 0,
+                top: isLarge ? DLSSizing.s3xSmall : 0,
+                bottom: isLarge ? DLSSizing.s3xSmall : 0,
               ),
               style: DLSTextStyle.labelMedium.copyWith(color: textColor),
               hint: Text(
@@ -91,7 +108,7 @@ class _CompactDropdownWidgetState extends State<CompactDropdownWidget> {
               items: widget.items
                   .map((e) => DropdownMenuItem(
                       value: e,
-                      child: Text(e,
+                      child: Text(valueBuilder(e),
                           style: DLSTextStyle.labelMedium
                               .copyWith(color: textColor))))
                   .toList(),
@@ -111,6 +128,14 @@ class _CompactDropdownWidgetState extends State<CompactDropdownWidget> {
         ],
       ),
     );
+  }
+
+  String valueBuilder(String value) {
+    if (widget.suffix != null) {
+      return '$value ${widget.suffix}';
+    }
+
+    return value;
   }
 
   Color? get backgroundColor {

@@ -16,11 +16,11 @@ class _BadgeExamplePageState extends State<BadgeExamplePage> {
       appBar: AppBar(
         title: const Text('Badge'),
       ),
-      body: const SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Row(
+            const Row(
               children: [
                 CustomBadgeWidget(
                   style: CustomBadgeStyle.light,
@@ -47,8 +47,8 @@ class _BadgeExamplePageState extends State<BadgeExamplePage> {
                 ),
               ],
             ),
-            SizedBox(height: 16),
-            Row(
+            const SizedBox(height: 16),
+            const Row(
               children: [
                 CustomBadgeWidget(
                   style: CustomBadgeStyle.light,
@@ -88,6 +88,26 @@ class _BadgeExamplePageState extends State<BadgeExamplePage> {
                   backgroundColor: DLSColors.pacificBlueLight,
                   textColor: DLSColors.pacificBlueDarker,
                   disabled: true,
+                ),
+              ],
+            ),
+            const Divider(),
+            Row(
+              children: [
+                StatusBadgeWidget(
+                  style: StatusBadgeStyle.stroke,
+                  prefixWidget: CircleAvatar(
+                    radius: 12,
+                    backgroundColor: DLSColors.primaryBase,
+                    child: Text(
+                      '1',
+                      style: DLSTextStyle.labelSmall
+                          .copyWith(color: DLSColors.textWhite0),
+                    ),
+                  ),
+                  title: 'Active Notifications',
+                  textColor: DLSColors.textSub500,
+                  strokeColor: DLSColors.strokeSoft200,
                 ),
               ],
             ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
-enum LabelType { normal, mandatory, optional }
+enum LabelType { normal, mandatory, optional, optionalWithouIcon }
 
 class LabelWidget extends StatelessWidget {
   final String label;
@@ -42,7 +42,8 @@ class LabelWidget extends StatelessWidget {
           ),
         ),
       );
-    } else if (labelType == LabelType.optional) {
+    } else if (labelType == LabelType.optional ||
+        labelType == LabelType.optionalWithouIcon) {
       return Row(
         children: [
           Text(
@@ -52,9 +53,12 @@ class LabelWidget extends StatelessWidget {
                   isDisabled ? DLSColors.textDisabled300 : DLSColors.textSub500,
             ),
           ),
-          const Icon(
-            Icons.info,
-            color: DLSColors.iconDisabled300,
+          Visibility(
+            visible: labelType == LabelType.optional,
+            child: const Icon(
+              Icons.info,
+              color: DLSColors.iconDisabled300,
+            ),
           ),
         ],
       );

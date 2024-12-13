@@ -39,6 +39,7 @@ class _InlineDropdownWidgetState extends State<InlineDropdownWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.only(left: DLSSizing.s3xSmall),
       color: backgroundColor,
       child: Stack(
         alignment: Alignment.centerLeft,

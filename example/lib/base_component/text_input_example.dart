@@ -26,6 +26,18 @@ class _TextInputExampleState extends State<TextInputExample> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 16),
+              CustomDateInputWidget(
+                controller: controller,
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => const AlertDialog(
+                      title: Text('TEST'),
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
               CustomTextInputWidget(
                   showOptionalLabel: true,
                   controller: controller,

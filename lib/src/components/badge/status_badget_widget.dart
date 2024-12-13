@@ -3,36 +3,34 @@ import 'package:untukmu_flutter_design_system/src/common/radius.dart';
 import 'package:untukmu_flutter_design_system/src/styles/colors.dart';
 import 'package:untukmu_flutter_design_system/src/styles/text_styles.dart';
 
-enum CustomBadgeSize { small, medium }
+enum StatusBadgeStyle { light, filled, stroke }
 
-enum CustomBadgeStyle { light, filled, stroke }
-
-class CustomBadgeWidget extends StatelessWidget {
-  const CustomBadgeWidget({
+class StatusBadgeWidget extends StatelessWidget {
+  const StatusBadgeWidget({
     super.key,
-    this.size = CustomBadgeSize.small,
-    this.prefixIcon,
+    this.prefixWidget,
     this.title = 'Badge',
-    this.suffixIcon,
-    this.style = CustomBadgeStyle.light,
+    this.suffixWidget,
+    this.style = StatusBadgeStyle.light,
     this.strokeColor = DLSColors.textMain900,
     this.backgroundColor = DLSColors.textMain900,
     this.textColor = DLSColors.bgWhite0,
     this.disabled = false,
+    this.isExpanded = false,
   });
 
-  final CustomBadgeSize size;
-  final CustomBadgeStyle style;
+  final StatusBadgeStyle style;
 
-  final Icon? prefixIcon;
+  final Widget? prefixWidget;
   final String title;
-  final Icon? suffixIcon;
+  final Widget? suffixWidget;
 
   final Color strokeColor;
   final Color backgroundColor;
   final Color textColor;
 
   final bool disabled;
+  final bool isExpanded;
 
   @override
   Widget build(BuildContext context) {
@@ -46,38 +44,48 @@ class CustomBadgeWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-              margin: EdgeInsets.only(right: prefixIcon == null ? 0 : 4),
-              child: icon(prefixIcon)),
-          Text(
-            title,
-            style: DLSTextStyle.labelXSmall.copyWith(color: labelColor),
+              margin: EdgeInsets.only(right: prefixWidget == null ? 0 : 4),
+              child: prefixWidget),
+          expandedWidget(
+            Text(
+              title,
+              style: DLSTextStyle.labelSmall.copyWith(color: labelColor),
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           Container(
-              margin: EdgeInsets.only(left: suffixIcon == null ? 0 : 4),
-              child: icon(suffixIcon)),
+              margin: EdgeInsets.only(left: suffixWidget == null ? 0 : 4),
+              child: suffixWidget),
         ],
       ),
     );
   }
 
-  EdgeInsetsGeometry get padding => EdgeInsets.symmetric(
-      horizontal: 8, vertical: size == CustomBadgeSize.small ? 1 : 3);
+  Widget expandedWidget(Widget child) {
+    if (isExpanded) {
+      return Expanded(child: child);
+    }
 
-  BorderRadius get radius =>
-      size == CustomBadgeSize.small ? DLSRadius.radius4 : DLSRadius.radius8;
+    return child;
+  }
+
+  EdgeInsetsGeometry get padding => const EdgeInsets.fromLTRB(4, 4, 8, 4);
+
+  BorderRadius get radius => DLSRadius.radius16;
 
   Color? get bgColor {
-    if (!disabled && style != CustomBadgeStyle.stroke) {
+    if (!disabled && style != StatusBadgeStyle.stroke) {
       return backgroundColor;
     }
 
-    return null;
+    return DLSColors.bgWhite0;
   }
 
   BoxBorder? get border {
-    if (!disabled && style == CustomBadgeStyle.stroke) {
+    if (!disabled && style == StatusBadgeStyle.stroke) {
       return Border.all(color: strokeColor);
     } else if (disabled) {
       return Border.all(color: DLSColors.strokeSoft200);
@@ -92,20 +100,5 @@ class CustomBadgeWidget extends StatelessWidget {
     }
 
     return textColor;
-  }
-
-  Widget icon(Icon? icon) {
-    if (icon == null) {
-      return const SizedBox();
-    }
-    if (!disabled) {
-      return icon;
-    }
-
-    return Icon(
-      icon.icon,
-      color: DLSColors.iconDisabled300,
-      size: icon.size,
-    );
   }
 }

@@ -3,6 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 class DLSTextStyle {
   // Display
+  static final TextStyle display0 = GoogleFonts.familjenGrotesk(
+    fontWeight: FontWeight.w400,
+    height: 120 / 100,
+    letterSpacing: -0.01,
+    fontSize: 100,
+  );
+
   static final TextStyle display1 = GoogleFonts.familjenGrotesk(
     fontWeight: FontWeight.w700,
     height: 64 / 56,

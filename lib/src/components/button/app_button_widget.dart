@@ -11,6 +11,8 @@ class CustomButtonWidget extends StatelessWidget {
     this.size = CustomButtonSize.medium,
     this.isIconMode = false,
     this.icon,
+    this.iconColor,
+    this.iconSize = 16,
     this.prefixIcon,
     this.suffixIcon,
     this.disabled = false,
@@ -18,6 +20,9 @@ class CustomButtonWidget extends StatelessWidget {
     this.labelColor,
     this.strokeColor,
     this.prefixPadding,
+    this.isLoading = false,
+    this.contentPadding,
+    this.labelTextStyle,
   });
 
   final String label;
@@ -28,7 +33,9 @@ class CustomButtonWidget extends StatelessWidget {
   final CustomButtonSize? size;
 
   final IconData? icon;
+  final Color? iconColor;
   final bool isIconMode;
+  final double iconSize;
 
   final double? prefixPadding;
   final IconData? prefixIcon;
@@ -40,6 +47,11 @@ class CustomButtonWidget extends StatelessWidget {
   final Color? labelColor;
   final Color? strokeColor;
 
+  final bool isLoading;
+
+  final EdgeInsets? contentPadding;
+  final TextStyle? labelTextStyle;
+
   @override
   Widget build(BuildContext context) {
     if (isIconMode) {
@@ -50,7 +62,7 @@ class CustomButtonWidget extends StatelessWidget {
           onPressed: disabled ? null : onPressed,
           icon: Icon(
             icon,
-            size: 16,
+            size: iconSize,
             color: textColor,
           ),
           style: TextButton.styleFrom(
@@ -64,44 +76,87 @@ class CustomButtonWidget extends StatelessWidget {
       }
     }
 
+    Widget widget;
+    if (isLoading) {
+      widget = const Center(
+          child: SizedBox(
+              height: 12,
+              width: 12,
+              child: CircularProgressIndicator(strokeWidth: 2)));
+    } else {
+      if (prefixIcon == null && suffixIcon == null) {
+        widget = Text(
+          label,
+          style: textStyle.copyWith(color: textColor),
+          textAlign: TextAlign.center,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        );
+      } else {
+        widget = Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            prefixIcon == null
+                ? const SizedBox()
+                : Padding(
+                    padding: prefixIconPadding,
+                    child: Icon(
+                      prefixIcon,
+                      size: 16,
+                      color: textColor,
+                    ),
+                  ),
+            Text(
+              label,
+              style: textStyle.copyWith(color: textColor),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            suffixIcon == null
+                ? const SizedBox()
+                : Padding(
+                    padding: suffixIconPadding,
+                    child: Icon(
+                      suffixIcon,
+                      size: 16,
+                      color: textColor,
+                    ),
+                  ),
+          ],
+        );
+      }
+    }
+
     return TextButton(
-      onPressed: disabled ? null : onPressed,
+      onPressed: isLoading
+          ? null
+          : disabled
+              ? null
+              : onPressed,
       style: TextButton.styleFrom(
         padding: padding,
         backgroundColor: backgroundColor,
         side: border,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        minimumSize: const Size(50, 30),
+        minimumSize: minimumSize,
       ),
-      child: Row(
-        children: [
-          prefixIcon == null
-              ? const SizedBox()
-              : Padding(
-                  padding: prefixIconPadding,
-                  child: Icon(
-                    prefixIcon,
-                    size: 16,
-                    color: textColor,
-                  ),
-                ),
-          Text(
-            label,
-            style: textStyle.copyWith(color: textColor),
-          ),
-          suffixIcon == null
-              ? const SizedBox()
-              : Padding(
-                  padding: suffixIconPadding,
-                  child: Icon(
-                    suffixIcon,
-                    size: 16,
-                    color: textColor,
-                  ),
-                ),
-        ],
-      ),
+      child: widget,
     );
+  }
+
+  Size get minimumSize {
+    switch (size) {
+      case CustomButtonSize.xSmall:
+        return const Size(50, 37);
+      case CustomButtonSize.small:
+        return const Size(50, 45);
+      case CustomButtonSize.medium:
+        return const Size(50, 47);
+      default:
+        return const Size(50, 50);
+    }
   }
 
   EdgeInsetsGeometry get iconPadding {
@@ -116,6 +171,10 @@ class CustomButtonWidget extends StatelessWidget {
   }
 
   EdgeInsetsGeometry get padding {
+    if (contentPadding != null) {
+      return contentPadding!;
+    }
+
     switch (size) {
       case CustomButtonSize.xSmall:
         return const EdgeInsets.symmetric(
@@ -154,7 +213,7 @@ class CustomButtonWidget extends StatelessWidget {
       return null;
     }
 
-    if (disabled || onPressed == null) {
+    if (isLoading || disabled || onPressed == null) {
       return DLSColors.bgWeak100;
     }
 
@@ -184,13 +243,17 @@ class CustomButtonWidget extends StatelessWidget {
             return DLSColors.redLighter;
         }
       default:
-        return DLSColors.bgWhite0;
+        return null;
     }
   }
 
   Color get textColor {
     if (disabled || onPressed == null) {
       return DLSColors.textDisabled300;
+    }
+
+    if (iconColor != null) {
+      return iconColor!;
     }
 
     if (labelColor != null && style != CustomButtonStyle.filled) {
@@ -210,7 +273,7 @@ class CustomButtonWidget extends StatelessWidget {
             return DLSColors.redBase;
         }
       default:
-        return DLSColors.bgWhite0;
+        return labelColor ?? DLSColors.bgWhite0;
     }
   }
 
@@ -232,6 +295,10 @@ class CustomButtonWidget extends StatelessWidget {
   }
 
   TextStyle get textStyle {
+    if (labelTextStyle != null) {
+      return labelTextStyle!;
+    }
+
     switch (size) {
       case CustomButtonSize.xSmall:
         return DLSTextStyle.labelXSmall;

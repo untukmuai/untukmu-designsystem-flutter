@@ -11,15 +11,17 @@ class DropdownExample extends StatefulWidget {
 class _DropdownExampleState extends State<DropdownExample> {
   @override
   Widget build(BuildContext context) {
+    final data = CustomDropdownData(code: '1', name: 'USD');
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dropdown Example'),
       ),
-      body: const SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Row(
+            const Row(
               children: [
                 InlineDropdownWidget(
                   items: ['USD', 'IDR'],
@@ -33,8 +35,8 @@ class _DropdownExampleState extends State<DropdownExample> {
                 ),
               ],
             ),
-            SizedBox(height: DLSSizing.s3xSmall),
-            Row(
+            const SizedBox(height: DLSSizing.s3xSmall),
+            const Row(
               children: [
                 InlineDropdownWidget(
                   items: ['USD', 'IDR'],
@@ -52,8 +54,8 @@ class _DropdownExampleState extends State<DropdownExample> {
                 ),
               ],
             ),
-            SizedBox(height: DLSSizing.s3xSmall),
-            Row(
+            const SizedBox(height: DLSSizing.s3xSmall),
+            const Row(
               children: [
                 CompactDropdownWidget(
                   items: ['USD', 'IDR'],
@@ -63,6 +65,14 @@ class _DropdownExampleState extends State<DropdownExample> {
                 ),
                 SizedBox(width: DLSSizing.s3xSmall),
                 CompactDropdownWidget(
+                  items: ['USD', 'IDR'],
+                  hintText: 'Currency',
+                  filled: true,
+                  fillColor: DLSColors.bgWhite0,
+                  type: CompactDropdownType.icon,
+                ),
+                SizedBox(width: DLSSizing.s3xSmall),
+                CompactDropdownWidget(
                   enabled: false,
                   items: ['USD', 'IDR'],
                   hintText: 'Currency',
@@ -71,21 +81,32 @@ class _DropdownExampleState extends State<DropdownExample> {
                 ),
               ],
             ),
-            SizedBox(height: DLSSizing.s3xSmall),
+            const SizedBox(height: DLSSizing.s3xSmall),
             CustomDropdownWidget(
-              items: ['USD', 'IDR'],
+              selectedItem: data,
+              onChanged: (value) => debugPrint(value?.code),
+              items: [
+                data,
+                CustomDropdownData(code: '2', name: 'IDR'),
+              ],
               label: 'Currency',
               hintText: 'Select Currency',
             ),
             CustomDropdownWidget(
-              items: ['USD', 'IDR'],
+              items: [
+                CustomDropdownData(code: '1', name: 'USD'),
+                CustomDropdownData(code: '2', name: 'IDR'),
+              ],
               label: 'Currency',
               hintText: 'Select Currency',
               showOptionalLabel: true,
             ),
             CustomDropdownWidget(
               isEditable: false,
-              items: ['USD', 'IDR'],
+              items: [
+                CustomDropdownData(code: '1', name: 'USD'),
+                CustomDropdownData(code: '2', name: 'IDR'),
+              ],
               label: 'Currency',
               hintText: 'Select Currency',
               showOptionalLabel: true,

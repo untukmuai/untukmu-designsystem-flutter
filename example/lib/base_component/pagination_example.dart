@@ -12,6 +12,7 @@ class _PaginationExamplePageState extends State<PaginationExamplePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: DLSColors.bgWhite0,
       appBar: AppBar(title: const Text('Pagination')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -19,7 +20,9 @@ class _PaginationExamplePageState extends State<PaginationExamplePage> {
           children: [
             Row(
               children: [
-                CustomPaginationWidget(onTap: () {}),
+                CustomPaginationWidget(onTap: () {
+                  debugPrint('tap');
+                }),
                 const SizedBox(width: 8),
                 CustomPaginationWidget(onTap: () {}, active: true),
                 const SizedBox(width: 8),
@@ -45,7 +48,9 @@ class _PaginationExamplePageState extends State<PaginationExamplePage> {
             ),
             const CustomDividerWidget(verticalSpace: DLSSizing.s2xSmall),
             CustomPaginationGroupWidget(
-              onTap: (index) {},
+              onTap: (index) {
+                debugPrint('tap $index');
+              },
               maxPages: 10,
             ),
             const SizedBox(height: 8),

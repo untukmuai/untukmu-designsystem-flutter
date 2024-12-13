@@ -7,7 +7,7 @@ import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart
 enum LabelDirection { vertical, horizontal }
 
 class CustomTextAreaWidget extends StatefulWidget {
-  final String label;
+  final String? label;
   final String hintText;
   final bool isEditable;
   final bool isInvalid;
@@ -16,10 +16,11 @@ class CustomTextAreaWidget extends StatefulWidget {
   final LabelDirection labelDirection;
   final bool showOptionalLabel;
   final String? hintTextMessage;
+  final ValueChanged<String>? onSubmitted;
 
   const CustomTextAreaWidget({
     super.key,
-    required this.label,
+    this.label,
     required this.hintText,
     this.isEditable = true,
     this.isInvalid = false,
@@ -28,6 +29,7 @@ class CustomTextAreaWidget extends StatefulWidget {
     this.labelDirection = LabelDirection.vertical,
     this.showOptionalLabel = false,
     this.hintTextMessage,
+    this.onSubmitted,
   });
 
   @override
@@ -69,14 +71,19 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
       children: [
         Row(
           children: [
-            LabelWidget(label: widget.label),
+            if (widget.label != null) LabelWidget(label: widget.label!),
             if (widget.showOptionalLabel) const SizedBox(width: 4),
             if (widget.showOptionalLabel)
               const LabelWidget(
                   label: "Optional", labelType: LabelType.optional),
           ],
         ),
-        const SizedBox(height: 8),
+        SizedBox(
+            height: widget.label != null &&
+                    widget.showOptionalLabel &&
+                    widget.showOptionalLabel
+                ? 8
+                : 0),
         _buildTextField(),
         const SizedBox(height: 4),
         if (widget.hintTextMessage != null)
@@ -98,7 +105,7 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
             children: [
               Row(
                 children: [
-                  LabelWidget(label: widget.label),
+                  if (widget.label != null) LabelWidget(label: widget.label!),
                   if (widget.showOptionalLabel) const SizedBox(width: 4),
                   if (widget.showOptionalLabel)
                     const LabelWidget(
@@ -188,6 +195,7 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
               ),
             ),
           ),
+          onSubmitted: widget.onSubmitted,
         ),
         Obx(
           () => Padding(
@@ -206,8 +214,9 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
                   onPanUpdate: (details) {
                     setState(() {
                       _maxLines += details.delta.dy < 0 ? 1 : -1;
-                      if (_maxLines < 4)
+                      if (_maxLines < 4) {
                         _maxLines = 4; // Minimal sesuai dengan minLines
+                      }
                       if (_maxLines > 10) _maxLines = 10; // Maksimal 10 line
                     });
                   },

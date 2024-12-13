@@ -22,6 +22,7 @@ class CustomDividerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(vertical: verticalSpace ?? 0),
       color: backgroundColor,
       child: Row(
         children: [

@@ -5,22 +5,25 @@ import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart
 enum DropdownLabelDirection { vertical, horizontal }
 
 class CustomDropdownWidget extends StatefulWidget {
-  final String label;
+  final CustomDropdownData? selectedItem;
+  final String? label;
   final String hintText;
   final bool isEditable;
   final bool isInvalid;
   final bool showOptionalLabel;
   final DropdownLabelDirection labelDirection;
   final String? hintTextMessage;
+  final bool readOnly;
 
   final Widget? prefixIcon;
-  final List<String> items;
+  final List<CustomDropdownData> items;
 
-  final ValueChanged<String?>? onChanged;
+  final ValueChanged<CustomDropdownData?>? onChanged;
 
   const CustomDropdownWidget({
     super.key,
-    required this.label,
+    this.selectedItem,
+    this.label,
     required this.hintText,
     this.isEditable = true,
     this.showOptionalLabel = false,
@@ -30,6 +33,7 @@ class CustomDropdownWidget extends StatefulWidget {
     this.prefixIcon,
     required this.items,
     this.onChanged,
+    this.readOnly = false,
   });
 
   @override
@@ -50,7 +54,7 @@ class CustomDropdownWidgetState extends State<CustomDropdownWidget> {
       children: [
         Row(
           children: [
-            LabelWidget(label: widget.label),
+            if (widget.label != null) LabelWidget(label: widget.label!),
             if (widget.showOptionalLabel) const SizedBox(width: 4),
             if (widget.showOptionalLabel)
               const LabelWidget(
@@ -79,7 +83,7 @@ class CustomDropdownWidgetState extends State<CustomDropdownWidget> {
             children: [
               Row(
                 children: [
-                  LabelWidget(label: widget.label),
+                  if (widget.label != null) LabelWidget(label: widget.label!),
                   if (widget.showOptionalLabel) const SizedBox(width: 4),
                   if (widget.showOptionalLabel)
                     const LabelWidget(
@@ -105,15 +109,19 @@ class CustomDropdownWidgetState extends State<CustomDropdownWidget> {
   }
 
   Widget _buildDropdown() {
-    return DropdownButtonFormField<String?>(
+    return DropdownButtonFormField<CustomDropdownData?>(
+      value: widget.selectedItem,
+      isExpanded: true,
       items: widget.items.map(
         (e) {
-          return DropdownMenuItem(value: e, child: Text(e));
+          return DropdownMenuItem(value: e, child: Text(e.name));
         },
       ).toList(),
       hint: Text(
         widget.hintText,
         style: DLSTextStyle.labelSmall.copyWith(color: DLSColors.textSoft400),
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
       ),
       style: DLSTextStyle.labelSmall.copyWith(color: DLSColors.textMain900),
       icon: const Padding(
@@ -127,12 +135,7 @@ class CustomDropdownWidgetState extends State<CustomDropdownWidget> {
       decoration: InputDecoration(
         enabled: widget.isEditable,
         isCollapsed: true,
-        prefixIcon: widget.prefixIcon ??
-            const Icon(
-              Iconsax.flash_1,
-              color: DLSColors.iconSoft400,
-              size: 20,
-            ),
+        prefixIcon: widget.prefixIcon,
         contentPadding: const EdgeInsets.all(DLSSizing.s2xSmall),
         border: border,
         errorBorder: border.copyWith(
@@ -146,17 +149,29 @@ class CustomDropdownWidgetState extends State<CustomDropdownWidget> {
         fillColor: widget.isEditable ? DLSColors.bgWhite0 : DLSColors.bgWeak100,
         filled: true,
       ),
-      onChanged: widget.isEditable
-          ? (value) {
-              if (widget.onChanged != null) {
-                widget.onChanged!(value);
-              }
-            }
-          : null,
+      onChanged: widget.readOnly
+          ? null
+          : widget.isEditable
+              ? (value) {
+                  if (widget.onChanged != null) {
+                    widget.onChanged!(value);
+                  }
+                }
+              : null,
     );
   }
 
   InputBorder get border => OutlineInputBorder(
       borderRadius: DLSRadius.radius12,
       borderSide: const BorderSide(color: DLSColors.strokeSoft200));
+}
+
+class CustomDropdownData {
+  final String code;
+  final String name;
+
+  CustomDropdownData({
+    required this.code,
+    required this.name,
+  });
 }

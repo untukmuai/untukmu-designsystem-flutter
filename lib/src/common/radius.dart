@@ -11,6 +11,8 @@ class DLSRadius {
       BorderRadius.circular(DLSSizing.radius12);
   static final BorderRadius radius16 =
       BorderRadius.circular(DLSSizing.radius16);
+  static final BorderRadius radius20 =
+      BorderRadius.circular(DLSSizing.radius24);
   static final BorderRadius radius24 =
       BorderRadius.circular(DLSSizing.radius24);
   static final BorderRadius radius32 =
