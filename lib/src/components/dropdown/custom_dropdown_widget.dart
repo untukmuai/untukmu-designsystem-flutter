@@ -169,9 +169,11 @@ class CustomDropdownWidgetState extends State<CustomDropdownWidget> {
 class CustomDropdownData {
   final String code;
   final String name;
+  final String? detail;
 
   CustomDropdownData({
     required this.code,
     required this.name,
+    this.detail,
   });
 }
