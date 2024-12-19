@@ -12,6 +12,7 @@ class CustomSwitchWidget extends StatefulWidget {
     this.isMandatory = false,
     this.isOptional = false,
     this.minWidth,
+    this.children = const [],
   });
 
   final List<CustomSwitchModel> items;
@@ -23,12 +24,23 @@ class CustomSwitchWidget extends StatefulWidget {
 
   final double? minWidth;
 
+  /// Child widgets corresponding to each switch item
+  final List<Widget> children;
+
   @override
   State<CustomSwitchWidget> createState() => _CustomSwitchWidgetState();
 }
 
 class _CustomSwitchWidgetState extends State<CustomSwitchWidget> {
   int selectedIndex = 0;
+  late List<GlobalKey> childKeys;
+
+  @override
+  void initState() {
+    super.initState();
+    // Create unique keys for each child to maintain their state
+    childKeys = List.generate(widget.children.length, (index) => GlobalKey());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,6 +138,15 @@ class _CustomSwitchWidgetState extends State<CustomSwitchWidget> {
             ),
           ),
         ),
+        if (widget.children.isNotEmpty &&
+            selectedIndex < widget.children.length)
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: KeyedSubtree(
+              key: childKeys[selectedIndex],
+              child: widget.children[selectedIndex],
+            ),
+          ),
       ],
     );
   }

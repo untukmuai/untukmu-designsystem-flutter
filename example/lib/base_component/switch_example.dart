@@ -24,6 +24,10 @@ class _SwitchExampleState extends State<SwitchExample> {
               CustomSwitchModel(title: 'Label 1'),
               CustomSwitchModel(title: 'Label 2', hasNotification: true),
             ],
+            children: [
+              WidgetOne(),
+              WidgetSecond(),
+            ],
           ),
           CustomSwitchWidget(
             items: [
@@ -33,6 +37,32 @@ class _SwitchExampleState extends State<SwitchExample> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class WidgetOne extends StatelessWidget {
+  WidgetOne({super.key});
+
+  final TextEditingController controller = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: controller,
+    );
+  }
+}
+
+class WidgetSecond extends StatelessWidget {
+  WidgetSecond({super.key});
+
+  final TextEditingController controller = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: controller,
     );
   }
 }
