@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untukmu_flutter_design_system/src/common/sizing.dart';
 import 'package:untukmu_flutter_design_system/src/components/dropdown/dropdown.dart';
 import 'package:untukmu_flutter_design_system/src/components/pagination/model/config.dart';
 import 'package:untukmu_flutter_design_system/src/components/pagination/pagination.dart';
@@ -134,6 +135,7 @@ class NumberPaginatorState extends State<NumberPaginator> {
           mainAxisAlignment: widget.config.mainAxisAlignment,
           children: [
             pageIndicator(isCollapsed: isCollapsed),
+            const SizedBox(width: DLSSizing.s2xSmall),
             CustomPaginationWidget(
               onTap: _controller.currentPage > 0
                   ? () => _handlePageChange(0)
@@ -143,7 +145,7 @@ class NumberPaginatorState extends State<NumberPaginator> {
               isArrow: true,
             ),
             CustomPaginationWidget(
-              onTap: _controller.currentPage > 0 
+              onTap: _controller.currentPage > 0
                   ? () => _handlePageChange(_controller.currentPage - 1)
                   : null,
               icon: widget.prevButtonIcon,
@@ -165,6 +167,7 @@ class NumberPaginatorState extends State<NumberPaginator> {
               iconSize: 16,
               isArrow: true,
             ),
+            const SizedBox(width: DLSSizing.s2xSmall),
             pageDropdown(isCollapsed: isCollapsed),
           ],
         ),

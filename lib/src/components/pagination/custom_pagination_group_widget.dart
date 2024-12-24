@@ -42,6 +42,8 @@ class _CustomPaginationGroupWidgetState
 
   @override
   Widget build(BuildContext context) {
+    if (widget.maxPages <= 1) return const SizedBox.shrink();
+
     return NumberPaginator(
       controller: widget.controller,
       config: widget.config,
