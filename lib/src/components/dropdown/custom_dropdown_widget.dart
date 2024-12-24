@@ -176,4 +176,12 @@ class CustomDropdownData {
     required this.name,
     this.detail,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is CustomDropdownData && other.code == code && other.name == name);
+
+  @override
+  int get hashCode => code.hashCode ^ name.hashCode;
 }
