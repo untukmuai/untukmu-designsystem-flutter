@@ -34,7 +34,7 @@ class ThirdWidget extends StatelessWidget {
                           title: 'Rekapan Review',
                           size: CustomBadgeSize.medium,
                           prefixIcon: Icon(
-                            IconsaxPlusLinear.flash,
+                            Iconsax.flash,
                             color: DLSColors.bgWhite0,
                             size: 14,
                           ),
@@ -328,7 +328,7 @@ class ThirdWidget extends StatelessWidget {
                     child: CustomButtonWidget(
                       onPressed: () {},
                       label: 'Baca Semua',
-                      suffixIcon: IconsaxPlusLinear.arrow_right_3,
+                      suffixIcon: Iconsax.arrow_right_3,
                       type: CustomButtonType.neutral,
                     ),
                   )

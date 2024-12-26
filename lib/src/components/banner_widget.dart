@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 enum CustomBannerType { error, warning, success, information, feature }
@@ -121,13 +121,13 @@ class CustomBannerWidget extends StatelessWidget {
     switch (type) {
       case CustomBannerType.error:
       case CustomBannerType.information:
-        return IconsaxPlusLinear.info_circle;
+        return Iconsax.info_circle5;
       case CustomBannerType.warning:
-        return IconsaxPlusLinear.danger;
+        return Iconsax.danger5;
       case CustomBannerType.success:
-        return IconsaxPlusLinear.tick_circle;
+        return Iconsax.tick_circle5;
       case CustomBannerType.feature:
-        return IconsaxPlusLinear.magic_star;
+        return Iconsax.magic_star5;
       default:
         return null;
     }

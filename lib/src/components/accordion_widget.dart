@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 class CustomAccordionWidget extends StatefulWidget {
@@ -130,9 +130,9 @@ class _CustomAccordionWidgetState extends State<CustomAccordionWidget>
                                     ScaleTransition(scale: anim, child: child),
                               ),
                               child: _isExpanded
-                                  ? const Icon(IconsaxPlusLinear.minus,
+                                  ? const Icon(Iconsax.minus,
                                       size: 24, key: ValueKey('icon1'))
-                                  : const Icon(IconsaxPlusLinear.add,
+                                  : const Icon(Iconsax.add,
                                       size: 24, key: ValueKey('icon2')),
                             ),
                     ],

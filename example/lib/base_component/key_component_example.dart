@@ -1,7 +1,7 @@
 import 'package:example/base_component/password_example.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 class KeyComponentExample extends StatelessWidget {
@@ -157,7 +157,7 @@ class KeyComponentExample extends StatelessWidget {
               const ContentLabelWidget(
                 label: 'Label',
                 description: 'Insert description right here',
-                leadingWidget: KeyIconsWidget(icon: Icon((IconsaxPlusLinear.user))),
+                leadingWidget: KeyIconsWidget(icon: Icon((Iconsax.user))),
               ),
               const SizedBox(height: 16),
             ],
@@ -198,9 +198,9 @@ class KeyComponentExample extends StatelessWidget {
                 isHovered: false,
                 isDisabled: false,
                 badge: badge(),
-                leadingWidget: const KeyIconsWidget(icon: Icon((IconsaxPlusLinear.user))),
+                leadingWidget: const KeyIconsWidget(icon: Icon((Iconsax.user))),
                 trailingWidget: const Icon(
-                  IconsaxPlusLinear.close_square,
+                  Iconsax.close_square,
                   size: 20,
                 ),
               ),
@@ -213,7 +213,7 @@ class KeyComponentExample extends StatelessWidget {
                 isDisabled: false,
                 badge: badge(),
                 trailingWidget: const Icon(
-                  IconsaxPlusLinear.close_square,
+                  Iconsax.close_square,
                   size: 20,
                 ),
               ),
@@ -227,7 +227,7 @@ class KeyComponentExample extends StatelessWidget {
                 badge: badge(),
                 leadingWidget: SvgPicture.asset('assets/svg/ic_mastercard.svg'),
                 trailingWidget: const Icon(
-                  IconsaxPlusLinear.close_square,
+                  Iconsax.close_square,
                   size: 20,
                 ),
               ),
@@ -241,7 +241,7 @@ class KeyComponentExample extends StatelessWidget {
                 badge: badge(),
                 leadingWidget: SvgPicture.asset('assets/svg/ic_spotify.svg'),
                 trailingWidget: const Icon(
-                  IconsaxPlusLinear.close_square,
+                  Iconsax.close_square,
                   size: 20,
                 ),
               )
@@ -280,74 +280,74 @@ class KeyComponentExample extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    KeyIconsWidget(icon: Icon((IconsaxPlusLinear.user))),
+                    KeyIconsWidget(icon: Icon((Iconsax.user))),
                     SizedBox(width: 8),
                     KeyIconsWidget(
-                        icon: Icon((IconsaxPlusLinear.user),
+                        icon: Icon((Iconsax.user),
                             color: DLSColors.pacificBlueBase)),
                     SizedBox(width: 8),
                     KeyIconsWidget(
-                        icon: Icon((IconsaxPlusLinear.user),
+                        icon: Icon((Iconsax.user),
                             color: DLSColors.sunsetYellowBase)),
                     SizedBox(width: 8),
                     KeyIconsWidget(
-                        icon: Icon((IconsaxPlusLinear.user), color: DLSColors.redBase)),
+                        icon: Icon((Iconsax.user), color: DLSColors.redBase)),
                     SizedBox(width: 8),
                     KeyIconsWidget(
-                        icon: Icon((IconsaxPlusLinear.user), color: DLSColors.greenDark)),
+                        icon: Icon((Iconsax.user), color: DLSColors.greenDark)),
                     SizedBox(width: 8),
                     KeyIconsWidget(
                         icon:
-                            Icon((IconsaxPlusLinear.user), color: DLSColors.orangeBase)),
+                            Icon((Iconsax.user), color: DLSColors.orangeBase)),
                     SizedBox(width: 8),
                     KeyIconsWidget(
-                        icon: Icon((IconsaxPlusLinear.user),
+                        icon: Icon((Iconsax.user),
                             color: DLSColors.flamingoPinkBase)),
                     SizedBox(width: 8),
                     KeyIconsWidget(
-                        icon: Icon((IconsaxPlusLinear.user), color: DLSColors.tealBase))
+                        icon: Icon((Iconsax.user), color: DLSColors.tealBase))
                   ],
                 ),
                 SizedBox(height: 8),
                 Row(
                   children: [
-                    KeyIconsWidget(icon: Icon((IconsaxPlusLinear.user))),
+                    KeyIconsWidget(icon: Icon((Iconsax.user))),
                     SizedBox(width: 8),
                     KeyIconsWidget(
-                      icon: Icon((IconsaxPlusLinear.user),
+                      icon: Icon((Iconsax.user),
                           color: DLSColors.pacificBlueDark),
                       backgroundColor: DLSColors.pacificBlueLighter,
                     ),
                     SizedBox(width: 8),
                     KeyIconsWidget(
-                      icon: Icon((IconsaxPlusLinear.user),
+                      icon: Icon((Iconsax.user),
                           color: DLSColors.sunsetYellowDark),
                       backgroundColor: DLSColors.sunsetYellowLighter,
                     ),
                     SizedBox(width: 8),
                     KeyIconsWidget(
-                      icon: Icon((IconsaxPlusLinear.user), color: DLSColors.redDark),
+                      icon: Icon((Iconsax.user), color: DLSColors.redDark),
                       backgroundColor: DLSColors.redLighter,
                     ),
                     SizedBox(width: 8),
                     KeyIconsWidget(
-                      icon: Icon((IconsaxPlusLinear.user), color: DLSColors.greenDark),
+                      icon: Icon((Iconsax.user), color: DLSColors.greenDark),
                       backgroundColor: DLSColors.greenLighter,
                     ),
                     SizedBox(width: 8),
                     KeyIconsWidget(
-                      icon: Icon((IconsaxPlusLinear.user), color: DLSColors.orangeDark),
+                      icon: Icon((Iconsax.user), color: DLSColors.orangeDark),
                       backgroundColor: DLSColors.orangeLighter,
                     ),
                     SizedBox(width: 8),
                     KeyIconsWidget(
-                      icon: Icon((IconsaxPlusLinear.user),
+                      icon: Icon((Iconsax.user),
                           color: DLSColors.flamingoPinkDark),
                       backgroundColor: DLSColors.flamingoPinkLighter,
                     ),
                     SizedBox(width: 8),
                     KeyIconsWidget(
-                        icon: Icon((IconsaxPlusLinear.user), color: DLSColors.tealBase))
+                        icon: Icon((Iconsax.user), color: DLSColors.tealBase))
                   ],
                 )
               ],

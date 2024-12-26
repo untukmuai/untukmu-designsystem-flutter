@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/state_manager.dart';
-import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import 'package:untukmu_flutter_design_system/src/common/currency.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
@@ -239,7 +239,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
           ],
         );
       case InputMode.cardNumber:
-        return const Icon(IconsaxPlusLinear.card, color: DLSColors.iconSoft400);
+        return const Icon(Iconsax.card, color: DLSColors.iconSoft400);
       case InputMode.website:
         return SizedBox(
           child: Row(
@@ -271,13 +271,13 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
           ),
         );
       case InputMode.date:
-        return const Icon(IconsaxPlusLinear.calendar_2, color: DLSColors.iconSoft400);
+        return const Icon(Iconsax.calendar_2, color: DLSColors.iconSoft400);
       case InputMode.password:
-        return const Icon(IconsaxPlusLinear.lock_1, color: DLSColors.iconSoft400);
+        return const Icon(Iconsax.lock_1, color: DLSColors.iconSoft400);
       case InputMode.shareLink:
-        return const Icon(IconsaxPlusLinear.link, color: DLSColors.iconSoft400);
+        return const Icon(Iconsax.link, color: DLSColors.iconSoft400);
       case InputMode.invite:
-        return const Icon(IconsaxPlusLinear.user, color: DLSColors.iconSoft400);
+        return const Icon(Iconsax.user, color: DLSColors.iconSoft400);
       case InputMode.counter:
         return IconButton(
           icon: const Icon(Icons.remove, color: DLSColors.iconSoft400),
@@ -330,7 +330,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
         }
         break;
       case InputMode.cardNumber:
-        return const Icon(IconsaxPlusLinear.card_add, color: DLSColors.iconSub500);
+        return const Icon(Iconsax.card_add, color: DLSColors.iconSub500);
       case InputMode.websiteWithCounter:
         return Container(
           margin: const EdgeInsets.only(right: 8),
@@ -404,13 +404,13 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
         );
       case InputMode.date:
         return IconButton(
-          icon: const Icon(IconsaxPlusLinear.calendar_1, color: DLSColors.iconSub500),
+          icon: const Icon(Iconsax.calendar_1, color: DLSColors.iconSub500),
           onPressed: _showDatePicker,
         );
       case InputMode.password:
         return IconButton(
           icon: Icon(
-            _isObscured ? IconsaxPlusLinear.eye : IconsaxPlusLinear.eye_slash,
+            _isObscured ? Iconsax.eye : Iconsax.eye_slash,
             color: DLSColors.iconSub500,
           ),
           onPressed: _toggleObscureText,
@@ -425,7 +425,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
               ),
               GestureDetector(
                 onTap: _copyToClipboard,
-                child: const Icon(IconsaxPlusLinear.copy, color: DLSColors.iconSub500),
+                child: const Icon(Iconsax.copy, color: DLSColors.iconSub500),
               ),
             ],
           ),
@@ -453,7 +453,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
                     child: Row(
                       children: [
                         const Icon(
-                          IconsaxPlusLinear.global,
+                          Iconsax.global,
                           size: 16,
                           color: DLSColors.iconSoft400,
                         ),
@@ -471,7 +471,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
                     child: Row(
                       children: [
                         const Icon(
-                          IconsaxPlusLinear.edit,
+                          Iconsax.edit,
                           size: 16,
                           color: DLSColors.iconSoft400,
                         ),
@@ -518,7 +518,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
             children: listTag?.map((tag) {
                   return CustomTagWidget(
                     label: tag,
-                    suffixIcon: IconsaxPlusLinear.close_circle,
+                    suffixIcon: Iconsax.close_circle,
                     onTap: () {
                       setState(() {
                         listTag!.remove(tag);

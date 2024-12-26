@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 class TagExamplePage extends StatefulWidget {
@@ -26,18 +26,18 @@ class _TagExamplePageState extends State<TagExamplePage> {
                 children: [
                   CustomTagWidget(),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTagWidget(prefixIcon: IconsaxPlusLinear.clock),
+                  CustomTagWidget(prefixIcon: Iconsax.clock),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTagWidget(suffixIcon: IconsaxPlusLinear.close_circle),
+                  CustomTagWidget(suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
                   CustomTagWidget(
-                      prefixIcon: IconsaxPlusLinear.clock,
-                      suffixIcon: IconsaxPlusLinear.close_circle),
+                      prefixIcon: Iconsax.clock,
+                      suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
                   CustomTagWidget(
                     badge: CustomBadgeWidget(),
-                    prefixIcon: IconsaxPlusLinear.clock,
-                    suffixIcon: IconsaxPlusLinear.close_circle,
+                    prefixIcon: Iconsax.clock,
+                    suffixIcon: Iconsax.close_circle,
                   ),
                 ],
               ),
@@ -49,21 +49,21 @@ class _TagExamplePageState extends State<TagExamplePage> {
                 children: [
                   CustomTagWidget(disabled: true),
                   SizedBox(width: DLSSizing.s3xSmall),
-                  CustomTagWidget(disabled: true, prefixIcon: IconsaxPlusLinear.clock),
+                  CustomTagWidget(disabled: true, prefixIcon: Iconsax.clock),
                   SizedBox(width: DLSSizing.s3xSmall),
                   CustomTagWidget(
-                      disabled: true, suffixIcon: IconsaxPlusLinear.close_circle),
+                      disabled: true, suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
                   CustomTagWidget(
                       disabled: true,
-                      prefixIcon: IconsaxPlusLinear.clock,
-                      suffixIcon: IconsaxPlusLinear.close_circle),
+                      prefixIcon: Iconsax.clock,
+                      suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
                   CustomTagWidget(
                     disabled: true,
                     badge: CustomBadgeWidget(),
-                    prefixIcon: IconsaxPlusLinear.clock,
-                    suffixIcon: IconsaxPlusLinear.close_circle,
+                    prefixIcon: Iconsax.clock,
+                    suffixIcon: Iconsax.close_circle,
                   ),
                 ],
               ),
@@ -81,25 +81,25 @@ class _TagExamplePageState extends State<TagExamplePage> {
                   CustomTagWidget(
                       filledColor: DLSColors.textMain900,
                       textColor: DLSColors.textWhite0,
-                      prefixIcon: IconsaxPlusLinear.clock),
+                      prefixIcon: Iconsax.clock),
                   SizedBox(width: DLSSizing.s3xSmall),
                   CustomTagWidget(
                       filledColor: DLSColors.textMain900,
                       textColor: DLSColors.textWhite0,
-                      suffixIcon: IconsaxPlusLinear.close_circle),
+                      suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
                   CustomTagWidget(
                       filledColor: DLSColors.textMain900,
                       textColor: DLSColors.textWhite0,
-                      prefixIcon: IconsaxPlusLinear.clock,
-                      suffixIcon: IconsaxPlusLinear.close_circle),
+                      prefixIcon: Iconsax.clock,
+                      suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
                   CustomTagWidget(
                     badge: CustomBadgeWidget(),
                     filledColor: DLSColors.textMain900,
                     textColor: DLSColors.textWhite0,
-                    prefixIcon: IconsaxPlusLinear.clock,
-                    suffixIcon: IconsaxPlusLinear.close_circle,
+                    prefixIcon: Iconsax.clock,
+                    suffixIcon: Iconsax.close_circle,
                   ),
                 ],
               ),
@@ -119,28 +119,28 @@ class _TagExamplePageState extends State<TagExamplePage> {
                       disabled: true,
                       filledColor: DLSColors.textMain900,
                       textColor: DLSColors.textWhite0,
-                      prefixIcon: IconsaxPlusLinear.clock),
+                      prefixIcon: Iconsax.clock),
                   SizedBox(width: DLSSizing.s3xSmall),
                   CustomTagWidget(
                       disabled: true,
                       filledColor: DLSColors.textMain900,
                       textColor: DLSColors.textWhite0,
-                      suffixIcon: IconsaxPlusLinear.close_circle),
+                      suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
                   CustomTagWidget(
                       disabled: true,
                       filledColor: DLSColors.textMain900,
                       textColor: DLSColors.textWhite0,
-                      prefixIcon: IconsaxPlusLinear.clock,
-                      suffixIcon: IconsaxPlusLinear.close_circle),
+                      prefixIcon: Iconsax.clock,
+                      suffixIcon: Iconsax.close_circle),
                   SizedBox(width: DLSSizing.s3xSmall),
                   CustomTagWidget(
                     disabled: true,
                     badge: CustomBadgeWidget(),
                     filledColor: DLSColors.textMain900,
                     textColor: DLSColors.textWhite0,
-                    prefixIcon: IconsaxPlusLinear.clock,
-                    suffixIcon: IconsaxPlusLinear.close_circle,
+                    prefixIcon: Iconsax.clock,
+                    suffixIcon: Iconsax.close_circle,
                   ),
                 ],
               ),

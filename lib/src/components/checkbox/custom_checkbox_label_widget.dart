@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 enum CheckboxPosition { start, end }
@@ -207,7 +207,7 @@ class _CustomCheckboxLabelWidgetState extends State<CustomCheckboxLabelWidget> {
         icon = Icons.check;
         break;
       case CheckboxActiveState.indeterminate:
-        icon = IconsaxPlusLinear.minus;
+        icon = Iconsax.minus;
         break;
       default:
         icon = null;

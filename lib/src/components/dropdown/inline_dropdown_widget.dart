@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 class InlineDropdownWidget extends StatefulWidget {
@@ -69,7 +69,7 @@ class _InlineDropdownWidgetState extends State<InlineDropdownWidget> {
                 padding: const EdgeInsets.only(left: DLSSizing.s3xSmall),
                 child: widget.suffixIcon ??
                     Icon(
-                      IconsaxPlusLinear.arrow_down_1,
+                      Iconsax.arrow_down_1,
                       size: 20,
                       color: suffixColor,
                     ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:iconsax/iconsax.dart';
 
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
@@ -25,12 +25,12 @@ class _TooltipExamplePageState extends State<TooltipExamplePage> {
               children: [
                 CustomTooltipWidget(
                   message: 'Insert tooltip',
-                  tooltipWidget: Icon(IconsaxPlusLinear.information),
+                  tooltipWidget: Icon(Iconsax.information),
                 ),
                 CustomTooltipWidget(
                   style: TooltipStyle.dark,
                   message: 'Insert tooltip',
-                  tooltipWidget: Icon(IconsaxPlusLinear.information),
+                  tooltipWidget: Icon(Iconsax.information),
                 ),
               ],
             ),
@@ -39,7 +39,7 @@ class _TooltipExamplePageState extends State<TooltipExamplePage> {
               title: 'Insert tooltip',
               message:
                   'Insert tooltip description here. It would look much better as three lines of text.',
-              tooltipWidget: Icon(IconsaxPlusLinear.information),
+              tooltipWidget: Icon(Iconsax.information),
             ),
             Align(
               alignment: Alignment.centerRight,
@@ -49,7 +49,7 @@ class _TooltipExamplePageState extends State<TooltipExamplePage> {
                 title: 'Insert tooltip',
                 message:
                     'Insert tooltip description here. It would look much better as three lines of text.',
-                tooltipWidget: Icon(IconsaxPlusLinear.information),
+                tooltipWidget: Icon(Iconsax.information),
               ),
             ),
           ],

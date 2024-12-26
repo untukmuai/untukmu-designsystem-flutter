@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 class BadgeExamplePage extends StatefulWidget {
@@ -65,7 +65,7 @@ class _BadgeExamplePageState extends State<BadgeExamplePage> {
                   style: CustomBadgeStyle.filled,
                   backgroundColor: DLSColors.pacificBlueBase,
                   suffixIcon: Icon(
-                    IconsaxPlusLinear.flash_1,
+                    Iconsax.flash_11,
                     size: 10,
                     color: DLSColors.bgWhite0,
                   ),

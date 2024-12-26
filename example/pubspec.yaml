@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  iconsax_plus: ^1.0.0
+  iconsax: ^0.0.8
   flutter_svg: ^2.0.10+1
   untukmu_flutter_design_system:
     path: ../
