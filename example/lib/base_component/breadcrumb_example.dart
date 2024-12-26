@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 class BreadcrumbExamplePage extends StatefulWidget {
@@ -29,32 +29,32 @@ class _BreadcrumbExamplePageState extends State<BreadcrumbExamplePage> {
           children: [
             const BreadcrumbItemWidget(
                 type: BreadcrumbItemType.iconLabel,
-                icon: Iconsax.home_24,
+                icon: IconsaxPlusLinear.home_2,
                 label: 'Home'),
             const SizedBox(height: 8),
             const BreadcrumbItemWidget(
                 type: BreadcrumbItemType.label,
-                icon: Iconsax.home_24,
+                icon: IconsaxPlusLinear.home_2,
                 label: 'Home'),
             const SizedBox(height: 8),
             const BreadcrumbItemWidget(
                 type: BreadcrumbItemType.icon,
-                icon: Iconsax.home_24,
+                icon: IconsaxPlusLinear.home_2,
                 label: 'Home'),
             const Divider(),
             BreadcrumbGroupWidget(
-              itemIcon: Iconsax.home_24,
+              itemIcon: IconsaxPlusLinear.home_2,
               items: breads,
             ),
             const SizedBox(height: 8),
             BreadcrumbGroupWidget(
-              itemIcon: Iconsax.home_24,
+              itemIcon: IconsaxPlusLinear.home_2,
               items: breads,
               type: BreadcrumbItemType.label,
             ),
             const SizedBox(height: 8),
             BreadcrumbGroupWidget(
-              itemIcon: Iconsax.home_24,
+              itemIcon: IconsaxPlusLinear.home_2,
               items: breads,
               type: BreadcrumbItemType.icon,
             ),

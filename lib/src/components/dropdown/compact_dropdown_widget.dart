@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 enum CompactDropdownType { icon, text }
@@ -100,7 +100,7 @@ class _CompactDropdownWidgetState extends State<CompactDropdownWidget> {
                 padding: const EdgeInsets.only(left: DLSSizing.s3xSmall),
                 child: widget.suffixIcon ??
                     Icon(
-                      Iconsax.arrow_down_1,
+                      IconsaxPlusLinear.arrow_down_1,
                       size: 20,
                       color: suffixColor,
                     ),

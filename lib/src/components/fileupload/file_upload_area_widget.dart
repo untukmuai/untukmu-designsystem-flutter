@@ -1,6 +1,6 @@
 // import 'package:dotted_border/dotted_border.dart';
 // import 'package:flutter/material.dart';
-// import 'package:iconsax/iconsax.dart';
+// import 'package:iconsax_plus/iconsax_plus.dart';
 // import 'package:file_picker/file_picker.dart';
 // import 'package:untukmu_flutter_design_system/src/components/button/circular_button_widget.dart';
 // import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
@@ -55,7 +55,7 @@
 //           child: Column(
 //             crossAxisAlignment: CrossAxisAlignment.stretch,
 //             children: [
-//               const Icon(Iconsax.document_upload,
+//               const Icon(IconsaxPlusLinear.document_upload,
 //                   color: DLSColors.textSub500, size: 24),
 //               const SizedBox(height: 16.0),
 //               Center(

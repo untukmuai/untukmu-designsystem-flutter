@@ -37,7 +37,7 @@ class SecondWidget extends StatelessWidget {
                           title: 'Deskripsi Produk',
                           size: CustomBadgeSize.medium,
                           prefixIcon: Icon(
-                            Iconsax.flash,
+                            IconsaxPlusLinear.flash,
                             color: DLSColors.bgWhite0,
                             size: 14,
                           ),
@@ -189,7 +189,7 @@ class SecondWidget extends StatelessWidget {
                                             ),
                                           ),
                                           child: const Icon(
-                                            Iconsax.arrow_left,
+                                            IconsaxPlusLinear.arrow_left,
                                             size: 18,
                                           ),
                                         ),
@@ -205,7 +205,7 @@ class SecondWidget extends StatelessWidget {
                                             ),
                                           ),
                                           child: const Icon(
-                                            Iconsax.arrow_right_1,
+                                            IconsaxPlusLinear.arrow_right_1,
                                             size: 18,
                                           ),
                                         ),
@@ -277,7 +277,7 @@ class SecondWidget extends StatelessWidget {
               const SizedBox(height: DLSSizing.medium),
               const CustomAccordionWidget(
                 disableHover: true,
-                prefixIcon: Iconsax.add,
+                prefixIcon: IconsaxPlusLinear.add,
                 title: 'Spesifikasi Produk',
                 content:
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
@@ -330,7 +330,7 @@ class SecondWidget extends StatelessWidget {
                                 const CustomCircularAvatarWidget(
                                   backgroundColor: DLSColors.verifiedBase,
                                   icon: Icon(
-                                    Iconsax.verify5,
+                                    IconsaxPlusLinear.verify,
                                     color: DLSColors.bgWhite0,
                                     size: 12,
                                   ),
@@ -346,7 +346,7 @@ class SecondWidget extends StatelessWidget {
                                   flex: 1,
                                   child: Row(
                                     children: [
-                                      Icon(Iconsax.location5),
+                                      Icon(IconsaxPlusLinear.location),
                                       SizedBox(height: DLSSizing.s3xSmall),
                                       Text('Jakarta Selatan'),
                                     ],
@@ -357,7 +357,7 @@ class SecondWidget extends StatelessWidget {
                                   child: CustomButtonWidget(
                                     onPressed: () {},
                                     style: CustomButtonStyle.filled,
-                                    prefixIcon: Iconsax.add_circle,
+                                    prefixIcon: IconsaxPlusLinear.add_circle,
                                     label: 'Ikuti',
                                     filledColor: DLSColors.bgSurface700,
                                   ),
@@ -367,7 +367,7 @@ class SecondWidget extends StatelessWidget {
                                   onPressed: () {},
                                   style: CustomButtonStyle.filled,
                                   isIconMode: true,
-                                  icon: Iconsax.messages_2,
+                                  icon: IconsaxPlusLinear.messages_2,
                                 ),
                               ],
                             )
@@ -528,7 +528,7 @@ class SecondWidget extends StatelessWidget {
                                 Row(
                                   children: [
                                     const Icon(
-                                      Iconsax.clock,
+                                      IconsaxPlusLinear.clock,
                                       size: 16,
                                       color: DLSColors.iconSoft400,
                                     ),
@@ -549,7 +549,7 @@ class SecondWidget extends StatelessWidget {
                                 Row(
                                   children: [
                                     const Icon(
-                                      Iconsax.truck_fast,
+                                      IconsaxPlusLinear.truck_fast,
                                       size: 16,
                                       color: DLSColors.iconSoft400,
                                     ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 part 'widgets/first_widget.dart';
@@ -37,7 +37,7 @@ class _ProductCreationPageState extends State<ProductCreationPage> {
         titleSpacing: screenWidth / 4,
         title: CustomTextInputWidget(
           controller: _searchController,
-          prefixWidget: const Icon(Iconsax.search_normal),
+          prefixWidget: const Icon(IconsaxPlusLinear.search_normal),
           hintText: 'Search Product',
         ),
         shape: const Border(

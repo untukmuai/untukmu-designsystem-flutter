@@ -48,7 +48,7 @@ class FirstWidget extends StatelessWidget {
                         const CustomCircularAvatarWidget(
                           backgroundColor: DLSColors.verifiedBase,
                           icon: Icon(
-                            Iconsax.verify5,
+                            IconsaxPlusLinear.verify,
                             color: DLSColors.bgWhite0,
                             size: 16,
                           ),
@@ -140,7 +140,7 @@ class FirstWidget extends StatelessWidget {
                           title: 'Dapatkan cashback Rp50.000',
                           size: CustomBadgeSize.medium,
                           prefixIcon: Icon(
-                            Iconsax.money,
+                            IconsaxPlusLinear.money,
                             color: DLSColors.iconSoft400,
                             size: 18,
                           ),
@@ -163,7 +163,7 @@ class FirstWidget extends StatelessWidget {
                   children: [
                     CustomButtonWidget(
                       onPressed: () {},
-                      icon: Iconsax.heart_add,
+                      icon: IconsaxPlusLinear.heart_add,
                       isIconMode: true,
                       style: CustomButtonStyle.stroke,
                       type: CustomButtonType.neutral,
@@ -176,7 +176,7 @@ class FirstWidget extends StatelessWidget {
                         onPressed: () {},
                         style: CustomButtonStyle.stroke,
                         label: 'Masukan Keranjang',
-                        prefixIcon: Iconsax.bag,
+                        prefixIcon: IconsaxPlusLinear.bag,
                         prefixPadding: DLSSizing.xSmall,
                       ),
                     ),

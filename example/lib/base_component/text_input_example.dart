@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 class TextInputExample extends StatefulWidget {
@@ -43,7 +43,7 @@ class _TextInputExampleState extends State<TextInputExample> {
                   controller: controller,
                   hintTextMessage: "This is a hint text to help user.",
                   prefixWidget:
-                      const Icon(Iconsax.user, color: DLSColors.iconSoft400),
+                      const Icon(IconsaxPlusLinear.user, color: DLSColors.iconSoft400),
                   label: "Input Name",
                   inputMode: InputMode.text),
               const SizedBox(height: 16),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/state_manager.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:intl/intl.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
@@ -98,10 +98,10 @@ class CustomDateInputWidgetState extends State<CustomDateInputWidget> {
   }
 
   Widget? _buildPrefixWidget() =>
-      const Icon(Iconsax.calendar_2, color: DLSColors.iconSoft400);
+      const Icon(IconsaxPlusLinear.calendar_2, color: DLSColors.iconSoft400);
 
   Widget? _buildSuffixWidget() => IconButton(
-        icon: const Icon(Iconsax.calendar_1, color: DLSColors.iconSub500),
+        icon: const Icon(IconsaxPlusLinear.calendar_1, color: DLSColors.iconSub500),
         onPressed: _showDatePicker,
       );
 
