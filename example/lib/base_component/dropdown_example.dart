@@ -9,6 +9,9 @@ class DropdownExample extends StatefulWidget {
 }
 
 class _DropdownExampleState extends State<DropdownExample> {
+  final List<String> items = ['CORPORATE', 'INDIVIDUAL', 'OTHER'];
+  String? selectedItem;
+
   @override
   Widget build(BuildContext context) {
     final data = CustomDropdownData(code: '1', name: 'USD');
@@ -110,6 +113,15 @@ class _DropdownExampleState extends State<DropdownExample> {
               label: 'Currency',
               hintText: 'Select Currency',
               showOptionalLabel: true,
+            ),
+            SizedBox(
+              width: 100,
+              child: CustomDropdownGenericWidget<String>(
+                items: items,
+                itemToString: (value) => value,
+                selectedItem: selectedItem,
+                onItemChanged: (value) => setState(() => selectedItem = value),
+              ),
             ),
           ],
         ),
