@@ -622,28 +622,41 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
               int cursorPosition = widget.controller.selection.baseOffset;
               String oldValue = widget.controller.text;
 
-              // Format the new value
-              String? formattedValue = _formatCurrencyInput(value);
-              if (formattedValue != null && formattedValue != value) {
-                // Calculate new cursor position
-                int newPosition = cursorPosition;
-                if (formattedValue.length > oldValue.length) {
-                  // If adding digits, move cursor forward
-                  newPosition += formattedValue.length - oldValue.length;
-                }
+              // Remove any existing formatting
+              String cleanValue = value.replaceAll(RegExp(r'[^0-9-]'), '');
 
+              // Format the new value
+              String formattedValue = '';
+              if (cleanValue.isNotEmpty) {
+                try {
+                  int numericValue = int.parse(cleanValue);
+                  formattedValue = _currencyFormatter.format(numericValue);
+                } catch (e) {
+                  formattedValue = oldValue;
+                }
+              }
+
+              // Calculate new cursor position
+              int newPosition = cursorPosition;
+              if (formattedValue.length > oldValue.length) {
+                newPosition += formattedValue.length - oldValue.length;
+              }
+
+              // Immediately invoke onChanged with the clean numeric value
+              if (widget.onChanged != null) {
+                widget.onChanged!(cleanValue);
+              }
+
+              // Update the text field
+              if (formattedValue != value) {
                 widget.controller.value = TextEditingValue(
                   text: formattedValue,
                   selection: TextSelection.collapsed(
                       offset: newPosition.clamp(0, formattedValue.length)),
                 );
-
-                // Store the numeric value for onChanged callback
-                String numericValue = _getNumericValue(formattedValue);
-                if (widget.onChanged != null) {
-                  widget.onChanged!(numericValue);
-                }
               }
+
+              _text.value = formattedValue;
             } else {
               _text.value = value;
               if (widget.onChanged != null) {
