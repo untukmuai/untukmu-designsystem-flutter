@@ -53,6 +53,9 @@ class CustomTextInputWidget extends StatefulWidget {
   final void Function(List<String>)? onTagsChanged;
   final ValueChanged<String>? onSubmitted;
 
+  final bool enableCurrencyFormat; // Whether to enable IDR currency formatting
+  final bool allowNegative; // Whether to allow negative numbers
+
   const CustomTextInputWidget({
     super.key,
     this.label,
@@ -83,6 +86,8 @@ class CustomTextInputWidget extends StatefulWidget {
     this.onChanged,
     this.readOnly = false,
     this.onSubmitted,
+    this.enableCurrencyFormat = false,
+    this.allowNegative = false,
   });
 
   @override
@@ -105,6 +110,46 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
       (currency) => currency.code == selectedCurrency,
       orElse: () => countryList.first,
     );
+  }
+
+  final NumberFormat _currencyFormatter = NumberFormat.currency(
+    locale: 'id_ID',
+    symbol: '',
+    decimalDigits: 0,
+  );
+
+  String? _formatCurrencyInput(String text) {
+    if (!widget.enableCurrencyFormat) return text;
+
+    if (text.isEmpty) return text;
+
+    // Remove all non-digit characters except minus sign
+    String cleanText = text.replaceAll(RegExp(r'[^0-9-]'), '');
+
+    try {
+      // Handle negative numbers
+      bool isNegative = cleanText.startsWith('-');
+      if (isNegative && !widget.allowNegative) {
+        cleanText = cleanText.substring(1);
+        isNegative = false;
+      }
+
+      // Parse the cleaned text to integer
+      int? value = int.tryParse(cleanText.replaceAll('-', ''));
+      if (value == null) return text;
+
+      // Format the number with IDR currency formatting
+      String formatted = _currencyFormatter.format(isNegative ? -value : value);
+
+      return formatted;
+    } catch (e) {
+      return text;
+    }
+  }
+
+  // Function to extract numeric value from formatted string
+  String _getNumericValue(String formattedText) {
+    return formattedText.replaceAll(RegExp(r'[^0-9-]'), '');
   }
 
   @override
@@ -548,23 +593,62 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
           controller: widget.controller,
           focusNode: _focusNode,
           enabled: widget.isEditable,
-          inputFormatters: widget.inputFormatters ?? [],
+          inputFormatters: widget.enableCurrencyFormat
+              ? [
+                  FilteringTextInputFormatter.allow(widget.allowNegative
+                      ? RegExp(r'[0-9-]')
+                      : RegExp(r'[0-9]')),
+                  // Add any custom formatters from widget.inputFormatters
+                  ...?widget.inputFormatters,
+                ]
+              : widget.inputFormatters ?? [],
           obscureText:
               widget.inputMode == InputMode.password ? _isObscured : false,
-          keyboardType: (widget.inputMode == InputMode.website ||
-                  widget.inputMode == InputMode.shareLink)
-              ? TextInputType.url
-              : widget.inputMode == InputMode.phoneNumber
-                  ? TextInputType.phone
-                  : (widget.inputMode == InputMode.cardNumber ||
-                          widget.inputMode == InputMode.amount ||
-                          widget.inputMode == InputMode.date)
-                      ? TextInputType.number
-                      : TextInputType.text,
+          keyboardType: widget.enableCurrencyFormat
+              ? TextInputType.number
+              : (widget.inputMode == InputMode.website ||
+                      widget.inputMode == InputMode.shareLink)
+                  ? TextInputType.url
+                  : widget.inputMode == InputMode.phoneNumber
+                      ? TextInputType.phone
+                      : (widget.inputMode == InputMode.cardNumber ||
+                              widget.inputMode == InputMode.amount ||
+                              widget.inputMode == InputMode.date)
+                          ? TextInputType.number
+                          : TextInputType.text,
           onChanged: (value) {
-            _text.value = value;
-            if (widget.onChanged != null) {
-              widget.onChanged!(value);
+            if (widget.enableCurrencyFormat) {
+              // Get cursor position before formatting
+              int cursorPosition = widget.controller.selection.baseOffset;
+              String oldValue = widget.controller.text;
+
+              // Format the new value
+              String? formattedValue = _formatCurrencyInput(value);
+              if (formattedValue != null && formattedValue != value) {
+                // Calculate new cursor position
+                int newPosition = cursorPosition;
+                if (formattedValue.length > oldValue.length) {
+                  // If adding digits, move cursor forward
+                  newPosition += formattedValue.length - oldValue.length;
+                }
+
+                widget.controller.value = TextEditingValue(
+                  text: formattedValue,
+                  selection: TextSelection.collapsed(
+                      offset: newPosition.clamp(0, formattedValue.length)),
+                );
+
+                // Store the numeric value for onChanged callback
+                String numericValue = _getNumericValue(formattedValue);
+                if (widget.onChanged != null) {
+                  widget.onChanged!(numericValue);
+                }
+              }
+            } else {
+              _text.value = value;
+              if (widget.onChanged != null) {
+                widget.onChanged!(value);
+              }
             }
           },
           textAlign: widget.inputMode == InputMode.counter

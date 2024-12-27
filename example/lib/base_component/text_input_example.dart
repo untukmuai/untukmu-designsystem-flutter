@@ -25,6 +25,16 @@ class _TextInputExampleState extends State<TextInputExample> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              CustomTextInputWidget(
+                label: "Amount",
+                controller: TextEditingController(),
+                enableCurrencyFormat: true, // Enable IDR currency formatting
+                allowNegative: false, // Don't allow negative numbers
+                hintText: "Enter amount",
+                onChanged: (value) {
+                  print('Numeric value: $value'); // Will print just the numbers
+                },
+              ),
               const SizedBox(height: 16),
               CustomDateInputWidget(
                 controller: controller,
