@@ -117,7 +117,12 @@ class _CustomDropdownGenericWidgetState<T>
       items: widget.items.map(
         (T item) {
           return DropdownMenuItem(
-              value: item, child: Text(widget.itemToString(item)));
+              value: item,
+              child: Text(
+                widget.itemToString(item),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ));
         },
       ).toList(),
       hint: Text(
