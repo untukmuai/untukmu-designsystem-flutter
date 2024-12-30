@@ -56,6 +56,11 @@ class _PaginationExamplePageState extends State<PaginationExamplePage> {
             const SizedBox(height: 8),
             CustomPaginationGroupWidget(
               onTap: (index) {},
+              maxPages: 1,
+            ),
+            const SizedBox(height: 8),
+            CustomPaginationGroupWidget(
+              onTap: (index) {},
               maxPages: 2,
             ),
             const SizedBox(height: 8),
