@@ -167,6 +167,8 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
       });
     });
 
+    _focusNode.addListener(_handleFocusChange);
+
     // Set the initial selected currency and access level
     if (widget.defaultSelectedCurrency != null) {
       selectedCurrency = widget.defaultSelectedCurrency!;
@@ -179,8 +181,54 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
 
   @override
   void dispose() {
+    _focusNode.removeListener(_handleFocusChange);
     _focusNode.dispose();
+
     super.dispose();
+  }
+
+  void _handleFocusChange() {
+    if (_focusNode.hasFocus) {
+      // Re-attach keyboard handlers when focus is gained
+      ServicesBinding.instance.keyboard.addHandler(_handleKeyPress);
+    } else {
+      // Remove handlers when focus is lost
+      ServicesBinding.instance.keyboard.removeHandler(_handleKeyPress);
+    }
+    setState(() {
+      _isFocused = _focusNode.hasFocus;
+    });
+  }
+
+  bool _handleKeyPress(KeyEvent event) {
+    if (!_focusNode.hasFocus) return false;
+
+    if (event is KeyDownEvent) {
+      if (event.logicalKey == LogicalKeyboardKey.space) {
+        final currentPosition = widget.controller.selection.baseOffset;
+        final text = widget.controller.text;
+
+        if (currentPosition >= 0) {
+          final newText =
+              '${text.substring(0, currentPosition)} ${text.substring(currentPosition)}';
+
+          widget.controller.value = TextEditingValue(
+            text: newText,
+            selection: TextSelection.collapsed(offset: currentPosition + 1),
+          );
+
+          if (widget.onChanged != null) {
+            widget.onChanged!(newText);
+          }
+
+          return true; // Handled the space key
+        }
+      } else if (event.logicalKey == LogicalKeyboardKey.tab) {
+        // Let the default tab behavior work
+        return false;
+      }
+    }
+    return false;
   }
 
   void _toggleObscureText() {
@@ -588,147 +636,155 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextField(
-          readOnly: widget.readOnly,
-          controller: widget.controller,
+        Focus(
           focusNode: _focusNode,
-          enabled: widget.isEditable,
-          inputFormatters: widget.enableCurrencyFormat
-              ? [
-                  FilteringTextInputFormatter.allow(widget.allowNegative
-                      ? RegExp(r'[0-9-]')
-                      : RegExp(r'[0-9]')),
-                  // Add any custom formatters from widget.inputFormatters
-                  ...?widget.inputFormatters,
-                ]
-              : widget.inputFormatters ?? [],
-          obscureText:
-              widget.inputMode == InputMode.password ? _isObscured : false,
-          keyboardType: widget.enableCurrencyFormat
-              ? TextInputType.number
-              : (widget.inputMode == InputMode.website ||
-                      widget.inputMode == InputMode.shareLink)
-                  ? TextInputType.url
-                  : widget.inputMode == InputMode.phoneNumber
-                      ? TextInputType.phone
-                      : (widget.inputMode == InputMode.cardNumber ||
-                              widget.inputMode == InputMode.amount ||
-                              widget.inputMode == InputMode.date)
-                          ? TextInputType.number
-                          : TextInputType.text,
-          onChanged: (value) {
-            if (widget.enableCurrencyFormat) {
-              // Get cursor position before formatting
-              int cursorPosition = widget.controller.selection.baseOffset;
-              String oldValue = widget.controller.text;
+          onKeyEvent: (node, event) {
+            if (_handleKeyPress(event)) {
+              return KeyEventResult.handled;
+            }
+            return KeyEventResult.ignored;
+          },
+          child: TextField(
+            readOnly: widget.readOnly,
+            controller: widget.controller,
+            enabled: widget.isEditable,
+            inputFormatters: widget.enableCurrencyFormat
+                ? [
+                    FilteringTextInputFormatter.allow(widget.allowNegative
+                        ? RegExp(r'[0-9-]')
+                        : RegExp(r'[0-9]')),
+                    // Add any custom formatters from widget.inputFormatters
+                    ...?widget.inputFormatters,
+                  ]
+                : widget.inputFormatters ?? [],
+            obscureText:
+                widget.inputMode == InputMode.password ? _isObscured : false,
+            keyboardType: widget.enableCurrencyFormat
+                ? TextInputType.number
+                : (widget.inputMode == InputMode.website ||
+                        widget.inputMode == InputMode.shareLink)
+                    ? TextInputType.url
+                    : widget.inputMode == InputMode.phoneNumber
+                        ? TextInputType.phone
+                        : (widget.inputMode == InputMode.cardNumber ||
+                                widget.inputMode == InputMode.amount ||
+                                widget.inputMode == InputMode.date)
+                            ? TextInputType.number
+                            : TextInputType.text,
+            onChanged: (value) {
+              if (widget.enableCurrencyFormat) {
+                // Get cursor position before formatting
+                int cursorPosition = widget.controller.selection.baseOffset;
+                String oldValue = widget.controller.text;
 
-              // Remove any existing formatting
-              String cleanValue = value.replaceAll(RegExp(r'[^0-9-]'), '');
+                // Remove any existing formatting
+                String cleanValue = value.replaceAll(RegExp(r'[^0-9-]'), '');
 
-              // Format the new value
-              String formattedValue = '';
-              if (cleanValue.isNotEmpty) {
-                try {
-                  int numericValue = int.parse(cleanValue);
-                  formattedValue = _currencyFormatter.format(numericValue);
-                } catch (e) {
-                  formattedValue = oldValue;
+                // Format the new value
+                String formattedValue = '';
+                if (cleanValue.isNotEmpty) {
+                  try {
+                    int numericValue = int.parse(cleanValue);
+                    formattedValue = _currencyFormatter.format(numericValue);
+                  } catch (e) {
+                    formattedValue = oldValue;
+                  }
+                }
+
+                // Calculate new cursor position
+                int newPosition = cursorPosition;
+                if (formattedValue.length > oldValue.length) {
+                  newPosition += formattedValue.length - oldValue.length;
+                }
+
+                // Immediately invoke onChanged with the clean numeric value
+                if (widget.onChanged != null) {
+                  widget.onChanged!(cleanValue);
+                }
+
+                // Update the text field
+                if (formattedValue != value) {
+                  widget.controller.value = TextEditingValue(
+                    text: formattedValue,
+                    selection: TextSelection.collapsed(
+                        offset: newPosition.clamp(0, formattedValue.length)),
+                  );
+                }
+
+                _text.value = formattedValue;
+              } else {
+                _text.value = value;
+                if (widget.onChanged != null) {
+                  widget.onChanged!(value);
                 }
               }
-
-              // Calculate new cursor position
-              int newPosition = cursorPosition;
-              if (formattedValue.length > oldValue.length) {
-                newPosition += formattedValue.length - oldValue.length;
-              }
-
-              // Immediately invoke onChanged with the clean numeric value
-              if (widget.onChanged != null) {
-                widget.onChanged!(cleanValue);
-              }
-
-              // Update the text field
-              if (formattedValue != value) {
-                widget.controller.value = TextEditingValue(
-                  text: formattedValue,
-                  selection: TextSelection.collapsed(
-                      offset: newPosition.clamp(0, formattedValue.length)),
-                );
-              }
-
-              _text.value = formattedValue;
-            } else {
-              _text.value = value;
-              if (widget.onChanged != null) {
-                widget.onChanged!(value);
-              }
-            }
-          },
-          textAlign: widget.inputMode == InputMode.counter
-              ? TextAlign.center
-              : TextAlign.left,
-          style: DLSTextStyle.paragraphSmall.copyWith(
-              color: widget.isEditable
-                  ? DLSColors.textMain900
-                  : DLSColors.textDisabled300),
-          textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(
-            isDense: true,
-            contentPadding: EdgeInsets.only(
-                top: 16,
-                bottom: 16,
-                left: prefixWidget == null ? 16 : 0,
-                right: suffixWidget == null ? 16 : 0),
-            hintText: widget.hintText,
-            hintStyle: DLSTextStyle.paragraphSmall.copyWith(
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-                color: DLSColors.textSoft400),
-            fillColor:
-                widget.isEditable ? Colors.transparent : DLSColors.bgWeak100,
-            filled: true,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: widget.isInvalid
-                    ? DLSColors.errorBase
-                    : _isFocused
-                        ? DLSColors.strokeStrong900
-                        : DLSColors.strokeSoft200,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
+            },
+            textAlign: widget.inputMode == InputMode.counter
+                ? TextAlign.center
+                : TextAlign.left,
+            style: DLSTextStyle.paragraphSmall.copyWith(
+                color: widget.isEditable
+                    ? DLSColors.textMain900
+                    : DLSColors.textDisabled300),
+            textAlignVertical: TextAlignVertical.center,
+            decoration: InputDecoration(
+              isDense: true,
+              contentPadding: EdgeInsets.only(
+                  top: 16,
+                  bottom: 16,
+                  left: prefixWidget == null ? 16 : 0,
+                  right: suffixWidget == null ? 16 : 0),
+              hintText: widget.hintText,
+              hintStyle: DLSTextStyle.paragraphSmall.copyWith(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: DLSColors.textSoft400),
+              fillColor:
+                  widget.isEditable ? Colors.transparent : DLSColors.bgWeak100,
+              filled: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
                   color: widget.isInvalid
                       ? DLSColors.errorBase
-                      : DLSColors.primaryBase),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: widget.isInvalid
-                    ? DLSColors.errorBase
-                    : DLSColors.strokeSoft200,
+                      : _isFocused
+                          ? DLSColors.strokeStrong900
+                          : DLSColors.strokeSoft200,
+                ),
               ),
-            ),
-            disabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: widget.isInvalid
-                    ? DLSColors.errorBase
-                    : DLSColors.bgWeak100,
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                    color: widget.isInvalid
+                        ? DLSColors.errorBase
+                        : DLSColors.primaryBase),
               ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: widget.isInvalid
+                      ? DLSColors.errorBase
+                      : DLSColors.strokeSoft200,
+                ),
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: widget.isInvalid
+                      ? DLSColors.errorBase
+                      : DLSColors.bgWeak100,
+                ),
+              ),
+              prefixIcon: prefixWidget == null
+                  ? null
+                  : SizedBox(height: 24, child: prefixWidget),
+              isCollapsed: true,
+              suffixIcon: suffixWidget == null
+                  ? null
+                  : SizedBox(height: 24, child: suffixWidget),
             ),
-            prefixIcon: prefixWidget == null
-                ? null
-                : SizedBox(height: 24, child: prefixWidget),
-            isCollapsed: true,
-            suffixIcon: suffixWidget == null
-                ? null
-                : SizedBox(height: 24, child: suffixWidget),
+            onSubmitted: widget.onSubmitted,
           ),
-          onSubmitted: widget.onSubmitted,
         ),
         if (widget.inputMode == InputMode.tag) _buildTagWidget()
       ],
