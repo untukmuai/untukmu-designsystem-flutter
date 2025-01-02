@@ -171,9 +171,38 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
 
     if (event is KeyDownEvent) {
       if (event.logicalKey == LogicalKeyboardKey.space) {
-        // Let the default TextField handling work instead of adding our own space
-        return false;
+        final currentPosition = widget.controller.selection.baseOffset;
+        final text = widget.controller.text;
+
+        if (currentPosition >= 0) {
+          // Check for existing spaces before and after the current position
+          final isBeforeSpace =
+              currentPosition > 0 && text[currentPosition - 1] == ' ';
+          final isAfterSpace =
+              currentPosition < text.length && text[currentPosition] == ' ';
+
+          if (isBeforeSpace || isAfterSpace) {
+            // Do not add a space if it creates a double space
+            return true; // Handled the space key without adding another space
+          }
+
+          // Add a space if it's not a double space
+          final newText =
+              '${text.substring(0, currentPosition)} ${text.substring(currentPosition)}';
+
+          widget.controller.value = TextEditingValue(
+            text: newText,
+            selection: TextSelection.collapsed(offset: currentPosition + 1),
+          );
+
+          if (widget.onChanged != null) {
+            widget.onChanged!(newText);
+          }
+
+          return true; // Handled the space key
+        }
       } else if (event.logicalKey == LogicalKeyboardKey.tab) {
+        // Let the default tab behavior work
         return false;
       }
     }
@@ -582,19 +611,22 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
     Widget? prefixWidget = widget.prefixWidget ?? _buildPrefixWidget();
     Widget? suffixWidget = widget.suffixWidget ?? _buildSuffixWidget();
 
+    List<TextInputFormatter> inputFormatters =
+        List.from(widget.inputFormatters ?? [], growable: true);
+    inputFormatters.add(NoDoubleSpaceFormatter());
+    if (widget.enableCurrencyFormat) {
+      inputFormatters.add(FilteringTextInputFormatter.allow(
+          widget.allowNegative ? RegExp(r'[0-9-]') : RegExp(r'[0-9]')));
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Focus(
           focusNode: _focusNode,
-          onKeyEvent: (FocusNode node, KeyEvent event) {
-            // Handle the Tab key for focus navigation
-            if (event.logicalKey == LogicalKeyboardKey.tab) {
-              return KeyEventResult.ignored; // Let default tab behavior work
-            }
-            // Let default space behavior work
-            if (event.logicalKey == LogicalKeyboardKey.space) {
-              return KeyEventResult.ignored;
+          onKeyEvent: (node, event) {
+            if (_handleKeyPress(event)) {
+              return KeyEventResult.handled;
             }
             return KeyEventResult.ignored;
           },
@@ -602,20 +634,21 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
             readOnly: widget.readOnly,
             controller: widget.controller,
             enabled: widget.isEditable,
-            inputFormatters: widget.enableCurrencyFormat
-                ? [
-                    FilteringTextInputFormatter.allow(widget.allowNegative
-                        ? RegExp(r'[0-9-]')
-                        : RegExp(r'[0-9]')),
-                    // Add any custom formatters from widget.inputFormatters
-                    ...?widget.inputFormatters,
-                  ]
-                : widget.inputFormatters ?? [],
+            inputFormatters: inputFormatters,
             obscureText:
                 widget.inputMode == InputMode.password ? _isObscured : false,
             keyboardType: widget.enableCurrencyFormat
                 ? TextInputType.number
-                : _getKeyboardType(),
+                : (widget.inputMode == InputMode.website ||
+                        widget.inputMode == InputMode.shareLink)
+                    ? TextInputType.url
+                    : widget.inputMode == InputMode.phoneNumber
+                        ? TextInputType.phone
+                        : (widget.inputMode == InputMode.cardNumber ||
+                                widget.inputMode == InputMode.amount ||
+                                widget.inputMode == InputMode.date)
+                            ? TextInputType.number
+                            : TextInputType.text,
             onChanged: (value) {
               if (widget.enableCurrencyFormat) {
                 // Get cursor position before formatting
@@ -736,23 +769,6 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
     );
   }
 
-  TextInputType _getKeyboardType() {
-    switch (widget.inputMode) {
-      case InputMode.website:
-      case InputMode.shareLink:
-        return TextInputType.url;
-      case InputMode.phoneNumber:
-        return TextInputType.phone;
-      case InputMode.cardNumber:
-      case InputMode.amount:
-      case InputMode.date:
-      case InputMode.counter:
-        return TextInputType.number;
-      default:
-        return TextInputType.text;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return widget.labelDirection == LabelDirection.vertical
@@ -851,5 +867,21 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
           ),
       ],
     );
+  }
+}
+
+class NoDoubleSpaceFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    // Prevent consecutive spaces
+    if (newValue.text.contains('  ')) {
+      String filteredText = newValue.text.replaceAll('  ', ' ');
+      return TextEditingValue(
+        text: filteredText,
+        selection: TextSelection.collapsed(offset: filteredText.length),
+      );
+    }
+    return newValue;
   }
 }
