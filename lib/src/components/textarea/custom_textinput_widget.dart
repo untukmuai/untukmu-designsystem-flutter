@@ -118,40 +118,6 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
     decimalDigits: 0,
   );
 
-  String? _formatCurrencyInput(String text) {
-    if (!widget.enableCurrencyFormat) return text;
-
-    if (text.isEmpty) return text;
-
-    // Remove all non-digit characters except minus sign
-    String cleanText = text.replaceAll(RegExp(r'[^0-9-]'), '');
-
-    try {
-      // Handle negative numbers
-      bool isNegative = cleanText.startsWith('-');
-      if (isNegative && !widget.allowNegative) {
-        cleanText = cleanText.substring(1);
-        isNegative = false;
-      }
-
-      // Parse the cleaned text to integer
-      int? value = int.tryParse(cleanText.replaceAll('-', ''));
-      if (value == null) return text;
-
-      // Format the number with IDR currency formatting
-      String formatted = _currencyFormatter.format(isNegative ? -value : value);
-
-      return formatted;
-    } catch (e) {
-      return text;
-    }
-  }
-
-  // Function to extract numeric value from formatted string
-  String _getNumericValue(String formattedText) {
-    return formattedText.replaceAll(RegExp(r'[^0-9-]'), '');
-  }
-
   @override
   void initState() {
     super.initState();
@@ -205,26 +171,9 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
 
     if (event is KeyDownEvent) {
       if (event.logicalKey == LogicalKeyboardKey.space) {
-        final currentPosition = widget.controller.selection.baseOffset;
-        final text = widget.controller.text;
-
-        if (currentPosition >= 0) {
-          final newText =
-              '${text.substring(0, currentPosition)} ${text.substring(currentPosition)}';
-
-          widget.controller.value = TextEditingValue(
-            text: newText,
-            selection: TextSelection.collapsed(offset: currentPosition + 1),
-          );
-
-          if (widget.onChanged != null) {
-            widget.onChanged!(newText);
-          }
-
-          return true; // Handled the space key
-        }
+        // Let the default TextField handling work instead of adding our own space
+        return false;
       } else if (event.logicalKey == LogicalKeyboardKey.tab) {
-        // Let the default tab behavior work
         return false;
       }
     }
@@ -638,9 +587,14 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
       children: [
         Focus(
           focusNode: _focusNode,
-          onKeyEvent: (node, event) {
-            if (_handleKeyPress(event)) {
-              return KeyEventResult.handled;
+          onKeyEvent: (FocusNode node, KeyEvent event) {
+            // Handle the Tab key for focus navigation
+            if (event.logicalKey == LogicalKeyboardKey.tab) {
+              return KeyEventResult.ignored; // Let default tab behavior work
+            }
+            // Let default space behavior work
+            if (event.logicalKey == LogicalKeyboardKey.space) {
+              return KeyEventResult.ignored;
             }
             return KeyEventResult.ignored;
           },
@@ -661,16 +615,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
                 widget.inputMode == InputMode.password ? _isObscured : false,
             keyboardType: widget.enableCurrencyFormat
                 ? TextInputType.number
-                : (widget.inputMode == InputMode.website ||
-                        widget.inputMode == InputMode.shareLink)
-                    ? TextInputType.url
-                    : widget.inputMode == InputMode.phoneNumber
-                        ? TextInputType.phone
-                        : (widget.inputMode == InputMode.cardNumber ||
-                                widget.inputMode == InputMode.amount ||
-                                widget.inputMode == InputMode.date)
-                            ? TextInputType.number
-                            : TextInputType.text,
+                : _getKeyboardType(),
             onChanged: (value) {
               if (widget.enableCurrencyFormat) {
                 // Get cursor position before formatting
@@ -789,6 +734,23 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
         if (widget.inputMode == InputMode.tag) _buildTagWidget()
       ],
     );
+  }
+
+  TextInputType _getKeyboardType() {
+    switch (widget.inputMode) {
+      case InputMode.website:
+      case InputMode.shareLink:
+        return TextInputType.url;
+      case InputMode.phoneNumber:
+        return TextInputType.phone;
+      case InputMode.cardNumber:
+      case InputMode.amount:
+      case InputMode.date:
+      case InputMode.counter:
+        return TextInputType.number;
+      default:
+        return TextInputType.text;
+    }
   }
 
   @override
