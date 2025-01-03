@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -50,12 +51,68 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
         _isFocused = _focusNode.hasFocus;
       });
     });
+
+    _focusNode.addListener(_handleFocusChange);
   }
 
   @override
   void dispose() {
+    _focusNode.removeListener(_handleFocusChange);
     _focusNode.dispose();
+
     super.dispose();
+  }
+
+  void _handleFocusChange() {
+    if (_focusNode.hasFocus) {
+      // Re-attach keyboard handlers when focus is gained
+      ServicesBinding.instance.keyboard.addHandler(_handleKeyPress);
+    } else {
+      // Remove handlers when focus is lost
+      ServicesBinding.instance.keyboard.removeHandler(_handleKeyPress);
+    }
+    setState(() {
+      _isFocused = _focusNode.hasFocus;
+    });
+  }
+
+  bool _handleKeyPress(KeyEvent event) {
+    if (!_focusNode.hasFocus) return false;
+
+    if (event is KeyDownEvent) {
+      if (event.logicalKey == LogicalKeyboardKey.space) {
+        final currentPosition = widget.controller.selection.baseOffset;
+        final text = widget.controller.text;
+
+        if (currentPosition >= 0) {
+          // Check for existing spaces before and after the current position
+          final isBeforeSpace =
+              currentPosition > 0 && text[currentPosition - 1] == ' ';
+          final isAfterSpace =
+              currentPosition < text.length && text[currentPosition] == ' ';
+
+          if (isBeforeSpace || isAfterSpace) {
+            // Do not add a space if it creates a double space
+            return true; // Handled the space key without adding another space
+          }
+
+          // Add a space if it's not a double space
+          final newText =
+              '${text.substring(0, currentPosition)} ${text.substring(currentPosition)}';
+
+          widget.controller.value = TextEditingValue(
+            text: newText,
+            selection: TextSelection.collapsed(offset: currentPosition + 1),
+          );
+
+          return true; // Handled the space key
+        }
+      } else if (event.logicalKey == LogicalKeyboardKey.tab) {
+        // Let the default tab behavior work
+        return false;
+      }
+    }
+    return false;
   }
 
   @override
@@ -131,71 +188,82 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
   }
 
   Widget _buildTextField() {
+    List<TextInputFormatter> inputFormatters = [NoDoubleSpaceFormatter()];
+
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
-        TextField(
-          controller: widget.controller,
+        Focus(
           focusNode: _focusNode,
-          maxLength: widget.maxLength,
-          enabled: widget.isEditable,
-          minLines: 4,
-          maxLines: _maxLines,
-          onChanged: (value) {
-            _text.value = value;
+          onKeyEvent: (node, event) {
+            if (_handleKeyPress(event)) {
+              return KeyEventResult.handled;
+            }
+            return KeyEventResult.ignored;
           },
-          style: GoogleFonts.plusJakartaSans(
-              fontWeight: FontWeight.w400,
-              color: widget.isEditable
-                  ? DLSColors.textMain900
-                  : DLSColors.textDisabled300),
-          decoration: InputDecoration(
-            hintText: widget.hintText,
-            hintStyle: GoogleFonts.plusJakartaSans(
-                fontSize: 14,
+          child: TextField(
+            controller: widget.controller,
+            maxLength: widget.maxLength,
+            enabled: widget.isEditable,
+            minLines: 4,
+            maxLines: _maxLines,
+            onChanged: (value) {
+              _text.value = value;
+            },
+            style: GoogleFonts.plusJakartaSans(
                 fontWeight: FontWeight.w400,
-                color: DLSColors.textSoft400),
-            fillColor: widget.isEditable ? Colors.white : DLSColors.bgWeak100,
-            filled: true,
-            counterText: '',
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: !widget.isEditable
-                    ? DLSColors.bgWeak100
-                    : widget.isInvalid
-                        ? DLSColors.errorBase
-                        : _isFocused
-                            ? DLSColors.strokeSoft200
-                            : DLSColors.strokeSoft200,
+                color: widget.isEditable
+                    ? DLSColors.textMain900
+                    : DLSColors.textDisabled300),
+            decoration: InputDecoration(
+              hintText: widget.hintText,
+              hintStyle: GoogleFonts.plusJakartaSans(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: DLSColors.textSoft400),
+              fillColor: widget.isEditable ? Colors.white : DLSColors.bgWeak100,
+              filled: true,
+              counterText: '',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: !widget.isEditable
+                      ? DLSColors.bgWeak100
+                      : widget.isInvalid
+                          ? DLSColors.errorBase
+                          : _isFocused
+                              ? DLSColors.strokeSoft200
+                              : DLSColors.strokeSoft200,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: widget.isInvalid
+                      ? DLSColors.errorBase
+                      : DLSColors.strokeStrong900,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: widget.isInvalid
+                      ? DLSColors.errorBase
+                      : DLSColors.strokeSoft200,
+                ),
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: widget.isInvalid
+                      ? DLSColors.errorBase
+                      : DLSColors.bgWeak100,
+                ),
               ),
             ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: widget.isInvalid
-                    ? DLSColors.errorBase
-                    : DLSColors.strokeStrong900,
-              ),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: widget.isInvalid
-                    ? DLSColors.errorBase
-                    : DLSColors.strokeSoft200,
-              ),
-            ),
-            disabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: widget.isInvalid
-                    ? DLSColors.errorBase
-                    : DLSColors.bgWeak100,
-              ),
-            ),
+            onSubmitted: widget.onSubmitted,
+            inputFormatters: inputFormatters,
           ),
-          onSubmitted: widget.onSubmitted,
         ),
         Obx(
           () => Padding(

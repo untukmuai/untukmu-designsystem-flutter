@@ -96,13 +96,15 @@ class _CustomSwitchWidgetState extends State<CustomSwitchWidget> {
                               offset: const Offset(0, 2),
                               blurRadius: 4,
                               spreadRadius: 0,
-                              color: const Color(0xFF1B1C1D).withOpacity(0.02),
+                              color: const Color(0xFF1B1C1D)
+                                  .withValues(alpha: 0.02),
                             ),
                             BoxShadow(
                               offset: const Offset(0, 6),
                               blurRadius: 10,
                               spreadRadius: 0,
-                              color: const Color(0xFF1B1C1D).withOpacity(0.06),
+                              color: const Color(0xFF1B1C1D)
+                                  .withValues(alpha: 0.06),
                             ),
                           ]
                         : null,

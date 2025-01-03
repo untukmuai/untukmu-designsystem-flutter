@@ -178,7 +178,7 @@ class ThirdWidget extends StatelessWidget {
                             offset: const Offset(0, 24),
                             blurRadius: 32,
                             spreadRadius: 0,
-                            color: const Color(0xFF000000).withOpacity(0.25),
+                            color: const Color(0xFF000000).withValues(alpha: 0.25),
                           )
                         ]),
                         child: Image.asset(

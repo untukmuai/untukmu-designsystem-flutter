@@ -128,9 +128,7 @@ class CustomBannerWidget extends StatelessWidget {
         return Iconsax.tick_circle5;
       case CustomBannerType.feature:
         return Iconsax.magic_star5;
-      default:
-        return null;
-    }
+      }
   }
 }
 

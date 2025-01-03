@@ -32,7 +32,7 @@ class _TextInputExampleState extends State<TextInputExample> {
                 allowNegative: false, // Don't allow negative numbers
                 hintText: "Enter amount",
                 onChanged: (value) {
-                  print('Numeric value: $value'); // Will print just the numbers
+                  debugPrint('Numeric value: $value'); // Will print just the numbers
                 },
               ),
               const SizedBox(height: 16),

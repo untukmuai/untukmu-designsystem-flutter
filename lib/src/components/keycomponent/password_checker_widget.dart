@@ -106,7 +106,6 @@ class PasswordCheckerWidgetState extends State<PasswordCheckerWidget> {
         strengthLevel = 1;
         break;
       case PasswordStrengthState.unfilled:
-      default:
         text = widget.unfilledMessage;
         color = DLSColors.textSub500;
         strengthLevel = 0;
