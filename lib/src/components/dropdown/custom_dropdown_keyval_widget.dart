@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 abstract class KeyValueItem {
@@ -16,6 +17,7 @@ class CustomDropdownKeyValWidget extends StatefulWidget {
   final DropdownLabelDirection labelDirection;
   final String? hintTextMessage;
   final bool readOnly;
+  final bool isLoading;
 
   final Widget? prefixIcon;
   final List<KeyValueItem> items;
@@ -35,6 +37,7 @@ class CustomDropdownKeyValWidget extends StatefulWidget {
     required this.items,
     this.onChanged,
     this.readOnly = false,
+    this.isLoading = false,
   });
 
   @override
@@ -65,7 +68,7 @@ class CustomDropdownKeyValWidgetState
           ],
         ),
         const SizedBox(height: 8),
-        _buildDropdown(),
+        widget.isLoading ? _buildLoadingState() : _buildDropdown(),
         const SizedBox(height: 4),
         if (widget.hintTextMessage != null)
           HintTextWidget(
@@ -107,9 +110,23 @@ class CustomDropdownKeyValWidgetState
         const SizedBox(width: 16),
         Expanded(
           flex: 3,
-          child: _buildDropdown(),
+          child: widget.isLoading ? _buildLoadingState() : _buildDropdown(),
         ),
       ],
+    );
+  }
+
+  Widget _buildLoadingState() {
+    return Shimmer.fromColors(
+      baseColor: DLSColors.bgWeak100,
+      highlightColor: DLSColors.bgWhite0,
+      child: Container(
+        height: 40, // Match the height of your dropdown
+        decoration: BoxDecoration(
+          borderRadius: DLSRadius.radius12,
+          color: DLSColors.bgWhite0,
+        ),
+      ),
     );
   }
 

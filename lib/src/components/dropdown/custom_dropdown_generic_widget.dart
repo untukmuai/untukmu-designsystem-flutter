@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 class CustomDropdownGenericWidget<T> extends StatefulWidget {
@@ -18,6 +19,7 @@ class CustomDropdownGenericWidget<T> extends StatefulWidget {
     this.hintTextMessage,
     this.readOnly = false,
     this.prefixIcon,
+    this.isLoading = false,
   });
 
   final List<T> items;
@@ -33,6 +35,7 @@ class CustomDropdownGenericWidget<T> extends StatefulWidget {
   final DropdownLabelDirection labelDirection;
   final String? hintTextMessage;
   final bool readOnly;
+  final bool isLoading;
 
   final Widget? prefixIcon;
 
@@ -50,6 +53,20 @@ class _CustomDropdownGenericWidgetState<T>
         : _buildHorizontalLayout();
   }
 
+  Widget _buildLoadingState() {
+    return Shimmer.fromColors(
+      baseColor: DLSColors.bgWeak100,
+      highlightColor: DLSColors.bgWhite0,
+      child: Container(
+        height: 40, // Match the height of your dropdown
+        decoration: BoxDecoration(
+          borderRadius: DLSRadius.radius12,
+          color: DLSColors.bgWhite0,
+        ),
+      ),
+    );
+  }
+
   Widget _buildVerticalLayout() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +81,7 @@ class _CustomDropdownGenericWidgetState<T>
           ],
         ),
         const SizedBox(height: 8),
-        _buildDropdown(),
+        widget.isLoading ? _buildLoadingState() : _buildDropdown(),
         const SizedBox(height: 4),
         if (widget.hintTextMessage != null)
           HintTextWidget(
@@ -104,7 +121,7 @@ class _CustomDropdownGenericWidgetState<T>
         const SizedBox(width: 16),
         Expanded(
           flex: 3,
-          child: _buildDropdown(),
+          child: widget.isLoading ? _buildLoadingState() : _buildDropdown(),
         ),
       ],
     );
