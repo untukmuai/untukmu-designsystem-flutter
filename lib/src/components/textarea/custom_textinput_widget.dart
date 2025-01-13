@@ -46,6 +46,7 @@ class CustomTextInputWidget extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final Function(String)? onChanged;
   final bool readOnly;
+  final EdgeInsetsGeometry? contentPadding;
 
   // Parameter untuk mode tag
   final List<String>? listTag;
@@ -88,6 +89,7 @@ class CustomTextInputWidget extends StatefulWidget {
     this.onSubmitted,
     this.enableCurrencyFormat = false,
     this.allowNegative = false,
+    this.contentPadding
   });
 
   @override
@@ -707,7 +709,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               isDense: true,
-              contentPadding: EdgeInsets.only(
+              contentPadding: widget.contentPadding ?? EdgeInsets.only(
                   top: 16,
                   bottom: 16,
                   left: prefixWidget == null ? 16 : 0,
