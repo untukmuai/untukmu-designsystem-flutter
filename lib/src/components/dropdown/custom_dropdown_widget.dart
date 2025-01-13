@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:untukmu_flutter_design_system/untukmu_flutter_design_system.dart';
 
 enum DropdownLabelDirection { vertical, horizontal }
@@ -14,6 +15,7 @@ class CustomDropdownWidget extends StatefulWidget {
   final DropdownLabelDirection labelDirection;
   final String? hintTextMessage;
   final bool readOnly;
+  final bool isLoading; // Added loading state
 
   final Widget? prefixIcon;
   final List<CustomDropdownData> items;
@@ -34,6 +36,7 @@ class CustomDropdownWidget extends StatefulWidget {
     required this.items,
     this.onChanged,
     this.readOnly = false,
+    this.isLoading = false, // Default to false
   });
 
   @override
@@ -46,6 +49,20 @@ class CustomDropdownWidgetState extends State<CustomDropdownWidget> {
     return widget.labelDirection == DropdownLabelDirection.vertical
         ? _buildVerticalLayout()
         : _buildHorizontalLayout();
+  }
+
+  Widget _buildLoadingState() {
+    return Shimmer.fromColors(
+      baseColor: DLSColors.bgWeak100,
+      highlightColor: DLSColors.bgWhite0,
+      child: Container(
+        height: 40, // Match the height of your dropdown
+        decoration: BoxDecoration(
+          borderRadius: DLSRadius.radius12,
+          color: DLSColors.bgWhite0,
+        ),
+      ),
+    );
   }
 
   Widget _buildVerticalLayout() {
@@ -62,7 +79,7 @@ class CustomDropdownWidgetState extends State<CustomDropdownWidget> {
           ],
         ),
         const SizedBox(height: 8),
-        _buildDropdown(),
+        widget.isLoading ? _buildLoadingState() : _buildDropdown(),
         const SizedBox(height: 4),
         if (widget.hintTextMessage != null)
           HintTextWidget(
@@ -102,7 +119,7 @@ class CustomDropdownWidgetState extends State<CustomDropdownWidget> {
         const SizedBox(width: 16),
         Expanded(
           flex: 3,
-          child: _buildDropdown(),
+          child: widget.isLoading ? _buildLoadingState() : _buildDropdown(),
         ),
       ],
     );

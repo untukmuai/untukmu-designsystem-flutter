@@ -86,6 +86,7 @@ class _DropdownExampleState extends State<DropdownExample> {
             ),
             const SizedBox(height: DLSSizing.s3xSmall),
             CustomDropdownWidget(
+              isLoading: true,
               selectedItem: data,
               onChanged: (value) => debugPrint(value?.code),
               items: [
