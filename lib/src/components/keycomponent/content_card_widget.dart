@@ -169,7 +169,7 @@ class ContentCardWidget extends StatelessWidget {
                 : (bool value) {
                     if (onTap != null) onTap!();
                   },
-            activeColor: DLSColors.primaryBase,
+            activeTrackColor: DLSColors.primaryBase,
           ),
         ),
       );

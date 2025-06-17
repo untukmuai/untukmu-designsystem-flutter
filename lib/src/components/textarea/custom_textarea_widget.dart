@@ -206,8 +206,9 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
                   onPanUpdate: (details) {
                     setState(() {
                       _maxLines += details.delta.dy < 0 ? 1 : -1;
-                      if (_maxLines < 4)
+                      if (_maxLines < 4) {
                         _maxLines = 4; // Minimal sesuai dengan minLines
+                      }
                       if (_maxLines > 10) _maxLines = 10; // Maksimal 10 line
                     });
                   },

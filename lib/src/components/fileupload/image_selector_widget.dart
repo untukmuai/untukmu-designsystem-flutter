@@ -48,11 +48,13 @@ class ImageSelectorWidgetState extends State<ImageSelectorWidget> {
 
     if (_imageFile == null) {
       content = DottedBorder(
-        color:
-            widget.isDisabled ? DLSColors.strokeSub300 : DLSColors.primaryBase,
-        borderType: BorderType.RRect,
-        radius: const Radius.circular(12),
-        dashPattern: const [6],
+        options: RoundedRectDottedBorderOptions(
+          radius: const Radius.circular(12),
+          color: widget.isDisabled
+              ? DLSColors.strokeSub300
+              : DLSColors.primaryBase,
+          dashPattern: const [6],
+        ),
         child: SizedBox(
           width: size,
           height: size,

@@ -162,7 +162,7 @@ class _TextInputExampleState extends State<TextInputExample> {
                   controller: controller,
                   inputMode: InputMode.counter),
               const SizedBox(height: 16),
-              LabelWidget(label: "Digit Input"),
+              const LabelWidget(label: "Digit Input"),
               const SizedBox(height: 8),
               CustomDigitInputWidget(
                 controller: controller,

@@ -1,4 +1,4 @@
-library untukmu_flutter_design_system;
+library;
 
 export 'src/common/radius.dart';
 export 'src/common/shadow.dart';

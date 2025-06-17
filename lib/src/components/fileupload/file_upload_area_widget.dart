@@ -48,11 +48,12 @@ class FileUploadAreaWidgetState extends State<FileUploadAreaWidget> {
     return Column(
       children: [
         DottedBorder(
-          padding: const EdgeInsets.all(32),
-          borderType: BorderType.RRect,
-          radius: const Radius.circular(12),
-          color: DLSColors.strokeSub300,
-          dashPattern: const [6],
+          options: RoundedRectDottedBorderOptions(
+            radius: const Radius.circular(12),
+            padding: const EdgeInsets.all(32),
+            color: DLSColors.strokeSub300,
+            dashPattern: const [6],
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
