@@ -9,6 +9,7 @@ class CustomDividerWidget extends StatelessWidget {
     this.showLine = true,
     this.filled = false,
     this.centerWidget,
+    this.lineColor,
   });
 
   final double? verticalSpace;
@@ -18,6 +19,7 @@ class CustomDividerWidget extends StatelessWidget {
   final bool filled;
 
   final Widget? centerWidget;
+  final Color? lineColor;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class CustomDividerWidget extends StatelessWidget {
             visible: showLine,
             child: Expanded(
               child: Container(
-                color: DLSColors.strokeSoft200,
+                color: lineColor ?? DLSColors.strokeSoft200,
                 height: 1,
               ),
             ),
@@ -47,7 +49,7 @@ class CustomDividerWidget extends StatelessWidget {
             visible: showLine,
             child: Expanded(
               child: Container(
-                color: DLSColors.strokeSoft200,
+                color: lineColor ?? DLSColors.strokeSoft200,
                 height: 1,
               ),
             ),
