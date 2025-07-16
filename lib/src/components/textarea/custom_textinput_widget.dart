@@ -47,6 +47,7 @@ class CustomTextInputWidget extends StatefulWidget {
   final Color? focusedBorderColor;
   final Color? backgroundColor;
   final BorderRadius? borderRadius;
+  final Color? textColor;
 
   // Parameter untuk mode tag
   final List<String>? listTag;
@@ -82,7 +83,8 @@ class CustomTextInputWidget extends StatefulWidget {
       this.enableAddNew = false,
       this.onTagsChanged,
       this.focusedBorderColor,
-      this.backgroundColor});
+      this.backgroundColor,
+      this.textColor});
 
   @override
   CustomTextInputWidgetState createState() => CustomTextInputWidgetState();
@@ -216,7 +218,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
                         Text(
                           country.phoneCode,
                           style: DLSTextStyle.paragraphMedium.copyWith(
-                            color: DLSColors.textMain900,
+                            color: widget.textColor ?? DLSColors.textMain900,
                             fontSize: 14,
                           ),
                         ),
@@ -246,7 +248,9 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 12, top: 8, bottom: 12),
-                child: Text('https://', style: DLSTextStyle.labelMedium),
+                child: Text('https://', style: DLSTextStyle.labelMedium.copyWith(
+                  color: widget.textColor,
+                )),
               ),
               const VerticalDivider(
                 color: DLSColors.strokeSoft200,
@@ -385,8 +389,10 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
                         const SizedBox(width: 8),
                         Text(
                           currency.code,
-                          style: DLSTextStyle.paragraphMedium
-                              .copyWith(fontSize: 14),
+                          style: DLSTextStyle.paragraphMedium.copyWith(
+                            fontSize: 14,
+                            color: widget.textColor,
+                          ),
                         ),
                       ],
                     ),
@@ -572,7 +578,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
               : TextAlign.left,
           style: DLSTextStyle.paragraphSmall.copyWith(
               color: widget.isEditable
-                  ? DLSColors.textMain900
+                  ? widget.textColor ?? DLSColors.textMain900
                   : DLSColors.textDisabled300),
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
