@@ -18,7 +18,8 @@ class CustomButtonWidget extends StatelessWidget {
       this.labelColor,
       this.strokeColor,
       this.prefixPadding,
-      this.mainAxisAlignment});
+      this.mainAxisAlignment,
+      this.expanded = false});
 
   final String label;
   final VoidCallback? onPressed;
@@ -40,6 +41,8 @@ class CustomButtonWidget extends StatelessWidget {
   final Color? labelColor;
   final Color? strokeColor;
   final MainAxisAlignment? mainAxisAlignment;
+
+  final bool expanded;
 
   @override
   Widget build(BuildContext context) {
@@ -87,10 +90,19 @@ class CustomButtonWidget extends StatelessWidget {
                     color: textColor,
                   ),
                 ),
-          Text(
-            label,
-            style: textStyle.copyWith(color: textColor),
-          ),
+          expanded
+              ? Expanded(
+                  child: Center(
+                    child: Text(
+                      label,
+                      style: textStyle.copyWith(color: textColor),
+                    ),
+                  ),
+                )
+              : Text(
+                  label,
+                  style: textStyle.copyWith(color: textColor),
+                ),
           suffixIcon == null
               ? const SizedBox()
               : Padding(
