@@ -19,7 +19,9 @@ class CustomButtonWidget extends StatelessWidget {
       this.strokeColor,
       this.prefixPadding,
       this.mainAxisAlignment,
-      this.expanded = false});
+      this.expanded = false,
+      this.prefixWidget,
+      this.suffixWidget});
 
   final String label;
   final VoidCallback? onPressed;
@@ -34,6 +36,9 @@ class CustomButtonWidget extends StatelessWidget {
   final double? prefixPadding;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
+
+  final Widget? prefixWidget;
+  final Widget? suffixWidget;
 
   final bool disabled;
 
@@ -68,6 +73,29 @@ class CustomButtonWidget extends StatelessWidget {
       }
     }
 
+    var prefix = prefixWidget ??
+        (prefixIcon != null
+            ? Padding(
+                padding: prefixIconPadding,
+                child: Icon(
+                  prefixIcon,
+                  size: 16,
+                  color: textColor,
+                ),
+              )
+            : SizedBox.shrink());
+    var suffix = suffixWidget ??
+        (suffixIcon != null
+            ? Padding(
+                padding: suffixIconPadding,
+                child: Icon(
+                  suffixIcon,
+                  size: 16,
+                  color: textColor,
+                ),
+              )
+            : SizedBox.shrink());
+
     return TextButton(
       onPressed: disabled ? null : onPressed,
       style: TextButton.styleFrom(
@@ -80,16 +108,7 @@ class CustomButtonWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
         children: [
-          prefixIcon == null
-              ? const SizedBox()
-              : Padding(
-                  padding: prefixIconPadding,
-                  child: Icon(
-                    prefixIcon,
-                    size: 16,
-                    color: textColor,
-                  ),
-                ),
+          prefix,
           expanded
               ? Expanded(
                   child: Center(
@@ -103,16 +122,7 @@ class CustomButtonWidget extends StatelessWidget {
                   label,
                   style: textStyle.copyWith(color: textColor),
                 ),
-          suffixIcon == null
-              ? const SizedBox()
-              : Padding(
-                  padding: suffixIconPadding,
-                  child: Icon(
-                    suffixIcon,
-                    size: 16,
-                    color: textColor,
-                  ),
-                ),
+          suffix,
         ],
       ),
     );
