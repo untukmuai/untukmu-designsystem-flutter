@@ -48,6 +48,7 @@ class CustomTextInputWidget extends StatefulWidget {
   final Color? backgroundColor;
   final BorderRadius? borderRadius;
   final Color? textColor;
+  final ValueChanged<String>? onSubmitted;
 
   // Parameter untuk mode tag
   final List<String>? listTag;
@@ -84,7 +85,8 @@ class CustomTextInputWidget extends StatefulWidget {
       this.onTagsChanged,
       this.focusedBorderColor,
       this.backgroundColor,
-      this.textColor});
+      this.textColor,
+      this.onSubmitted});
 
   @override
   CustomTextInputWidgetState createState() => CustomTextInputWidgetState();
@@ -248,9 +250,10 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 12, top: 8, bottom: 12),
-                child: Text('https://', style: DLSTextStyle.labelMedium.copyWith(
-                  color: widget.textColor,
-                )),
+                child: Text('https://',
+                    style: DLSTextStyle.labelMedium.copyWith(
+                      color: widget.textColor,
+                    )),
               ),
               const VerticalDivider(
                 color: DLSColors.strokeSoft200,
@@ -638,6 +641,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
                 ? null
                 : SizedBox(height: 24, child: suffixWidget),
           ),
+          onSubmitted: widget.onSubmitted,
         ),
         if (widget.inputMode == InputMode.tag) _buildTagWidget()
       ],
