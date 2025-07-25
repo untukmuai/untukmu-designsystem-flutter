@@ -671,9 +671,9 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
+                spacing: 4,
                 children: [
                   LabelWidget(label: widget.label!),
-                  if (widget.showOptionalLabel) const SizedBox(width: 4),
                   if (widget.showOptionalLabel)
                     LabelWidget(
                         label: "Optional",
@@ -715,9 +715,9 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
             children: [
               if (widget.label != null)
                 Row(
+                  spacing: 4,
                   children: [
                     LabelWidget(label: widget.label!),
-                    if (widget.showOptionalLabel) const SizedBox(width: 4),
                     if (widget.showOptionalLabel)
                       LabelWidget(
                           label: "Optional",

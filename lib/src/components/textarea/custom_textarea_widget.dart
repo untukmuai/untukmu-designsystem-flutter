@@ -72,9 +72,9 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          spacing: 4,
           children: [
             LabelWidget(label: widget.label),
-            if (widget.showOptionalLabel) const SizedBox(width: 4),
             if (widget.showOptionalLabel)
               LabelWidget(
                   label: "Optional",
@@ -105,9 +105,9 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                spacing: 4,
                 children: [
                   LabelWidget(label: widget.label),
-                  if (widget.showOptionalLabel) const SizedBox(width: 4),
                   if (widget.showOptionalLabel)
                     LabelWidget(
                         label: "Optional",
