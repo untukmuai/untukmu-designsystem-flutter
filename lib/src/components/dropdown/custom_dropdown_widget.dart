@@ -120,7 +120,7 @@ class CustomDropdownWidgetState extends State<CustomDropdownWidget> {
       icon: const Padding(
         padding: EdgeInsets.only(left: DLSSizing.s3xSmall),
         child: Icon(
-          IconsaxPlusLinear.arrow_down_1,
+          IconsaxPlusLinear.arrow_down,
           size: 20,
           color: DLSColors.iconSoft400,
         ),
