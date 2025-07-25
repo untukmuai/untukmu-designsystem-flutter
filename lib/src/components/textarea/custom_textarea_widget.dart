@@ -14,7 +14,9 @@ class CustomTextAreaWidget extends StatefulWidget {
   final TextEditingController controller;
   final int maxLength;
   final LabelDirection labelDirection;
+  final bool isRequired;
   final bool showOptionalLabel;
+  final bool showOptionalIcon;
   final String? hintTextMessage;
 
   const CustomTextAreaWidget({
@@ -26,7 +28,9 @@ class CustomTextAreaWidget extends StatefulWidget {
     required this.controller,
     this.maxLength = 200,
     this.labelDirection = LabelDirection.vertical,
+    this.isRequired = false,
     this.showOptionalLabel = false,
+    this.showOptionalIcon = true,
     this.hintTextMessage,
   });
 
@@ -69,11 +73,17 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
       children: [
         Row(
           children: [
-            LabelWidget(label: widget.label),
+            LabelWidget(
+                label: widget.label,
+                labelType:
+                    widget.isRequired ? LabelType.mandatory : LabelType.normal,
+                showOptionalIcon: widget.showOptionalIcon),
             if (widget.showOptionalLabel) const SizedBox(width: 4),
             if (widget.showOptionalLabel)
-              const LabelWidget(
-                  label: "Optional", labelType: LabelType.optional),
+              LabelWidget(
+                  label: "Optional",
+                  labelType: LabelType.optional,
+                  showOptionalIcon: widget.showOptionalIcon),
           ],
         ),
         const SizedBox(height: 8),
@@ -98,11 +108,18 @@ class CustomTextAreaWidgetState extends State<CustomTextAreaWidget> {
             children: [
               Row(
                 children: [
-                  LabelWidget(label: widget.label),
+                  LabelWidget(
+                      label: widget.label,
+                      labelType: widget.isRequired
+                          ? LabelType.mandatory
+                          : LabelType.normal,
+                      showOptionalIcon: widget.showOptionalIcon),
                   if (widget.showOptionalLabel) const SizedBox(width: 4),
                   if (widget.showOptionalLabel)
-                    const LabelWidget(
-                        label: "Optional", labelType: LabelType.optional),
+                    LabelWidget(
+                        label: "Optional",
+                        labelType: LabelType.optional,
+                        showOptionalIcon: widget.showOptionalIcon),
                 ],
               ),
               const SizedBox(height: 16),
