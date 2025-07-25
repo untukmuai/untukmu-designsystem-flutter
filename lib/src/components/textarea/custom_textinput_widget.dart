@@ -27,7 +27,9 @@ class CustomTextInputWidget extends StatefulWidget {
   final bool isEditable;
   final bool isReadOnly;
   final bool isInvalid;
+  final bool isRequired;
   final bool showOptionalLabel;
+  final bool showOptionalIcon;
   final String? errorMessage;
   final TextEditingController controller;
   final LabelDirection labelDirection;
@@ -63,10 +65,12 @@ class CustomTextInputWidget extends StatefulWidget {
       this.isEditable = true,
       this.isReadOnly = false,
       this.isInvalid = false,
+      this.isRequired = false,
+      this.showOptionalLabel = false,
+      this.showOptionalIcon = false,
       this.errorMessage,
       required this.controller,
       this.labelDirection = LabelDirection.vertical,
-      this.showOptionalLabel = false,
       this.hintTextMessage,
       this.inputMode = InputMode.text,
       this.borderRadius,
@@ -668,11 +672,17 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
             children: [
               Row(
                 children: [
-                  LabelWidget(label: widget.label!),
+                  LabelWidget(
+                      label: widget.label!,
+                      labelType: widget.isRequired
+                          ? LabelType.mandatory
+                          : LabelType.normal),
                   if (widget.showOptionalLabel) const SizedBox(width: 4),
                   if (widget.showOptionalLabel)
-                    const LabelWidget(
-                        label: "Optional", labelType: LabelType.optional),
+                    LabelWidget(
+                        label: "Optional",
+                        labelType: LabelType.optional,
+                        showOptionalIcon: widget.showOptionalIcon),
                 ],
               ),
               if (widget.enableClear)

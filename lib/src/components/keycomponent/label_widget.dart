@@ -7,12 +7,14 @@ class LabelWidget extends StatelessWidget {
   final String label;
   final LabelType labelType;
   final bool isDisabled;
+  final bool showOptionalIcon;
 
   const LabelWidget({
     super.key,
     required this.label,
     this.labelType = LabelType.normal,
     this.isDisabled = false,
+    this.showOptionalIcon = true,
   });
 
   @override
@@ -52,10 +54,11 @@ class LabelWidget extends StatelessWidget {
                   isDisabled ? DLSColors.textDisabled300 : DLSColors.textSub500,
             ),
           ),
-          const Icon(
-            Icons.info,
-            color: DLSColors.iconDisabled300,
-          ),
+          if (showOptionalIcon)
+            const Icon(
+              Icons.info,
+              color: DLSColors.iconDisabled300,
+            ),
         ],
       );
     } else {
