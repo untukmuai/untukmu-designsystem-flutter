@@ -25,6 +25,7 @@ class CustomTextInputWidget extends StatefulWidget {
   final String? label;
   final String? hintText;
   final bool isEditable;
+  final bool isReadOnly;
   final bool isInvalid;
   final bool showOptionalLabel;
   final String? errorMessage;
@@ -60,6 +61,7 @@ class CustomTextInputWidget extends StatefulWidget {
       this.label,
       this.hintText,
       this.isEditable = true,
+      this.isReadOnly = false,
       this.isInvalid = false,
       this.errorMessage,
       required this.controller,
@@ -557,6 +559,7 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextField(
+          readOnly: widget.isReadOnly,
           controller: widget.controller,
           focusNode: _focusNode,
           enabled: widget.isEditable,
