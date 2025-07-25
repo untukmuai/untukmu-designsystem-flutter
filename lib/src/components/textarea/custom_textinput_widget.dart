@@ -672,17 +672,16 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
             children: [
               Row(
                 children: [
-                  LabelWidget(
-                      label: widget.label!,
-                      labelType: widget.isRequired
-                          ? LabelType.mandatory
-                          : LabelType.normal),
+                  LabelWidget(label: widget.label!),
                   if (widget.showOptionalLabel) const SizedBox(width: 4),
                   if (widget.showOptionalLabel)
                     LabelWidget(
                         label: "Optional",
                         labelType: LabelType.optional,
                         showOptionalIcon: widget.showOptionalIcon),
+                  if (widget.isRequired)
+                    LabelWidget(
+                        label: "Mandatory", labelType: LabelType.mandatory),
                 ],
               ),
               if (widget.enableClear)
@@ -720,8 +719,13 @@ class CustomTextInputWidgetState extends State<CustomTextInputWidget> {
                     LabelWidget(label: widget.label!),
                     if (widget.showOptionalLabel) const SizedBox(width: 4),
                     if (widget.showOptionalLabel)
-                      const LabelWidget(
-                          label: "Optional", labelType: LabelType.optional),
+                      LabelWidget(
+                          label: "Optional",
+                          labelType: LabelType.optional,
+                          showOptionalIcon: widget.showOptionalIcon),
+                    if (widget.isRequired)
+                      LabelWidget(
+                          label: "Mandatory", labelType: LabelType.mandatory),
                   ],
                 ),
               const SizedBox(height: 16),
